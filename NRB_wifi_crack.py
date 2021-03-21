@@ -484,7 +484,7 @@ def packet_download():
                 print("\033[94;1m[+]\033 Tor ip tables indirildi")
                 if os.path.exists("ZPhisher") == False:
                     system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git")
-                    os.chdir("/opt/nrb_wifi_tool/")
+                    os.chdir(location)
                     if os.path.exists("mp3indirdur-No1-Kendine-Iyi-Bak.mp3")== False:
                         webbrowser.open("https://www.mp3indirdur.mobi/80241-indir-no1-kendine-iyi-bak-indir.html#",new=0,autoraise=True)
                         if os.path.exists("mp3indirdur-No1-Lalalala.mp3") == False:
@@ -589,7 +589,7 @@ def help():
     system("figlet NRB")
     print("\033[94;1m[+]\033 Kuruluma hazirlaniliyor..")
     sleep(3)
-    
+
     system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git > /dev/null/ 2>&1 &")
 def zphisher():
     chdir("/opt/zphisher/")
@@ -679,6 +679,7 @@ def handshake_take():
         sleep(2)
 
 while True:
+    location = os.getcwd()
     user_name = "admin"
     password = "admin"
     system("clear")

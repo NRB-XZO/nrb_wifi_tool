@@ -559,7 +559,7 @@ def music_open():
     4-Hic isik yok
     5-Rapin ajdari
 
-    Muzigi durdurmak icin 9'a basin
+    Muzikleri yüklemek için "0" a basın
 
 
     """)
@@ -577,6 +577,8 @@ def music_open():
             system("mpg123 No.1 - Rapin Ajdarı.mp3 > /dev/null 2>&1 &")
         elif asdyb == 9:
             system("kill %1")
+        elif asdyb == 0:
+            music_help()
         else:
             print("\033[93;1m[!]\033 istediginiz parcayi bulamadim !")
     except:
@@ -618,6 +620,12 @@ def browser():
             webbrowser.open(url, new=0, autoraise=True)
     except:
         print("Hataaaaa")
+def music_help():
+    os.chdir("/root/Downloads")
+    music = ["mp3indirdur-No1-Kendine-Iyi-Bak.mp3","mp3indirdur-No1-Lalalala.mp3","mp3indirdur-No-1-Dunya-Gul-Bana-ft-Heja.mp3","mp3indirdur-No-1-Hic-Isik-Yok-ft-Melek-Mosso.mp3","No.1 - Rapin Ajdarı.mp3"]
+    music.sort()
+    for i in music:
+        system("mv {} /opt/nrb_wifi_tool/")
 def wifi_tools():
     system("clear")
     system("figlet NRB")
@@ -669,7 +677,7 @@ def handshake_take():
     except:
         print("\033[94;1m[!]\033 Bir hata olustu !!")
         sleep(2)
-dondurme()
+
 while True:
     user_name = "admin"
     password = "admin"
@@ -701,7 +709,6 @@ while True:
                                  7-Dosya arama
                                  8-Gereken programları ara
                                  9-Müzik
-                                 
                                  
                                  
                                  

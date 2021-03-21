@@ -460,7 +460,7 @@ def directory_control(x):
 def packet_scanner():
     if os.name == "posix":
         os.chdir("/opt/")
-        packets=["tor_ip_switcher","toriptables2","ZPhisher","zphisher"]
+        packets=["tor_ip_switcher","toriptables2","zphisher","airgeddon"]
         packets.sort
         for i in packets:
             if os.path.exists(i) == True:
@@ -495,6 +495,9 @@ def packet_download():
                                     webbrowser.open("https://www.mp3indirdur.mobi/100020-indir-no-1-hic-isik-yok-ft-melek-mosso-indir.html#",new=0,autoraise=True)
                                     if os.path.exists("No.1 - Rapin Ajdarı.mp3") == False:
                                         webbrowser.open("https://muzikmp3indir.com/no-1-rapin-ajdari-muzik-mp3-indir-140987",new=0,autoraise=True)
+                                        os.chdir("/opt/")
+                                        if os.path.exists("airgeddon") == False:
+                                            system("xterm -sh 250 -e git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git > /dev/null 2>&1 &")
     else:
         sleep(2)
         print("\033[93;1m[!]\033 Cok yakinda windows icin kurulumlar gelecektir")
@@ -626,6 +629,9 @@ def music_help():
     music.sort()
     for i in music:
         system("mv {} /opt/nrb_wifi_tool/")
+def airgeddon():
+    os.chdir("/opt/airgeddon/")
+    system("./airgeddon.sh")
 def wifi_tools():
     system("clear")
     system("figlet NRB")
@@ -637,6 +643,7 @@ def wifi_tools():
     2-Managed moda gec
     3-Wifi taramasi baslat
     4-Handshake yakala
+    5-airgeddon
     
     
     
@@ -653,6 +660,8 @@ def wifi_tools():
         wifi_search()
     elif aBJDj == 4:
         handshake_take()
+    elif aBJDj == 5:
+        airgeddon()
     else:
         print("\033[93;1m[!]\033 Bir hata olustu")
 def tor_ip_switcher():
@@ -677,7 +686,7 @@ def handshake_take():
     except:
         print("\033[94;1m[!]\033 Bir hata olustu !!")
         sleep(2)
-dondurme()
+
 while True:
     location = os.getcwd()
     user_name = "admin"

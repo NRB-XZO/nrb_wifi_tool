@@ -460,7 +460,7 @@ def directory_control(x):
 def packet_scanner():
     if os.name == "posix":
         os.chdir("/opt/")
-        packets=["tor_ip_switcher","toriptables2","ZPhisher"]
+        packets=["tor_ip_switcher","toriptables2","ZPhisher","zphisher"]
         packets.sort
         for i in packets:
             if os.path.exists(i) == True:
@@ -593,7 +593,7 @@ def help():
     system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git > /dev/null/ 2>&1 &")
 def zphisher():
     chdir("/opt/zphisher/")
-    system("xterm -sh 250 -e bash ZPhisher.sh > /dev/null 2>&1 &")
+    system("xterm -sh 250 -e bash zphisher.sh > /dev/null 2>&1 &")
 def browser():
     system("clear")
     system("figlet NRB")

@@ -484,6 +484,7 @@ def packet_download():
                 print("\033[94;1m[+]\033 Tor ip tables indirildi")
                 if os.path.exists("ZPhisher") == False:
                     system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git")
+                    print("\033[94;1m[+]\033 zphisher indirildi")
                     os.chdir(location)
                     if os.path.exists("mp3indirdur-No1-Kendine-Iyi-Bak.mp3")== False:
                         webbrowser.open("https://www.mp3indirdur.mobi/80241-indir-no1-kendine-iyi-bak-indir.html#",new=0,autoraise=True)
@@ -497,7 +498,8 @@ def packet_download():
                                         webbrowser.open("https://muzikmp3indir.com/no-1-rapin-ajdari-muzik-mp3-indir-140987",new=0,autoraise=True)
                                         os.chdir("/opt/")
                                         if os.path.exists("airgeddon") == False:
-                                            system("xterm -sh 250 -e git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git > /dev/null 2>&1 &")
+                                            system("xterm -sh 250 -e git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git")
+                                            print("\033[94;1m[+]\033 airgeddon indirildi")
     else:
         sleep(2)
         print("\033[93;1m[!]\033 Cok yakinda windows icin kurulumlar gelecektir")
@@ -686,7 +688,7 @@ def handshake_take():
     except:
         print("\033[94;1m[!]\033 Bir hata olustu !!")
         sleep(2)
-dondurme()
+
 while True:
     location = os.getcwd()
     user_name = "admin"

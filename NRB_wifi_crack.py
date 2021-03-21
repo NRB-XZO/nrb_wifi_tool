@@ -1,8 +1,13 @@
-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#NRB SECURITY
 from time import sleep
 import requests
 from bs4 import BeautifulSoup
-from os import *
+from keyword import iskeyword
+import sys
+import os
+from os import system,chdir
 from subprocess import *
 import webbrowser
 def dondurme():
@@ -406,8 +411,6 @@ def dondurme():
     system("figlet NRB")
     print("People see what they see. I'll show you what you don't want to seE ...")
     sleep(0.1)
-
-
 def monitor_mod_open():
     system("clear")
     system("figlet NRB")
@@ -417,8 +420,84 @@ def monitor_mod_open():
     sleep(3)
     x = "Monitor Mod Aktif"
     return x
-
-
+def directory_control(x):
+    try:
+        if os.name == "nt":
+            try:
+                if os.path.exists(x) == True:
+                    sleep(1.2)
+                    print("\033[94;1m[+]\033 {} dosyasi mevcut !!".format(x))
+                    sleep(3)
+                elif os.path.exists(x) == False:
+                    sleep(1.2)
+                    print("\033[94;1m[!]\033 {} dosyasi mevcut degil !!".format(x))
+                    sleep(3)
+                else:
+                    print("\033[93;1m[!]\033 Bir hata olustu !")
+                    sleep(3)
+            except:
+                print("\033[93;1m[!]\033 Dosya arama kisminda bir hata olustu !!")
+                sleep(3)
+        elif os.name == "posix":
+            try:
+                if os.path.exists(x) == True:
+                    sleep(1.2)
+                    print("\033[94;1m[+]\033 {} dosyasi mevcut !!".format(x))
+                    sleep(3)
+                elif os.path.exists(x) == False:
+                    sleep(1.2)
+                    print("\033[94;1m[!]\033 {} dosyasi mevcut degil !!".format(x))
+                    sleep(3)
+                else:
+                    print("\033[93;1m[!]\033 Bir hata olustu !")
+                    sleep(3)
+            except:
+                print("\033[93;1m[!]\033 Dosya arama kisminda bir hata olustu !!")
+                sleep(3)
+    except:
+        print("\033[93;1m[!]\033 Dosya arama kisminda bir hata olustu !!")
+        sleep(3)
+def packet_scanner():
+    if os.name == "posix":
+        os.chdir("/opt/")
+        packets=["tor_ip_switcher","toriptables2","ZPhisher"]
+        packets.sort
+        for i in packets:
+            if os.path.exists(i) == True:
+                sleep(2)
+                print("\033[94;1m[+] {} mevcut ".format(i))
+                sleep(2)
+            elif os.path.exists(i) == False:
+                sleep(2)
+                print("\033[93;1m[-]\033 {} mevcut degil".format(i))
+                sleep(2)
+def packet_download():
+    #tor ip switcher
+    if os.name == "posix":
+        os.chdir("/opt/")
+        if os.path.exists("tor_ip_switcher") == False:
+            system("xterm -sh 250 -e git clone https://github.com/ruped24/tor_ip_switcher.git")
+            sleep(1)
+            print("\033[94;1m[+]\033 Tor ip switcher indirildi")
+            if os.path.exists("toriptables2") == False:
+                system("xterm -sh 250 -e git clone https://github.com/ruped24/toriptables2.git")
+                print("\033[94;1m[+]\033 Tor ip tables indirildi")
+                if os.path.exists("ZPhisher") == False:
+                    system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git")
+                    os.chdir("/opt/nrb_wifi_tool/")
+                    if os.path.exists("mp3indirdur-No1-Kendine-Iyi-Bak.mp3")== False:
+                        webbrowser.open("https://www.mp3indirdur.mobi/80241-indir-no1-kendine-iyi-bak-indir.html#",new=0,autoraise=True)
+                        if os.path.exists("mp3indirdur-No1-Lalalala.mp3") == False:
+                            webbrowser.open("https://www.mp3indirdur.mobi/80242-indir-no1-lalalala-indir.html#",new=0,autoraise=True)
+                            if os.path.exists("mp3indirdur-No-1-Dunya-Gul-Bana-ft-Heja.mp3") == False:
+                                webbrowser.open("https://www.mp3indirdur.mobi/102134-indir-no-1-dunya-gul-bana-ft-heja-indir.html#",new=0,autoraise=True)
+                                if os.path.exists("mp3indirdur-No-1-Hic-Isik-Yok-ft-Melek-Mosso.mp3") == False:
+                                    webbrowser.open("https://www.mp3indirdur.mobi/100020-indir-no-1-hic-isik-yok-ft-melek-mosso-indir.html#",new=0,autoraise=True)
+                                    if os.path.exists("No.1 - Rapin Ajdarı.mp3") == False:
+                                        webbrowser.open("https://muzikmp3indir.com/no-1-rapin-ajdari-muzik-mp3-indir-140987",new=0,autoraise=True)
+    else:
+        sleep(2)
+        print("\033[93;1m[!]\033 Cok yakinda windows icin kurulumlar gelecektir")
 def monitor_mod_close():
     system("clear")
     system("figlet NRB")
@@ -445,7 +524,7 @@ def wifi_search():
         sleep(4)
 
 
-def guncelleme():
+def update():
     system("clear")
     system("figlet NRB")
     sleep(2)
@@ -454,7 +533,7 @@ def guncelleme():
     system("apt-get update")
 
 
-def guncelleme_kur():
+def upgrade():
     system("clear")
     system("figlet NRB")
     sleep(2)
@@ -462,7 +541,8 @@ def guncelleme_kur():
     sleep(2)
     system("apt-get upgrade")
 
-
+def dicle_bot():
+    system("xterm -sh 250 -e python dicle_bot.py > /dev/null 2>&1 &")
 def terminal():
     run(['python', 'altsurec.py'])
 
@@ -486,15 +566,15 @@ def music_open():
     try:
         asdyb = int(input("Cal:"))
         if asdyb == 1:
-            system("mpg123 {}.mp3 > /dev/null 2>&1 &".format(1))
+            system("mpg123 mp3indirdur-No1-Kendine-Iyi-Bak.mp3 > /dev/null 2>&1 &")
         elif asdyb == 2:
-            system("mpg123 {}.mp3 > /dev/null 2>&1 &".format(2))
+            system("mpg123 mp3indirdur-No1-Lalalala.mp3 > /dev/null 2>&1 &")
         elif asdyb == 3:
-            system("mpg123 {}.mp3 > /dev/null 2>&1 &".format(3))
+            system("mpg123 mp3indirdur-No-1-Dunya-Gul-Bana-ft-Heja.mp3 > /dev/null 2>&1 &")
         elif asdyb == 4:
-            system("mpg123 {}.mp3 > /dev/null 2>&1 &".format(4))
+            system("mpg123 mp3indirdur-No-1-Hic-Isik-Yok-ft-Melek-Mosso.mp3 > /dev/null 2>&1 &")
         elif asdyb == 5:
-            system("mpg123 {}.mp3 > /dev/null 2>&1 &".format(5))
+            system("mpg123 No.1 - Rapin Ajdarı.mp3 > /dev/null 2>&1 &")
         elif asdyb == 9:
             system("kill %1")
         else:
@@ -502,8 +582,16 @@ def music_open():
     except:
         print("\033[93;1m[!]\033 Hatali islem !")
     print("[+] Dinliyorsunuz...")
-
-
+def help():
+    system("clear")
+    system("figlet NRB")
+    print("\033[94;1m[+]\033 Kuruluma hazirlaniliyor..")
+    sleep(3)
+    
+    system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git > /dev/null/ 2>&1 &")
+def zphisher():
+    chdir("/opt/zphisher/")
+    system("xterm -sh 250 -e bash ZPhisher.sh > /dev/null 2>&1 &")
 def browser():
     system("clear")
     system("figlet NRB")
@@ -530,11 +618,41 @@ def browser():
             webbrowser.open(url, new=0, autoraise=True)
     except:
         print("Hataaaaa")
-
+def wifi_tools():
+    system("clear")
+    system("figlet NRB")
+    print(""""
+    
+          Wifi Araclari
+    
+    1-Monitor moda gec
+    2-Managed moda gec
+    3-Wifi taramasi baslat
+    4-Handshake yakala
+    
+    
+    
+    
+    
+    
+    """)
+    aBJDj = int(input("Secim:"))
+    if aBJDj == 1:
+        monitor_mod_open()
+    elif aBJDj == 2:
+        monitor_mod_close()
+    elif aBJDj == 3:
+        wifi_search()
+    elif aBJDj == 4:
+        handshake_take()
+    else:
+        print("\033[93;1m[!]\033 Bir hata olustu")
 def tor_ip_switcher():
+    os.chdir("/opt/toriptables2")
     system("python toriptables2.py -l")
+    os.chdir("/opt/tor_ip_switcher")
     system("python tor_ip_switcher.py")
-def handshake_yakalama():
+def handshake_take():
     system("clear")
     system("figlet NRB")
     system("xterm -sh 500 -e airodump-ng wlan0mon > /dev/null 2>&1 &")
@@ -551,15 +669,14 @@ def handshake_yakalama():
     except:
         print("\033[94;1m[!]\033 Bir hata olustu !!")
         sleep(2)
-
 dondurme()
 while True:
     user_name = "admin"
     password = "admin"
     system("clear")
     system("figlet NRB")
-    kullanici_adi = str(input("Kullanici adi:"))
-    sifre = str(input("Sifre:"))
+    kullanici_adi = str(input("Kullanıcı adı:"))
+    sifre = str(input("Şifre:"))
     try:
         if user_name == kullanici_adi and password == sifre:
             try:
@@ -568,52 +685,62 @@ while True:
                     system("clear")
                     system("figlet NRB")
                     sleep(3)
-                    sleep(1)
-                    print("""
+                    while True:
+                        try:
+                            system("clear")
+                            system("figlet NRB")
+                            print("""  
 
-                                  \033[94mNRB Wifi Crack\033
 
-                          1-Monitor Moda Gec
-                          2-Managed Moda Gec
-                          3-Wifi Taramasi Baslat
-                          4-Handshake Yakala
-                          5-Sistem Guncelle
-                          6-Sistem Guncellemelerini Kur
-                          7-Tarayici Asistani
-                          8-No.1 Dinle
-                          9-Kendini Gizle
+                                 1-Wifi araçları
+                                 2-Proxy
+                                 3-Tarayıcı
+                                 4-Sistem güncellemeleri
+                                 5-Bot
+                                 6-zphisher
+                                 7-Dosya arama
+                                 8-Gereken programları ara
+                                 9-Müzik
+                                 
+                                 
+                                 
+                                 
 
-                    """)
-                    aaa = int(input("Secim:"))
-                    if aaa == 1:
-                        system("clear")
-                        monitor_mod_open()
-                    elif aaa == 2:
-                        system("clear")
-                        monitor_mod_close()
-                    elif aaa == 3:
-                        system("clear")
-                        wifi_search()
-                    elif aaa == 4:
-                        system("clear")
-                        handshake_yakalama()
-                    elif aaa == 5:
-                        sleep(2)
-                        guncelleme()
-                    elif aaa == 6:
-                        guncelleme_kur()
-                    elif aaa == 7:
-                        browser()
-                    elif aaa == 8:
-                        music_open()
-                    elif aaa == 9:
-                        tor_ip_switcher()
 
-                    else:
-                        print("\033[93;1m[!]\033Hatali islem")
+
+
+
+                                        """)
+
+                            JFKbdhf = int(input("Secim:"))
+                            if JFKbdhf == 1:
+                                wifi_tools()
+                            elif JFKbdhf == 2:
+                                tor_ip_switcher()
+                            elif JFKbdhf == 3:
+                                browser()
+                            elif JFKbdhf == 4:
+                                update()
+                                upgrade()
+                            elif JFKbdhf == 5:
+                                dicle_bot()
+                            elif JFKbdhf == 6:
+                                zphisher()
+                            elif JFKbdhf == 7:
+                                system("clear")
+                                system("figlet NRB")
+                                vnafn = str(input("Ara:"))
+                                directory_control(vnafn)
+                            elif JFKbdhf == 8:
+                                packet_scanner()
+                                packet_download()
+                            elif JFKbdhf == 9:
+                                music_open()
+                            else:
+                                print("\033[93;1m[!]\033 Bir hata oluştu")
+                        except:
+                            print("\033[93;1m[!]\033 Bir hata oluştu")
             except:
-                print("\n\033[93;1m[!]\033 Bir Yerde Hata Olustu!!!")
-        else:
-            print("\033[94;1m[!]\033 Hatali giris !")
+                print("\033[93;1m[!]\033 Bir hata oluştu")
     except:
-        print("\033[94;1m[!]\033 Bir yerde hata olustu!")
+        print("\033[93;1m[!]\033 Bir hata oluştu")

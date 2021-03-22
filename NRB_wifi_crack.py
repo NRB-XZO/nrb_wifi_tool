@@ -688,7 +688,7 @@ def handshake_take():
     except:
         print("\033[94;1m[!]\033 Bir hata olustu !!")
         sleep(2)
-
+dondurme()
 while True:
     location = os.getcwd()
     user_name = "admin"

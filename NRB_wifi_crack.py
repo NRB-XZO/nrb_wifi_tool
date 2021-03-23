@@ -1,15 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#NRB SECURITY
+# NRB SECURITY
 from time import sleep
 import requests
 from bs4 import BeautifulSoup
 from keyword import iskeyword
 import sys
 import os
-from os import system,chdir
+from os import system, chdir
 from subprocess import *
 import webbrowser
+
+x = "Ayarlanmadı"
 def dondurme():
     system("clear")
     system("figlet NRB")
@@ -411,6 +413,8 @@ def dondurme():
     system("figlet NRB")
     print("People see what they see. I'll show you what you don't want to seE ...")
     sleep(0.1)
+
+#Wifi adaptörünün olduğu durumda system fonksiyonu ile wlan0'dan wlan0mon'a geçişi sağlar
 def monitor_mod_open():
     system("clear")
     system("figlet NRB")
@@ -418,8 +422,12 @@ def monitor_mod_open():
     sleep(2)
     print("\033[94;1m[+]\033 Monitor Mod Etkin")
     sleep(3)
-    x = "Monitor Mod Aktif"
+    global x
+    x = "Monitor"
     return x
+
+#Bulunduğu dizindeki dosyayı aramayı sağlar.
+#Eğer sistem genelinde bir arama yapılacaksa "locate <aranacak dosya>" komutu kullanılabilir.
 def directory_control(x):
     try:
         if os.name == "nt":
@@ -457,10 +465,12 @@ def directory_control(x):
     except:
         print("\033[93;1m[!]\033 Dosya arama kisminda bir hata olustu !!")
         sleep(3)
+
+#Aracımız için gereken yardımcı araçlar bulunduğundan dolayı onların sistemde olup olmadığını kontrol eder.
 def packet_scanner():
     if os.name == "posix":
         os.chdir("/opt/")
-        packets=["tor_ip_switcher","toriptables2","zphisher","airgeddon"]
+        packets = ["tor_ip_switcher", "toriptables2", "zphisher", "airgeddon"]
         packets.sort
         for i in packets:
             if os.path.exists(i) == True:
@@ -471,8 +481,10 @@ def packet_scanner():
                 sleep(2)
                 print("\033[93;1m[-]\033 {} mevcut degil".format(i))
                 sleep(2)
+
+#Sistemde olmayan yardımcı toolları ve benim sevdiğim birkaç müzik parçasını indirir.
 def packet_download():
-    #tor ip switcher
+    # tor ip switcher
     if os.name == "posix":
         os.chdir("/opt/")
         if os.path.exists("tor_ip_switcher") == False:
@@ -484,36 +496,46 @@ def packet_download():
                 print("\033[94;1m[+]\033 Tor ip tables indirildi")
                 if os.path.exists("ZPhisher") == False:
                     system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git")
-                    print("\033[94;1m[+]\033 zphisher indirildi")
                     os.chdir(location)
-                    if os.path.exists("mp3indirdur-No1-Kendine-Iyi-Bak.mp3")== False:
-                        webbrowser.open("https://www.mp3indirdur.mobi/80241-indir-no1-kendine-iyi-bak-indir.html#",new=0,autoraise=True)
+                    if os.path.exists("mp3indirdur-No1-Kendine-Iyi-Bak.mp3") == False:
+                        webbrowser.open("https://www.mp3indirdur.mobi/80241-indir-no1-kendine-iyi-bak-indir.html#",
+                                        new=0, autoraise=True)
                         if os.path.exists("mp3indirdur-No1-Lalalala.mp3") == False:
-                            webbrowser.open("https://www.mp3indirdur.mobi/80242-indir-no1-lalalala-indir.html#",new=0,autoraise=True)
+                            webbrowser.open("https://www.mp3indirdur.mobi/80242-indir-no1-lalalala-indir.html#", new=0,
+                                            autoraise=True)
                             if os.path.exists("mp3indirdur-No-1-Dunya-Gul-Bana-ft-Heja.mp3") == False:
-                                webbrowser.open("https://www.mp3indirdur.mobi/102134-indir-no-1-dunya-gul-bana-ft-heja-indir.html#",new=0,autoraise=True)
+                                webbrowser.open(
+                                    "https://www.mp3indirdur.mobi/102134-indir-no-1-dunya-gul-bana-ft-heja-indir.html#",
+                                    new=0, autoraise=True)
                                 if os.path.exists("mp3indirdur-No-1-Hic-Isik-Yok-ft-Melek-Mosso.mp3") == False:
-                                    webbrowser.open("https://www.mp3indirdur.mobi/100020-indir-no-1-hic-isik-yok-ft-melek-mosso-indir.html#",new=0,autoraise=True)
+                                    webbrowser.open(
+                                        "https://www.mp3indirdur.mobi/100020-indir-no-1-hic-isik-yok-ft-melek-mosso-indir.html#",
+                                        new=0, autoraise=True)
                                     if os.path.exists("No.1 - Rapin Ajdarı.mp3") == False:
-                                        webbrowser.open("https://muzikmp3indir.com/no-1-rapin-ajdari-muzik-mp3-indir-140987",new=0,autoraise=True)
+                                        webbrowser.open(
+                                            "https://muzikmp3indir.com/no-1-rapin-ajdari-muzik-mp3-indir-140987", new=0,
+                                            autoraise=True)
                                         os.chdir("/opt/")
                                         if os.path.exists("airgeddon") == False:
-                                            system("xterm -sh 250 -e git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git")
-                                            print("\033[94;1m[+]\033 airgeddon indirildi")
+                                            system(
+                                                "xterm -sh 250 -e git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git > /dev/null 2>&1 &")
     else:
         sleep(2)
         print("\033[93;1m[!]\033 Cok yakinda windows icin kurulumlar gelecektir")
+
+#Monitor modu kapatır.
 def monitor_mod_close():
     system("clear")
     system("figlet NRB")
     system("xterm -e airmon-ng stop wlan0mon")
     sleep(3)
     print("\033[94;1m[+]\033 Managed Mod Etkin!!")
-    x = "\033[94;1m[+]\033Managed Mod Aktif"
+    global x
+    x = "Managed"
     sleep(3)
     return x
 
-
+#airodump-ng ile monitor mod'da wifi taramsı başlatır.
 def wifi_search():
     try:
         system("clear")
@@ -528,7 +550,7 @@ def wifi_search():
         print("\033[93;1m[!]\033 Bssid ve channel degerlerini bir yere kaydedin")
         sleep(4)
 
-
+#Sistem güncellemesi yapar.
 def update():
     system("clear")
     system("figlet NRB")
@@ -537,7 +559,7 @@ def update():
     sleep(2)
     system("apt-get update")
 
-
+#Sistem güncellemelerini kurar.
 def upgrade():
     system("clear")
     system("figlet NRB")
@@ -546,12 +568,15 @@ def upgrade():
     sleep(2)
     system("apt-get upgrade")
 
+#Online eğitimde videoları benim yerime izlemesi için geliştirdim ama sizin işinize yaramayacağı için bu özelliği kullanamayacaksınız.
 def dicle_bot():
     system("xterm -sh 250 -e python dicle_bot.py > /dev/null 2>&1 &")
+
+#Bunun amk
 def terminal():
     run(['python', 'altsurec.py'])
 
-
+#Müzik açar
 def music_open():
     system("clear")
     system("figlet NRB")
@@ -589,6 +614,8 @@ def music_open():
     except:
         print("\033[93;1m[!]\033 Hatali islem !")
     print("[+] Dinliyorsunuz...")
+
+#zphisher fishing toolunu indirir xterm ile arka planda
 def help():
     system("clear")
     system("figlet NRB")
@@ -596,9 +623,13 @@ def help():
     sleep(3)
 
     system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git > /dev/null/ 2>&1 &")
+
+#zphisher çalıştırır. Eğer ngrok yok ise öncelikle ngrok indirilir.
 def zphisher():
     chdir("/opt/zphisher/")
     system("xterm -sh 250 -e bash zphisher.sh > /dev/null 2>&1 &")
+
+#Terminalden fareye dokunmadan istenilen veya benim daha önceden çok kullanılan birkaç web sayfasını açmaya yarar.
 def browser():
     system("clear")
     system("figlet NRB")
@@ -625,33 +656,41 @@ def browser():
             webbrowser.open(url, new=0, autoraise=True)
     except:
         print("Hataaaaa")
+
+#Downlaods klasörüne inen müziklerin terminalden açılabilmesi için gitmmeleri gereken dizine taşır müzikleri.
 def music_help():
     os.chdir("/root/Downloads")
-    music = ["mp3indirdur-No1-Kendine-Iyi-Bak.mp3","mp3indirdur-No1-Lalalala.mp3","mp3indirdur-No-1-Dunya-Gul-Bana-ft-Heja.mp3","mp3indirdur-No-1-Hic-Isik-Yok-ft-Melek-Mosso.mp3","No.1 - Rapin Ajdarı.mp3"]
+    music = ["mp3indirdur-No1-Kendine-Iyi-Bak.mp3", "mp3indirdur-No1-Lalalala.mp3",
+             "mp3indirdur-No-1-Dunya-Gul-Bana-ft-Heja.mp3", "mp3indirdur-No-1-Hic-Isik-Yok-ft-Melek-Mosso.mp3",
+             "No.1 - Rapin Ajdarı.mp3"]
     music.sort()
     for i in music:
         system("mv {} /opt/nrb_wifi_tool/")
+
+#Feyz aldığım tool olan airgeddon'nı başlatır.
 def airgeddon():
     os.chdir("/opt/airgeddon/")
     system("./airgeddon.sh")
+
+
 def wifi_tools():
     system("clear")
     system("figlet NRB")
     print(""""
-    
+
           Wifi Araclari
-    
+
     1-Monitor moda gec
     2-Managed moda gec
     3-Wifi taramasi baslat
     4-Handshake yakala
     5-airgeddon
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
     """)
     aBJDj = int(input("Secim:"))
     if aBJDj == 1:
@@ -666,11 +705,22 @@ def wifi_tools():
         airgeddon()
     else:
         print("\033[93;1m[!]\033 Bir hata olustu")
+
+#Tor ağında her 5 saniyede bir ip adresini değiştirebilecek bir oturum başlatır.
+#Eğer tor daemon stop gibi bir hata alırsanız aşağıdakileri uygulayın.
+#Yeni bir terminal ekranı açın.
+#apt-get install tor komutunu çalıştırın.
+#Bu komut ile tor paketleri kali linux cihazınıza kurulacaktır.
+#Eğer tekrar aynı hatayı alırsanız /opt/toriptables2/ dizinine gidiniz
+#python toriptables2 -l komutunu çalıştırın
+#İp adresi vermezse veya soru işareti kısmını sürekli tekrarlarsa büyük ihtimal aktif bir internet bağlantınız yoktur.
 def tor_ip_switcher():
     os.chdir("/opt/toriptables2")
     system("python toriptables2.py -l")
     os.chdir("/opt/tor_ip_switcher")
     system("python tor_ip_switcher.py")
+
+#modem bssid değerini ve hedef bssid değerlerini çift tırnak işareti arasına almayı unutmayın aksi takdirde program hata verecektir.
 def handshake_take():
     system("clear")
     system("figlet NRB")
@@ -679,15 +729,27 @@ def handshake_take():
         modem_bssid = str(input("Modem bssid:"))
         channel = int(input("Channel:"))
         dosya_ismi = str(input("Dosya ismi:"))
-        system("xterm -sh 250 -e airodump-ng --bssid {} --channel {} --write {} wlan0mon > /dev/null 2>&1 &".format(modem_bssid,channel,dosya_ismi))
+        system("xterm -sh 250 -e airodump-ng --bssid {} --channel {} --write {} wlan0mon > /dev/null 2>&1 &".format(
+            modem_bssid, channel, dosya_ismi))
         system("clear")
         system("figlet NRB")
         target_bssid1 = str(input("Hedef bssid:"))
-        system("xterm -sh 250 -e aireplay-ng --deauth 20 -a {} -c {} wlan0mon".format(modem_bssid,target_bssid1))
+        system("xterm -sh 250 -e aireplay-ng --deauth 20 -a {} -c {} wlan0mon".format(modem_bssid, target_bssid1))
 
     except:
         print("\033[94;1m[!]\033 Bir hata olustu !!")
         sleep(2)
+#Geliştirme aşamasındaki bir özellik için
+def dosya_acma(write):
+    file = open("bilgiler.txt","w",encoding="utf-8")
+    file.write(write)
+    file.close()
+#Cihazının mecut işletim sistemini arar.
+def sistem_ara():
+    if os.name == "posix":
+        return "Kali Linux"
+    elif os.name == "nt":
+        return "Windows"
 dondurme()
 while True:
     location = os.getcwd()
@@ -695,8 +757,8 @@ while True:
     password = "admin"
     system("clear")
     system("figlet NRB")
-    kullanici_adi = str(input("Kullanıcı adı:"))
-    sifre = str(input("Şifre:"))
+    kullanici_adi = str(input("Kullanıcı adı:")) #Kullanıcı adını çift tırnak işareti arasına almayı unutmayınız.
+    sifre = str(input("Şifre:")) #Şifre değerini çift tırnak işareti arasına almayı unutmayıın.
     try:
         if user_name == kullanici_adi and password == sifre:
             try:
@@ -711,25 +773,25 @@ while True:
                             system("figlet NRB")
                             print("""  
 
-
-                                 1-Wifi araçları
-                                 2-Proxy
-                                 3-Tarayıcı
-                                 4-Sistem güncellemeleri
-                                 5-Bot
-                                 6-zphisher
-                                 7-Dosya arama
-                                 8-Gereken programları ara
-                                 9-Müzik
-                                 
-                                 
-                                 
+                                                              Sistem: {}
+        1-Wifi araçları                                   Wifi Adap.: {}
+        2-Proxy
+        3-Tarayıcı
+        4-Sistem güncellemeleri
+        5-Bot
+        6-zphisher
+        7-Dosya arama
+        8-Gereken programları ara
+        9-Müzik
 
 
 
 
 
-                                        """)
+
+
+
+                                        """.format(sistem_ara(),x))
 
                             JFKbdhf = int(input("Secim:"))
                             if JFKbdhf == 1:

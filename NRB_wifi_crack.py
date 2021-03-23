@@ -494,7 +494,7 @@ def packet_download():
             if os.path.exists("toriptables2") == False:
                 system("xterm -sh 250 -e git clone https://github.com/ruped24/toriptables2.git")
                 print("\033[94;1m[+]\033 Tor ip tables indirildi")
-                if os.path.exists("ZPhisher") == False:
+                if os.path.exists("zphisher") == False:
                     system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git")
                     os.chdir(location)
                     if os.path.exists("mp3indirdur-No1-Kendine-Iyi-Bak.mp3") == False:

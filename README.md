@@ -16,5 +16,4 @@ python3 NRB_wifi_crack.py
 
 kullanıcı adı: admin
 
-
 şifre: admin

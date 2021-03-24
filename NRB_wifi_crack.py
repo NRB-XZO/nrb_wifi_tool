@@ -2,10 +2,6 @@
 # -*- coding: utf-8 -*-
 # NRB SECURITY
 from time import sleep
-import requests
-from bs4 import BeautifulSoup
-from keyword import iskeyword
-import sys
 import os
 from os import system, chdir
 from subprocess import *
@@ -414,7 +410,6 @@ def dondurme():
     print("People see what they see. I'll show you what you don't want to seE ...")
     sleep(0.1)
 
-#Wifi adaptörünün olduğu durumda system fonksiyonu ile wlan0'dan wlan0mon'a geçişi sağlar
 def monitor_mod_open():
     system("clear")
     system("figlet NRB")
@@ -426,8 +421,7 @@ def monitor_mod_open():
     x = "Monitor"
     return x
 
-#Bulunduğu dizindeki dosyayı aramayı sağlar.
-#Eğer sistem genelinde bir arama yapılacaksa "locate <aranacak dosya>" komutu kullanılabilir.
+
 def directory_control(x):
     try:
         if os.name == "nt":
@@ -466,7 +460,7 @@ def directory_control(x):
         print("\033[93;1m[!]\033 Dosya arama kisminda bir hata olustu !!")
         sleep(3)
 
-#Aracımız için gereken yardımcı araçlar bulunduğundan dolayı onların sistemde olup olmadığını kontrol eder.
+
 def packet_scanner():
     if os.name == "posix":
         os.chdir("/opt/")
@@ -482,7 +476,7 @@ def packet_scanner():
                 print("\033[93;1m[-]\033 {} mevcut degil".format(i))
                 sleep(2)
 
-#Sistemde olmayan yardımcı toolları ve benim sevdiğim birkaç müzik parçasını indirir.
+
 def packet_download():
     # tor ip switcher
     if os.name == "posix":
@@ -523,7 +517,7 @@ def packet_download():
         sleep(2)
         print("\033[93;1m[!]\033 Cok yakinda windows icin kurulumlar gelecektir")
 
-#Monitor modu kapatır.
+
 def monitor_mod_close():
     system("clear")
     system("figlet NRB")
@@ -535,7 +529,7 @@ def monitor_mod_close():
     sleep(3)
     return x
 
-#airodump-ng ile monitor mod'da wifi taramsı başlatır.
+
 def wifi_search():
     try:
         system("clear")
@@ -550,7 +544,7 @@ def wifi_search():
         print("\033[93;1m[!]\033 Bssid ve channel degerlerini bir yere kaydedin")
         sleep(4)
 
-#Sistem güncellemesi yapar.
+
 def update():
     system("clear")
     system("figlet NRB")
@@ -559,7 +553,7 @@ def update():
     sleep(2)
     system("apt-get update")
 
-#Sistem güncellemelerini kurar.
+
 def upgrade():
     system("clear")
     system("figlet NRB")
@@ -568,15 +562,12 @@ def upgrade():
     sleep(2)
     system("apt-get upgrade")
 
-#Online eğitimde videoları benim yerime izlemesi için geliştirdim ama sizin işinize yaramayacağı için bu özelliği kullanamayacaksınız.
-def dicle_bot():
-    system("xterm -sh 250 -e python dicle_bot.py > /dev/null 2>&1 &")
 
-#Bunun amk
+
+
 def terminal():
     run(['python', 'altsurec.py'])
 
-#Müzik açar
 def music_open():
     system("clear")
     system("figlet NRB")
@@ -615,7 +606,6 @@ def music_open():
         print("\033[93;1m[!]\033 Hatali islem !")
     print("[+] Dinliyorsunuz...")
 
-#zphisher fishing toolunu indirir xterm ile arka planda
 def help():
     system("clear")
     system("figlet NRB")
@@ -624,12 +614,10 @@ def help():
 
     system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git > /dev/null/ 2>&1 &")
 
-#zphisher çalıştırır. Eğer ngrok yok ise öncelikle ngrok indirilir.
 def zphisher():
     chdir("/opt/zphisher/")
     system("xterm -sh 250 -e bash zphisher.sh > /dev/null 2>&1 &")
 
-#Terminalden fareye dokunmadan istenilen veya benim daha önceden çok kullanılan birkaç web sayfasını açmaya yarar.
 def browser():
     system("clear")
     system("figlet NRB")
@@ -657,7 +645,6 @@ def browser():
     except:
         print("Hataaaaa")
 
-#Downlaods klasörüne inen müziklerin terminalden açılabilmesi için gitmmeleri gereken dizine taşır müzikleri.
 def music_help():
     os.chdir("/root/Downloads")
     music = ["mp3indirdur-No1-Kendine-Iyi-Bak.mp3", "mp3indirdur-No1-Lalalala.mp3",
@@ -667,7 +654,6 @@ def music_help():
     for i in music:
         system("mv {} /opt/nrb_wifi_tool/")
 
-#Feyz aldığım tool olan airgeddon'nı başlatır.
 def airgeddon():
     os.chdir("/opt/airgeddon/")
     system("./airgeddon.sh")
@@ -706,21 +692,13 @@ def wifi_tools():
     else:
         print("\033[93;1m[!]\033 Bir hata olustu")
 
-#Tor ağında her 5 saniyede bir ip adresini değiştirebilecek bir oturum başlatır.
-#Eğer tor daemon stop gibi bir hata alırsanız aşağıdakileri uygulayın.
-#Yeni bir terminal ekranı açın.
-#apt-get install tor komutunu çalıştırın.
-#Bu komut ile tor paketleri kali linux cihazınıza kurulacaktır.
-#Eğer tekrar aynı hatayı alırsanız /opt/toriptables2/ dizinine gidiniz
-#python toriptables2 -l komutunu çalıştırın
-#İp adresi vermezse veya soru işareti kısmını sürekli tekrarlarsa büyük ihtimal aktif bir internet bağlantınız yoktur.
+
 def tor_ip_switcher():
     os.chdir("/opt/toriptables2")
     system("python toriptables2.py -l")
     os.chdir("/opt/tor_ip_switcher")
     system("python tor_ip_switcher.py")
 
-#modem bssid değerini ve hedef bssid değerlerini çift tırnak işareti arasına almayı unutmayın aksi takdirde program hata verecektir.
 def handshake_take():
     system("clear")
     system("figlet NRB")
@@ -739,12 +717,10 @@ def handshake_take():
     except:
         print("\033[94;1m[!]\033 Bir hata olustu !!")
         sleep(2)
-#Geliştirme aşamasındaki bir özellik için
 def dosya_acma(write):
     file = open("bilgiler.txt","w",encoding="utf-8")
     file.write(write)
     file.close()
-#Cihazının mecut işletim sistemini arar.
 def sistem_ara():
     if os.name == "posix":
         return "Kali Linux"
@@ -778,11 +754,10 @@ while True:
         2-Proxy
         3-Tarayıcı
         4-Sistem güncellemeleri
-        5-Bot
-        6-zphisher
-        7-Dosya arama
-        8-Gereken programları ara
-        9-Müzik
+        5-zphisher
+        6-Dosya arama
+        7-Gereken programları ara
+        8-Müzik
 
 
 
@@ -804,18 +779,16 @@ while True:
                                 update()
                                 upgrade()
                             elif JFKbdhf == 5:
-                                dicle_bot()
-                            elif JFKbdhf == 6:
                                 zphisher()
-                            elif JFKbdhf == 7:
+                            elif JFKbdhf == 6:
                                 system("clear")
                                 system("figlet NRB")
                                 vnafn = str(input("Ara:"))
                                 directory_control(vnafn)
-                            elif JFKbdhf == 8:
+                            elif JFKbdhf == 7:
                                 packet_scanner()
                                 packet_download()
-                            elif JFKbdhf == 9:
+                            elif JFKbdhf == 8:
                                 music_open()
                             else:
                                 print("\033[93;1m[!]\033 Bir hata oluştu")

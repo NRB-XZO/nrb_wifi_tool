@@ -18,7 +18,7 @@ P = '\033[35m'  # purple
 C = '\033[36m'  # cyan
 GR = '\033[37m'  # gray
 x = "Ayarlanmadı"
-def dondurme():
+def dondurme_linux():
     for i in range(0,random.randint(1,3)):
         system("clear")
         system("figlet NRB")
@@ -220,8 +220,158 @@ def dondurme():
         system("figlet NRB")
         print(G + "People see what they see. I'll show you what you don't want to seE ...")
         sleep(0.1)
-
-
+def dondurme_windows():
+    for i in range(0,random.randint(1,3)):
+        system("cls")
+        print(W + "People see what they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(R + "PEople see what they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(O + "PeOple see what they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(GR + "PeoPle see what they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(B + "PeopLe see what they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(C + "PeoplE see what they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(P + "People See what they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(W + "People sEe what they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(R + "People seE what they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(G + "People see What they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(O + "People see wHat they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(B + "People see whAt they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(P + "People see whaT they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(C + "People see what They see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(GR + "People see what tHey see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(W + "People see what thEy see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(R + "People see what theY see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(G + "People see what they See. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(O + "People see what they sEe. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(B + "People see what they seE. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(P + "People see what they see. I'll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(C + "People see what they see. I'Ll show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(GR + "People see what they see. I'lL show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(W + "People see what they see. I'll Show you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(R + "People see what they see. I'll sHow you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(G + "People see what they see. I'll shOw you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(O + "People see what they see. I'll shoW you what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(B + "People see what they see. I'll show You what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(P + "People see what they see. I'll show yOu what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(C + "People see what they see. I'll show yoU what you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(GR + "People see what they see. I'll show you What you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(W + "People see what they see. I'll show you wHat you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(R + "People see what they see. I'll show you whAt you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(G + "People see what they see. I'll show you whaT you don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(O + "People see what they see. I'll show you what You don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(B + "People see what they see. I'll show you what yOu don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(P + "People see what they see. I'll show you what yoU don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(C + "People see what they see. I'll show you what you Don't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(GR + "People see what they see. I'll show you what you dOn't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(W + "People see what they see. I'll show you what you doN't want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(R + "People see what they see. I'll show you what you don'T want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(G + "People see what they see. I'll show you what you don't Want to see ...")
+        sleep(0.1)
+        system("cls")
+        print(O + "People see what they see. I'll show you what you don't wAnt to see ...")
+        sleep(0.1)
+        system("cls")
+        print(B + "People see what they see. I'll show you what you don't waNt to see ...")
+        sleep(0.1)
+        system("cls")
+        print(P + "People see what they see. I'll show you what you don't wanT to see ...")
+        sleep(0.1)
+        system("cls")
+        print(C + "People see what they see. I'll show you what you don't want To see ...")
+        sleep(0.1)
+        system("cls")
+        print(GR + "People see what they see. I'll show you what you don't want tO see ...")
+        sleep(0.1)
+        system("cls")
+        print(W + "People see what they see. I'll show you what you don't want to See ...")
+        sleep(0.1)
+        system("cls")
+        print(R + "People see what they see. I'll show you what you don't want to sEe ...")
+        sleep(0.1)
+        system("cls")
+        print(G + "People see what they see. I'll show you what you don't want to seE ...")
+        sleep(0.1)
 def monitor_mod_open():
     system("clear")
     system("figlet NRB")
@@ -384,22 +534,17 @@ def music_open():
     system("clear")
     system("figlet NRB")
     print("""
-
-
     1-Kendine iyi bak
     2-Lalalala
     3-Dunya gul bana
     4-Hic isik yok
     5-Rapin ajdari
-
     Muzikleri yüklemek için "0" a basın
-
-
     """)
     try:
         asdyb = int(input("Cal:"))
         if asdyb == 1:
-            system("mpg123 mp3indirdur-No1-Kendine-Iyi-Bak.mp3 > /dev/null 2>&1 &")
+            system("mpg123 mp3indirdur-No1-Kendine-Iyi-Bak.mp3 > /dev/null 2>&1&")
         elif asdyb == 2:
             system("mpg123 mp3indirdur-No1-Lalalala.mp3 > /dev/null 2>&1 &")
         elif asdyb == 3:
@@ -438,8 +583,6 @@ def browser():
           1-Whatsapp Web
           2-Youtube
           3-Google
-
-
           """)
     x123 = int(input(""))
 
@@ -475,20 +618,12 @@ def wifi_tools():
     system("clear")
     system("figlet NRB")
     print(""""
-
           Wifi Araclari
-
     1-Monitor moda gec
     2-Managed moda gec
     3-Wifi taramasi baslat
     4-Handshake yakala
     5-airgeddon
-
-
-
-
-
-
     """)
     aBJDj = int(input("Secim:"))
     if aBJDj == 1:
@@ -538,75 +673,130 @@ def sistem_ara():
         return "Kali Linux"
     elif os.name == "nt":
         return "Windows"
-dondurme()
-while True:
-    location = os.getcwd()
-    user_name = "admin"
-    password = "admin"
-    system("clear")
-    system("figlet NRB")
-    kullanici_adi = str(input(C + "Kullanıcı adı:"))
-    sifre = getpass.getpass(B + "Sifre:")
-    try:
-        if user_name == kullanici_adi and password == sifre:
-            try:
-                while True:
-                    rcode = call(['python', 'altsurec.py'])
-                    system("clear")
-                    system("figlet NRB")
-                    sleep(3)
+if os.name=="posix":
+    dondurme_linux()
+    while True:
+        location = os.getcwd()
+        user_name = "admin"
+        password = "admin"
+        system("clear")
+        system("figlet NRB")
+        kullanici_adi = str(input(C + "Kullanıcı adı:"))
+        sifre = getpass.getpass(B + "Sifre:")
+        try:
+            if user_name == kullanici_adi and password == sifre:
+                try:
                     while True:
-                        try:
-                            system("clear")
-                            system("figlet NRB")
-                            print("""  
-
-                                                              Sistem: {}
-        1-Wifi araçları                                   Wifi Adap.: {}
-        2-Proxy
-        3-Tarayıcı
-        4-Sistem güncellemeleri
-        5-zphisher
-        6-Dosya arama
-        7-Gereken programları ara
-        8-Müzik
-
-
-
-
-
-
-
-
-                                        """.format(sistem_ara(),x))
-
-                            JFKbdhf = int(input("Secim:"))
-                            if JFKbdhf == 1:
-                                wifi_tools()
-                            elif JFKbdhf == 2:
-                                tor_ip_switcher()
-                            elif JFKbdhf == 3:
-                                browser()
-                            elif JFKbdhf == 4:
-                                update()
-                                upgrade()
-                            elif JFKbdhf == 5:
-                                zphisher()
-                            elif JFKbdhf == 6:
+                        rcode = call(['python', 'altsurec.py'])
+                        system("clear")
+                        system("figlet NRB")
+                        sleep(3)
+                        while True:
+                            try:
                                 system("clear")
                                 system("figlet NRB")
-                                vnafn = str(input("Ara:"))
-                                directory_control(vnafn)
-                            elif JFKbdhf == 7:
-                                packet_scanner()
-                                packet_download()
-                            elif JFKbdhf == 8:
-                                music_open()
-                            else:
+                                print("""  
+                                                                  Sistem: {}
+            1-Wifi araçları                                   Wifi Adap.: {}
+            2-Proxy
+            3-Tarayıcı
+            4-Sistem güncellemeleri
+            5-zphisher
+            6-Dosya arama
+            7-Gereken programları ara
+            8-Müzik
+                                            """.format(sistem_ara(), x))
+
+                                JFKbdhf = int(input("Secim:"))
+                                if JFKbdhf == 1:
+                                    wifi_tools()
+                                elif JFKbdhf == 2:
+                                    tor_ip_switcher()
+                                elif JFKbdhf == 3:
+                                    browser()
+                                elif JFKbdhf == 4:
+                                    update()
+                                    upgrade()
+                                elif JFKbdhf == 5:
+                                    zphisher()
+                                elif JFKbdhf == 6:
+                                    system("clear")
+                                    system("figlet NRB")
+                                    vnafn = str(input("Ara:"))
+                                    directory_control(vnafn)
+                                elif JFKbdhf == 7:
+                                    packet_scanner()
+                                    packet_download()
+                                elif JFKbdhf == 8:
+                                    music_open()
+                                else:
+                                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+                            except:
                                 print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
-                        except:
-                            print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
-            except:
-                print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
-    except:
-        print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+                except:
+                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+        except:
+            print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+elif os.name=="nt":
+    dondurme_windows()
+    while True:
+        location = os.getcwd()
+        user_name = "admin"
+        password = "admin"
+        system("cls")
+        kullanici_adi = str(input(C + "Kullanıcı adı:"))
+        sifre = getpass.getpass(B + "Sifre:")
+        try:
+            if user_name == kullanici_adi and password == sifre:
+                try:
+                    while True:
+                        rcode = call(['python', 'altsurec.py'])
+                        system("clear")
+                        sleep(3)
+                        while True:
+                            try:
+                                system("cls")
+                                print("""  
+                                                                  Sistem: {}
+            1-Wifi araçları                                   Wifi Adap.: {}
+            2-Proxy
+            3-Tarayıcı
+            4-Sistem güncellemeleri
+            5-zphisher
+            6-Dosya arama
+            7-Gereken programları ara
+            8-Müzik
+                                            """.format(sistem_ara(), x))
+
+                                JFKbdhf = int(input("Secim:"))
+                                if JFKbdhf == 1:
+                                    wifi_tools()
+                                elif JFKbdhf == 2:
+                                    tor_ip_switcher()
+                                elif JFKbdhf == 3:
+                                    browser()
+                                elif JFKbdhf == 4:
+                                    update()
+                                    upgrade()
+                                elif JFKbdhf == 5:
+                                    zphisher()
+                                elif JFKbdhf == 6:
+                                    system("clear")
+                                    system("figlet NRB")
+                                    vnafn = str(input("Ara:"))
+                                    directory_control(vnafn)
+                                elif JFKbdhf == 7:
+                                    packet_scanner()
+                                    packet_download()
+                                elif JFKbdhf == 8:
+                                    music_open()
+                                else:
+                                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+                            except:
+                                print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+                except:
+                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+        except:
+            print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+else:
+    print("KULLANDİGİNİZ SİSTEMDE KULLANİLAMİYOR !")

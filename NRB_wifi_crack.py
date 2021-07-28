@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # NRB SECURITY
+# OLD BUT GOLD :)
 from time import sleep
 import os
 from os import system, chdir

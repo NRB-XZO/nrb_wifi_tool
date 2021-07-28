@@ -20,4 +20,4 @@ kullanıcı adı: admin
 
 # AYRICA
 
-Güncelleme bilgisinde hata olursa surum.txt dosyasını silip tekrar deneyebilirsiniz.
+Güncelleme bilgisinin görüntülenmediğini düşünüyorsanız surum.txt dosyasını silebilirsiniz.

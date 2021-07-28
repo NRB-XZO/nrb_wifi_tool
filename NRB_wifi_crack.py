@@ -8,12 +8,14 @@ from subprocess import *
 import webbrowser
 import getpass
 import random
+import requests
+from bs4 import BeautifulSoup
 #Consol's colors
-W = '\033[0m'  # Beyaz (normal)
-R = '\033[31m'  # Kırmızı
-G = '\033[32m'  # Yeşil
-O = '\033[33m'  # Turuncu
-B = '\033[34m'  # Mavi
+W = '\033[0m'  # white
+R = '\033[31m'  # red
+G = '\033[32m'  # green
+O = '\033[33m'  # orange
+B = '\033[34m'  # blue
 P = '\033[35m'  # purple
 C = '\033[36m'  # cyan
 GR = '\033[37m'  # gray
@@ -372,6 +374,18 @@ def dondurme_windows():
         system("cls")
         print(G + "People see what they see. I'll show you what you don't want to seE ...")
         sleep(0.1)
+def internet_connection_control():
+    try:
+        x = "internet"
+        url = "https://www.cimri.com/arama?q={}".format(x)
+        responce = requests.get(url)
+        html_icerigi = responce.content
+        soup = BeautifulSoup(html_icerigi, "html.parser")
+        return "İnternet Var"
+    except:
+        return "İnternet Yok"
+
+
 def monitor_mod_open():
     system("clear")
     system("figlet NRB")
@@ -382,7 +396,36 @@ def monitor_mod_open():
     global x
     x = "Monitor"
     return x
+def update_check():
+    try:
+        asdf = str()
+        url= "https://github.com/NRB-XZO/nrb_wifi_tool/blob/main/NRB_wifi_crack.py"
+        responce = requests.get(url)
+        html_icerigi = responce.content
+        soup = BeautifulSoup(html_icerigi, "html.parser")
+        for i in soup.find_all("div", {"class": "text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1"}):
+            asdf = i.text
+        x = asdf.split()
+        # x[0] data from the internet
+        if os.path.exists("surum.txt") == True:
+            fihrist = open("surum.txt","r")
+            if x[0] == fihrist.read():
+                return "Güncelleme Yok"
+            elif x[0] != fihrist.read():
+                return "Güncelleme Var"
+        elif os.path.exists("surum.txt") == False:
+            sürüm_bilgisi = open("surum.txt","w")
+            sürüm_bilgisi.write(x[0])
+            sürüm_bilgisi.close()
+            if sürüm_bilgisi.read() == x[0]:
+                return "Güncelleme Yok"
+            elif sürüm_bilgisi.read() != x[0]:
+                return "Güncelleme Var"
 
+
+    except:
+        print("Güncelleme kontrolde hata oluştu")
+        sleep(4)
 
 def directory_control(x):
     try:
@@ -698,14 +741,15 @@ if os.name=="posix":
                                 print("""  
                                                                   Sistem: {}
             1-Wifi araçları                                   Wifi Adap.: {}
-            2-Proxy
+            2-Proxy                                             İnternet: {}
             3-Tarayıcı
             4-Sistem güncellemeleri
             5-zphisher
             6-Dosya arama
             7-Gereken programları ara
             8-Müzik
-                                            """.format(sistem_ara(), x))
+            9-Çıkış
+                                            """.format(sistem_ara(), x,internet_connection_control()))
 
                                 JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:
@@ -729,6 +773,8 @@ if os.name=="posix":
                                     packet_download()
                                 elif JFKbdhf == 8:
                                     music_open()
+                                elif JFKbdhf == 9:
+                                    system("exit()")
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
                             except:
@@ -759,14 +805,16 @@ elif os.name=="nt":
                                 print("""  
                                                                   Sistem: {}
             1-Wifi araçları                                   Wifi Adap.: {}
-            2-Proxy
-            3-Tarayıcı
+            2-Proxy                                             İnternet: {}
+            3-Tarayıcı                                        Güncelleme: {}
             4-Sistem güncellemeleri
             5-zphisher
             6-Dosya arama
             7-Gereken programları ara
             8-Müzik
-                                            """.format(sistem_ara(), x))
+            9-Çıkış
+            10-Güncelleme kontrol
+                                            """.format(sistem_ara(), x,internet_connection_control(),update_check()))
 
                                 JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:
@@ -790,6 +838,11 @@ elif os.name=="nt":
                                     packet_download()
                                 elif JFKbdhf == 8:
                                     music_open()
+                                elif JFKbdhf==9:
+                                    system("exit()")
+                                elif JFKbdhf == 10:
+                                    update_check()
+                                    break
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
                             except:

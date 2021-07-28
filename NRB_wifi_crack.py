@@ -424,8 +424,7 @@ def update_check():
 
 
     except:
-        print("Güncelleme kontrolde hata oluştu")
-        sleep(4)
+        return "Güncelleme bilgisi alınamıyor"
 
 def directory_control(x):
     try:
@@ -742,14 +741,14 @@ if os.name=="posix":
                                                                   Sistem: {}
             1-Wifi araçları                                   Wifi Adap.: {}
             2-Proxy                                             İnternet: {}
-            3-Tarayıcı
+            3-Tarayıcı                                        Güncelleme: {}
             4-Sistem güncellemeleri
             5-zphisher
             6-Dosya arama
             7-Gereken programları ara
             8-Müzik
             9-Çıkış
-                                            """.format(sistem_ara(), x,internet_connection_control()))
+                                            """.format(sistem_ara(), x,internet_connection_control(),update_check()))
 
                                 JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:
@@ -813,7 +812,6 @@ elif os.name=="nt":
             7-Gereken programları ara
             8-Müzik
             9-Çıkış
-            10-Güncelleme kontrol
                                             """.format(sistem_ara(), x,internet_connection_control(),update_check()))
 
                                 JFKbdhf = int(input("Secim:"))
@@ -840,9 +838,6 @@ elif os.name=="nt":
                                     music_open()
                                 elif JFKbdhf==9:
                                     system("exit()")
-                                elif JFKbdhf == 10:
-                                    update_check()
-                                    break
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
                             except:

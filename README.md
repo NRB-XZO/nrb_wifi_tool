@@ -17,3 +17,7 @@ python3 NRB_wifi_crack.py
 kullanıcı adı: admin
 
 şifre: admin
+
+# AYRICA
+
+Güncelleme bilgisinde hata olursa surum.txt dosyasını silip tekrar deneyebilirsiniz.

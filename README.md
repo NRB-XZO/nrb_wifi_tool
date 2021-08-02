@@ -18,6 +18,6 @@ kullanıcı adı: admin
 
 şifre: admin
 
-# AYRICA
+# AYRİCA
 
 Güncelleme bilgisinin görüntülenmediğini düşünüyorsanız surum.txt dosyasını silebilirsiniz.

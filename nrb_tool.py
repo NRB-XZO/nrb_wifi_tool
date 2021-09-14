@@ -574,11 +574,11 @@ def encryption(password):
     x = list(password)
     for i in x:
         if i in ["q","w","e"] :
-            encryption_password_list.append("23D84JER84JNH")
+            encryption_password_list.append("23#D8!4J&ER8&%+64JNH")
         elif i in ["r","t","y","u"]:
-            encryption_password_list.append("F3H4T5T8HND4")
+            encryption_password_list.append("F3H^%4T5'T8H^&+ND4")
         elif i in ["i","p"]:
-            encryption_password_list.append("3M845J455")
+            encryption_password_list.append("3M845+J455")
         elif i in ["o","a","s"]:
             encryption_password_list.append("R87YT54ON8C3")
         elif i in ["d","f","g"]:
@@ -600,7 +600,7 @@ def encryption(password):
         else:
             print("Sadece ingilizce karakter ve küçük harf kullanınız")
             sleep(5)
-    encryption_password_list.sort()
+    #Encryption SALT
     for word in encryption_password_list:
         encryption_word=encryption_word + word
     if len(encryption_word)> 64:
@@ -742,24 +742,29 @@ def wifi_tools():
     else:
         print("\033[93;1m[!]\033 Bir hata olustu")
 
-def hidden_panel(input):
-    if str(input) == "48ASD534FDG448ASD534FDG4F3H4T5T8HND4JSDOF4934CF54EJSDOF4934CF54ER87YT54ON8C3JSDOF4934CF54E349P8YDSF":
+def hidden_panel(inputt):
+    if str(inputt) == "48ASD534FDG4F3H^%4T5'T8H^&+ND448ASD534FDG4JSDOF4934CF54EJSDOF4934CF54ER87YT54ON8C3JSDOF4934CF54E349P8YDSF":
+        print("Giriş yapıldı")
+        sleep(2)
         if os.name == "posix":
             os.system("clear")
             os.system("figlet NRB")
         elif os.name == "nt":
             os.system("cls")
-        print("""
+        print(""""
         
         
         
         Developer - NRB
         
-        
+        Encryption
         """)
-        sleep(1000)
+        password23 = str(input("Encrypt:"))
+        print(encryption(password=password23))
+        sleep(10)
+
     else:
-        print()
+        print("Hata")
 def tor_ip_switcher():
     os.chdir("/opt/toriptables2")
     system("python toriptables2.py -l")
@@ -854,8 +859,9 @@ if os.name=="posix":
                                     asdpoasd = str(input("Mesajınız:"))
                                     developer_contact(message=asdpoasd)
                                 elif JFKbdhf == 10:
-                                    alsdhjnlk = str(input(""))
-                                    encryption(password=alsdhjnlk)
+                                    ıkuahsd = getpass.getpass("")
+                                    encrypt = encryption(password=ıkuahsd)
+                                    hidden_panel(inputt=encrypt)
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
                             except:
@@ -924,7 +930,7 @@ elif os.name=="nt":
                                 elif JFKbdhf ==10:
                                     ıkuahsd = getpass.getpass("")
                                     encrypt = encryption(password=ıkuahsd)
-                                    hidden_panel(input=encrypt)
+                                    hidden_panel(inputt=encrypt)
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
                             except:

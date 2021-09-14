@@ -760,8 +760,30 @@ def hidden_panel(inputt):
         Encryption
         """)
         password23 = str(input("Encrypt:"))
-        print(encryption(password=password23))
-        sleep(10)
+        if os.name == "posix":
+            for i in range(1, len(password23*15)):
+                sleep(0.015)
+                os.system("clear")
+                print("{} being encrypted \ ".format(password23))
+                sleep(0.015)
+                os.system("clear")
+                print("{} being encrypted - ".format(password23))
+                sleep(0.015)
+                os.system("clear")
+                print("{} being encrypted / ".format(password23))
+        elif os.name == "nt":
+            for i in range(1, len(password23*15)):
+                sleep(0.015)
+                os.system("cls")
+                print("{} being encrypted \ ".format(password23))
+                sleep(0.015)
+                os.system("cls")
+                print("{} being encrypted - ".format(password23))
+                sleep(0.015)
+                os.system("cls")
+                print("{} being encrypted / ".format(password23))
+            print(encryption(password=password23))
+        agkjsdf = input("Press ENTER to continue....")
 
     else:
         print("Hata")

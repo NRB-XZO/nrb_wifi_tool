@@ -397,9 +397,10 @@ def monitor_mod_open():
     x = "Monitor"
     return x
 def update_check():
+    #14.09.2021
     try:
         asdf = str()
-        url= "https://github.com/NRB-XZO/nrb_wifi_tool/blob/main/NRB_wifi_crack.py"
+        url= "https://github.com/NRB-XZO/nrb_wifi_tool/blob/main/nrb_tool.py"
         responce = requests.get(url)
         html_icerigi = responce.content
         soup = BeautifulSoup(html_icerigi, "html.parser")

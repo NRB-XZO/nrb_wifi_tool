@@ -808,8 +808,10 @@ if os.name=="posix":
         system("figlet NRB")
         kullanici_adi = str(input(C + "Kullanıcı adı:"))
         sifre = getpass.getpass(B + "Sifre:")
+        encrypt_username = encryption(password=kullanici_adi)
+        encrypt_password = encryption(password=sifre)
         try:
-            if user_name == kullanici_adi and password == sifre:
+            if user_name == encrypt_username and password == encrypt_password:
                 try:
                     while True:
                         rcode = call(['python', 'altsurec.py'])
@@ -874,13 +876,15 @@ elif os.name=="nt":
     dondurme_windows()
     while True:
         location = os.getcwd()
-        user_name = "admin"
-        password = "admin"
+        user_name = "R87YT54ON8C3O89MCFNRB48ASD534FDG43M845+J45548ASD534FDG4IWT837Y423LH4HGDGD"
+        password = "R87YT54ON8C3O89MCFNRB48ASD534FDG43M845+J45548ASD534FDG4IWT837Y423LH4HGDGD"
         system("cls")
         kullanici_adi = str(input(C + "Kullanıcı adı:"))
         sifre = getpass.getpass(B + "Sifre:")
+        encrypt_username = encryption(password=kullanici_adi)
+        encrypt_password = encryption(password=sifre)
         try:
-            if user_name == kullanici_adi and password == sifre:
+            if user_name == encrypt_username and password == encrypt_password:
                 try:
                     while True:
                         rcode = call(['python', 'altsurec.py'])

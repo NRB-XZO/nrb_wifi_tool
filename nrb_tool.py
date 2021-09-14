@@ -535,7 +535,7 @@ def monitor_mod_close():
     return x
 
 def developer_contact(message):
-    host = socket.gethostname() 
+    host = socket.gethostname()
     port = 12345
 
     try:
@@ -545,13 +545,13 @@ def developer_contact(message):
         s.bind((host, port))
         print("Socket {} nolu porta bağlandı".format(port))
 
-        s.listen(5) 
+        s.listen(5)
         print("Socket Dinleniyor...")
     except socket.error as bildirim:
         print("Hata:", bildirim)
 
     while True:
-        c, addr = s.accept()     
+        c, addr = s.accept()
         print('Gelen bağlantı:', addr)
         c.send(message.encode('utf-8'))
         c.close()
@@ -568,8 +568,48 @@ def wifi_search():
         sleep(3)
         print("\033[93;1m[!]\033 Bssid ve channel degerlerini bir yere kaydedin")
         sleep(4)
-
-
+def encryption(password):
+    encryption_password_list = list()
+    encryption_word = ""
+    x = list(password)
+    for i in x:
+        if i in ["q","w","e"] :
+            encryption_password_list.append("23D84JER84JNH")
+        elif i in ["r","t","y","u"]:
+            encryption_password_list.append("F3H4T5T8HND4")
+        elif i in ["i","p"]:
+            encryption_password_list.append("3M845J455")
+        elif i in ["o","a","s"]:
+            encryption_password_list.append("R87YT54ON8C3")
+        elif i in ["d","f","g"]:
+            encryption_password_list.append("O89MCFNRB")
+        elif i in ["h","j","k","l"]:
+            encryption_password_list.append("I7OTD34I23H")
+        elif i in [1,6,9]:
+            encryption_password_list.append("D3I57Y34S4")
+        elif i in [0,2,3]:
+            encryption_password_list.append("349P8YDSF")
+        elif i in [4,5,7]:
+            encryption_password_list.append("KJSDHGI7CF3")
+        elif i in [8]:
+            encryption_password_list.append("MNSFGBUYWYNR9")
+        elif i in ["z","x","c","v"]:
+            encryption_password_list.append("JSDOF4934CF54E")
+        elif i in ["b","n","m"]:
+            encryption_password_list.append("48ASD534FDG4")
+        else:
+            print("Sadece ingilizce karakter ve küçük harf kullanınız")
+            sleep(5)
+    encryption_password_list.sort()
+    for word in encryption_password_list:
+        encryption_word=encryption_word + word
+    if len(encryption_word)> 64:
+        encryption_word=encryption_word + "JSDOF4934CF54E349P8YDSF"
+    elif len(encryption_word)==64:
+        encryption_word=encryption_word + "SKJHFHBSDDR743YHGRWMLIGTAAP3"
+    else:
+        encryption_word=encryption_word + "IWT837Y423LH4HGDGD"
+    return encryption_word
 def update():
     system("clear")
     system("figlet NRB")
@@ -702,7 +742,24 @@ def wifi_tools():
     else:
         print("\033[93;1m[!]\033 Bir hata olustu")
 
-
+def hidden_panel(input):
+    if str(input) == "48ASD534FDG448ASD534FDG4F3H4T5T8HND4JSDOF4934CF54EJSDOF4934CF54ER87YT54ON8C3JSDOF4934CF54E349P8YDSF":
+        if os.name == "posix":
+            os.system("clear")
+            os.system("figlet NRB")
+        elif os.name == "nt":
+            os.system("cls")
+        print("""
+        
+        
+        
+        Developer - NRB
+        
+        
+        """)
+        sleep(1000)
+    else:
+        print()
 def tor_ip_switcher():
     os.chdir("/opt/toriptables2")
     system("python toriptables2.py -l")
@@ -796,6 +853,9 @@ if os.name=="posix":
                                 elif JFKbdhf == 9:
                                     asdpoasd = str(input("Mesajınız:"))
                                     developer_contact(message=asdpoasd)
+                                elif 10:
+                                    alsdhjnlk = str(input(""))
+                                    encryption(password=alsdhjnlk)
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
                             except:
@@ -861,6 +921,10 @@ elif os.name=="nt":
                                 elif JFKbdhf==9:
                                     asdpoasd = str(input("Mesajınız:"))
                                     developer_contact(message=asdpoasd)
+                                elif JFKbdhf ==10:
+                                    ıkuahsd = getpass.getpass("")
+                                    encrypt = encryption(password=ıkuahsd)
+                                    hidden_panel(input=encrypt)
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
                             except:

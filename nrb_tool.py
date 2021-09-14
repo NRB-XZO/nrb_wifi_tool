@@ -802,8 +802,8 @@ if os.name=="posix":
     dondurme_linux()
     while True:
         location = os.getcwd()
-        user_name = "admin"
-        password = "admin"
+        user_name = "R87YT54ON8C3O89MCFNRB48ASD534FDG43M845+J45548ASD534FDG4IWT837Y423LH4HGDGD"
+        password = "R87YT54ON8C3O89MCFNRB48ASD534FDG43M845+J45548ASD534FDG4IWT837Y423LH4HGDGD"
         system("clear")
         system("figlet NRB")
         kullanici_adi = str(input(C + "Kullanıcı adı:"))

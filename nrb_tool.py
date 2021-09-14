@@ -9,6 +9,7 @@ import webbrowser
 import getpass
 import random
 import requests
+import socket
 from bs4 import BeautifulSoup
 #Consol's colors
 W = '\033[0m'  # white
@@ -397,7 +398,6 @@ def monitor_mod_open():
     x = "Monitor"
     return x
 def update_check():
-    #14.09.2021
     try:
         asdf = str()
         url= "https://github.com/NRB-XZO/nrb_wifi_tool/blob/main/nrb_tool.py"
@@ -534,7 +534,27 @@ def monitor_mod_close():
     sleep(3)
     return x
 
+def developer_contact(message):
+    host = socket.gethostname() 
+    port = 12345
 
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        print("socket oluşturuldu")
+
+        s.bind((host, port))
+        print("Socket {} nolu porta bağlandı".format(port))
+
+        s.listen(5) 
+        print("Socket Dinleniyor...")
+    except socket.error as bildirim:
+        print("Hata:", bildirim)
+
+    while True:
+        c, addr = s.accept()     
+        print('Gelen bağlantı:', addr)
+        c.send(message.encode('utf-8'))
+        c.close()
 def wifi_search():
     try:
         system("clear")
@@ -748,7 +768,7 @@ if os.name=="posix":
             6-Dosya arama
             7-Gereken programları ara
             8-Müzik
-            9-Çıkış
+            9-Bağlantı yap
                                             """.format(sistem_ara(), x,internet_connection_control(),update_check()))
 
                                 JFKbdhf = int(input("Secim:"))
@@ -774,7 +794,8 @@ if os.name=="posix":
                                 elif JFKbdhf == 8:
                                     music_open()
                                 elif JFKbdhf == 9:
-                                    system("exit()")
+                                    asdpoasd = str(input("Mesajınız:"))
+                                    developer_contact(message=asdpoasd)
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
                             except:
@@ -812,7 +833,7 @@ elif os.name=="nt":
             6-Dosya arama
             7-Gereken programları ara
             8-Müzik
-            9-Çıkış
+            9-Bağlantı yap
                                             """.format(sistem_ara(), x,internet_connection_control(),update_check()))
 
                                 JFKbdhf = int(input("Secim:"))
@@ -838,7 +859,8 @@ elif os.name=="nt":
                                 elif JFKbdhf == 8:
                                     music_open()
                                 elif JFKbdhf==9:
-                                    system("exit()")
+                                    asdpoasd = str(input("Mesajınız:"))
+                                    developer_contact(message=asdpoasd)
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
                             except:

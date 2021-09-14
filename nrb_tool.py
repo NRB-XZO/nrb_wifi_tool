@@ -12,14 +12,14 @@ import requests
 import socket
 from bs4 import BeautifulSoup
 #Consol's colors
-W = '\033[0m'  # white
-R = '\033[31m'  # red
-G = '\033[32m'  # green
-O = '\033[33m'  # orange
-B = '\033[34m'  # blue
-P = '\033[35m'  # purple
-C = '\033[36m'  # cyan
-GR = '\033[37m'  # gray
+W = '\033[0m'
+R = '\033[31m'
+G = '\033[32m'
+O = '\033[33m'
+B = '\033[34m'
+P = '\033[35m'
+C = '\033[36m'
+GR = '\033[37m'
 x = "Ayarlanmadı"
 def dondurme_linux():
     for i in range(0,random.randint(1,3)):

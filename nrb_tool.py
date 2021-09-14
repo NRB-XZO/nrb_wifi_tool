@@ -853,7 +853,7 @@ if os.name=="posix":
                                 elif JFKbdhf == 9:
                                     asdpoasd = str(input("Mesajınız:"))
                                     developer_contact(message=asdpoasd)
-                                elif 10:
+                                elif JFKbdhf == 10:
                                     alsdhjnlk = str(input(""))
                                     encryption(password=alsdhjnlk)
                                 else:

@@ -1,0 +1,4 @@
+python_imagesearch==1.1.2
+pyautogui==0.9.52
+PyQt5==5.15.4
+PyQtWebEngine==5.15.5

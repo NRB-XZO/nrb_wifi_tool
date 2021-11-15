@@ -11,7 +11,13 @@ import random
 import requests
 import socket
 from bs4 import BeautifulSoup
-#Consol's colors
+import sys
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWebEngineWidgets import *
+from PyQt5.QtPrintSupport import *
+# Consol's colors
 W = '\033[0m'
 R = '\033[31m'
 G = '\033[32m'
@@ -21,8 +27,10 @@ P = '\033[35m'
 C = '\033[36m'
 GR = '\033[37m'
 x = "Ayarlanmadı"
+
+
 def dondurme_linux():
-    for i in range(0,random.randint(1,3)):
+    for i in range(0, random.randint(1, 3)):
         system("clear")
         system("figlet NRB")
         print(W + "People see what they see. I'll show you what you don't want to see ...")
@@ -223,8 +231,10 @@ def dondurme_linux():
         system("figlet NRB")
         print(G + "People see what they see. I'll show you what you don't want to seE ...")
         sleep(0.1)
+
+
 def dondurme_windows():
-    for i in range(0,random.randint(1,3)):
+    for i in range(0, random.randint(1, 3)):
         system("cls")
         print(W + "People see what they see. I'll show you what you don't want to see ...")
         sleep(0.1)
@@ -375,6 +385,8 @@ def dondurme_windows():
         system("cls")
         print(G + "People see what they see. I'll show you what you don't want to seE ...")
         sleep(0.1)
+
+
 def internet_connection_control():
     try:
         x = "internet"
@@ -397,10 +409,12 @@ def monitor_mod_open():
     global x
     x = "Monitor"
     return x
+
+
 def update_check():
     try:
         asdf = str()
-        url= "https://github.com/NRB-XZO/nrb_wifi_tool/blob/main/nrb_tool.py"
+        url = "https://github.com/NRB-XZO/nrb_wifi_tool/blob/main/nrb_tool.py"
         responce = requests.get(url)
         html_icerigi = responce.content
         soup = BeautifulSoup(html_icerigi, "html.parser")
@@ -409,13 +423,13 @@ def update_check():
         x = asdf.split()
         # x[0] data from the internet
         if os.path.exists("surum.txt") == True:
-            fihrist = open("surum.txt","r")
+            fihrist = open("surum.txt", "r")
             if x[0] == fihrist.read():
                 return "Güncelleme Yok"
             elif x[0] != fihrist.read():
                 return "Güncelleme Var"
         elif os.path.exists("surum.txt") == False:
-            sürüm_bilgisi = open("surum.txt","w")
+            sürüm_bilgisi = open("surum.txt", "w")
             sürüm_bilgisi.write(x[0])
             sürüm_bilgisi.close()
             if sürüm_bilgisi.read() == x[0]:
@@ -426,6 +440,7 @@ def update_check():
 
     except:
         return "Güncelleme bilgisi alınamıyor"
+
 
 def directory_control(x):
     try:
@@ -534,6 +549,7 @@ def monitor_mod_close():
     sleep(3)
     return x
 
+
 def developer_contact(message):
     host = socket.gethostname()
     port = 12345
@@ -555,6 +571,8 @@ def developer_contact(message):
         print('Gelen bağlantı:', addr)
         c.send(message.encode('utf-8'))
         c.close()
+
+
 def wifi_search():
     try:
         system("clear")
@@ -568,48 +586,52 @@ def wifi_search():
         sleep(3)
         print("\033[93;1m[!]\033 Bssid ve channel degerlerini bir yere kaydedin")
         sleep(4)
+
+
 def encryption(password):
     encryption_password_list = list()
     encryption_word = ""
     x = list(password)
     for i in x:
-        if i in ["q","w","e"] :
+        if i in ["q", "w", "e"]:
             encryption_password_list.append("23#D8!4J&ER8&%+64JNH")
-        elif i in ["r","t","y","u"]:
+        elif i in ["r", "t", "y", "u"]:
             encryption_password_list.append("F3H^%4T5'T8H^&+ND4")
-        elif i in ["i","p"]:
+        elif i in ["i", "p"]:
             encryption_password_list.append("3M845+J455")
-        elif i in ["o","a","s"]:
+        elif i in ["o", "a", "s"]:
             encryption_password_list.append("R87YT54ON8C3")
-        elif i in ["d","f","g"]:
+        elif i in ["d", "f", "g"]:
             encryption_password_list.append("O89MCFNRB")
-        elif i in ["h","j","k","l"]:
+        elif i in ["h", "j", "k", "l"]:
             encryption_password_list.append("I7OTD34I23H")
-        elif i in [1,6,9]:
+        elif i in [1, 6, 9]:
             encryption_password_list.append("D3I57Y34S4")
-        elif i in [0,2,3]:
+        elif i in [0, 2, 3]:
             encryption_password_list.append("349P8YDSF")
-        elif i in [4,5,7]:
+        elif i in [4, 5, 7]:
             encryption_password_list.append("KJSDHGI7CF3")
         elif i in [8]:
             encryption_password_list.append("MNSFGBUYWYNR9")
-        elif i in ["z","x","c","v"]:
+        elif i in ["z", "x", "c", "v"]:
             encryption_password_list.append("JSDOF4934CF54E")
-        elif i in ["b","n","m"]:
+        elif i in ["b", "n", "m"]:
             encryption_password_list.append("48ASD534FDG4")
         else:
             print("Sadece ingilizce karakter ve küçük harf kullanınız")
             sleep(5)
-    #Encryption SALT
+    # Encryption SALT
     for word in encryption_password_list:
-        encryption_word=encryption_word + word
-    if len(encryption_word)> 64:
-        encryption_word=encryption_word + "JSDOF4934CF54E349P8YDSF"
-    elif len(encryption_word)==64:
-        encryption_word=encryption_word + "SKJHFHBSDDR743YHGRWMLIGTAAP3"
+        encryption_word = encryption_word + word
+    if len(encryption_word) > 64:
+        encryption_word = encryption_word + "JSDOF4934CF54E349P8YDSF"
+    elif len(encryption_word) == 64:
+        encryption_word = encryption_word + "SKJHFHBSDDR743YHGRWMLIGTAAP3"
     else:
-        encryption_word=encryption_word + "IWT837Y423LH4HGDGD"
+        encryption_word = encryption_word + "IWT837Y423LH4HGDGD"
     return encryption_word
+
+
 def update():
     system("clear")
     system("figlet NRB")
@@ -628,10 +650,9 @@ def upgrade():
     system("apt-get upgrade")
 
 
-
-
 def terminal():
     run(['python', 'altsurec.py'])
+
 
 def music_open():
     system("clear")
@@ -666,6 +687,7 @@ def music_open():
         print("\033[93;1m[!]\033 Hatali islem !")
     print("[+] Dinliyorsunuz...")
 
+
 def help():
     system("clear")
     system("figlet NRB")
@@ -674,9 +696,11 @@ def help():
 
     system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git > /dev/null/ 2>&1 &")
 
+
 def zphisher():
     chdir("/opt/zphisher/")
     system("xterm -sh 250 -e bash zphisher.sh > /dev/null 2>&1 &")
+
 
 def browser():
     system("clear")
@@ -691,17 +715,74 @@ def browser():
 
     try:
         if x123 == 1:
-            webbrowser.open("https://web.whatsapp.com/", new=0, autoraise=True)
+            class MainWindow(QMainWindow):
+                def __init__(self, *args, **kwargs):
+                    super(MainWindow, self).__init__(*args, **kwargs)
+                    self.setWindowTitle("NRB Web Browser")
+                    self.setWindowIcon(QIcon("logo.png"))
+                    self.setMinimumSize(500, 500)
+                    self.showMaximized()
+                    self.browser = QWebEngineView()
+                    self.browser.setUrl(QUrl("https://web.whatsapp.com"))
+                    self.setCentralWidget(self.browser)
+            app = QApplication(sys.argv)
+            main = MainWindow()
+            main.show()
+            sys.exit(app.exec_())
         elif x123 == 2:
-            webbrowser.open("https://youtube.com/", new=0, autoraise=True)
+            class MainWindow(QMainWindow):
+                def __init__(self, *args, **kwargs):
+                    super(MainWindow, self).__init__(*args, **kwargs)
+                    self.setWindowTitle("NRB Web Browser")
+                    self.setWindowIcon(QIcon("logo.png"))
+                    self.setMinimumSize(500, 500)
+                    self.showMaximized()
+                    self.browser = QWebEngineView()
+                    self.browser.setUrl(QUrl("https://youtube.com"))
+                    self.setCentralWidget(self.browser)
+
+            app = QApplication(sys.argv)
+            main = MainWindow()
+            main.show()
+            sys.exit(app.exec_())
         elif x123 == 3:
-            webbrowser.open("https://google.com/", new=0, autoraise=True)
+            class MainWindow(QMainWindow):
+                def __init__(self, *args, **kwargs):
+                    super(MainWindow, self).__init__(*args, **kwargs)
+                    self.setWindowTitle("NRB Web Browser")
+                    self.setWindowIcon(QIcon("logo.png"))
+                    self.setMinimumSize(500, 500)
+                    self.showMaximized()
+                    self.browser = QWebEngineView()
+                    self.browser.setUrl(QUrl("https://google.com"))
+                    self.setCentralWidget(self.browser)
+
+            app = QApplication(sys.argv)
+            main = MainWindow()
+            main.show()
+            sys.exit(app.exec_())
         else:
             print("\033[94;1m [+]\033 Sizi Dinliyorum")
             url = str(input(""))
-            webbrowser.open(url, new=0, autoraise=True)
+
+            class MainWindow(QMainWindow):
+                def __init__(self, *args, **kwargs):
+                    super(MainWindow, self).__init__(*args, **kwargs)
+                    self.setWindowTitle("NRB Web Browser")
+                    self.setWindowIcon(QIcon("logo.png"))
+                    self.setMinimumSize(500, 500)
+                    self.showMaximized()
+                    self.browser = QWebEngineView()
+                    self.browser.setUrl(QUrl(url))
+                    self.setCentralWidget(self.browser)
+
+            app = QApplication(sys.argv)
+            main = MainWindow()
+            main.show()
+            sys.exit(app.exec_())
     except:
         print("Hataaaaa")
+
 
 def music_help():
     os.chdir("/root/Downloads")
@@ -711,6 +792,7 @@ def music_help():
     music.sort()
     for i in music:
         system("mv {} /opt/nrb_wifi_tool/")
+
 
 def airgeddon():
     os.chdir("/opt/airgeddon/")
@@ -742,6 +824,7 @@ def wifi_tools():
     else:
         print("\033[93;1m[!]\033 Bir hata olustu")
 
+
 def hidden_panel(inputt):
     if str(inputt) == "48ASD534FDG4F3H^%4T5'T8H^&+ND448ASD534FDG4JSDOF4934CF54EJSDOF4934CF54ER87YT54ON8C3JSDOF4934CF54E349P8YDSF":
         print("Giriş yapıldı")
@@ -752,16 +835,16 @@ def hidden_panel(inputt):
         elif os.name == "nt":
             os.system("cls")
         print(""""
-        
-        
-        
+
+
+
         Developer - NRB
-        
+
         Encryption
         """)
         password23 = str(input("Encrypt:"))
         if os.name == "posix":
-            for i in range(1, len(password23*15)):
+            for i in range(1, len(password23 * 15)):
                 sleep(0.015)
                 os.system("clear")
                 print("{} being encrypted \ ".format(password23))
@@ -772,7 +855,7 @@ def hidden_panel(inputt):
                 os.system("clear")
                 print("{} being encrypted / ".format(password23))
         elif os.name == "nt":
-            for i in range(1, len(password23*15)):
+            for i in range(1, len(password23 * 15)):
                 sleep(0.015)
                 os.system("cls")
                 print("{} being encrypted \ ".format(password23))
@@ -787,11 +870,14 @@ def hidden_panel(inputt):
 
     else:
         print("Hata")
+
+
 def tor_ip_switcher():
     os.chdir("/opt/toriptables2")
     system("python toriptables2.py -l")
     os.chdir("/opt/tor_ip_switcher")
     system("python tor_ip_switcher.py")
+
 
 def handshake_take():
     system("clear")
@@ -811,16 +897,33 @@ def handshake_take():
     except:
         print("\033[94;1m[!]\033 Bir hata olustu !!")
         sleep(2)
+
+
 def dosya_acma(write):
-    file = open("bilgiler.txt","w",encoding="utf-8")
+    file = open("bilgiler.txt", "w", encoding="utf-8")
     file.write(write)
     file.close()
+
+
 def sistem_ara():
     if os.name == "posix":
         return "Kali Linux"
     elif os.name == "nt":
         return "Windows"
-if os.name=="posix":
+def help_pip():
+    files_pip = open("pip_files.txt","w")
+    files_pip.write("""
+    python_imagesearch==1.1.2
+    pyautogui==0.9.52
+    PyQt5==5.15.4
+    """)
+    files_pip.close()
+    if os.name== "posix":
+        os.system("xterm -e pip install -r pip_files.txt")
+    else:
+        os.system("pip install -r pip_files.txt")
+
+if os.name == "posix":
     dondurme_linux()
     while True:
         location = os.getcwd()
@@ -855,7 +958,8 @@ if os.name=="posix":
             7-Gereken programları ara
             8-Müzik
             9-Bağlantı yap
-                                            """.format(sistem_ara(), x,internet_connection_control(),update_check()))
+            10-Pip hatası sorun gider
+                                            """.format(sistem_ara(), x, internet_connection_control(), update_check()))
 
                                 JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:
@@ -882,7 +986,9 @@ if os.name=="posix":
                                 elif JFKbdhf == 9:
                                     asdpoasd = str(input("Mesajınız:"))
                                     developer_contact(message=asdpoasd)
-                                elif JFKbdhf == 10:
+                                elif asdpoasd == 10:
+                                    help_pip()
+                                elif JFKbdhf == 11:
                                     ıkuahsd = getpass.getpass("")
                                     encrypt = encryption(password=ıkuahsd)
                                     hidden_panel(inputt=encrypt)
@@ -894,8 +1000,7 @@ if os.name=="posix":
                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
         except:
             print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
-elif os.name=="nt":
-    dondurme_windows()
+elif os.name == "nt":
     while True:
         location = os.getcwd()
         user_name = "R87YT54ON8C3O89MCFNRB48ASD534FDG43M845+J45548ASD534FDG4IWT837Y423LH4HGDGD"
@@ -926,7 +1031,7 @@ elif os.name=="nt":
             7-Gereken programları ara
             8-Müzik
             9-Bağlantı yap
-                                            """.format(sistem_ara(), x,internet_connection_control(),update_check()))
+                                            """.format(sistem_ara(), x, internet_connection_control(), update_check()))
 
                                 JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:
@@ -950,10 +1055,10 @@ elif os.name=="nt":
                                     packet_download()
                                 elif JFKbdhf == 8:
                                     music_open()
-                                elif JFKbdhf==9:
+                                elif JFKbdhf == 9:
                                     asdpoasd = str(input("Mesajınız:"))
                                     developer_contact(message=asdpoasd)
-                                elif JFKbdhf ==10:
+                                elif JFKbdhf == 10:
                                     ıkuahsd = getpass.getpass("")
                                     encrypt = encryption(password=ıkuahsd)
                                     hidden_panel(inputt=encrypt)

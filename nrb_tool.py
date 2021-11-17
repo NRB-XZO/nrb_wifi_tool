@@ -17,6 +17,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtPrintSupport import *
+import instaloader
 # Consol's colors
 W = '\033[0m'
 R = '\033[31m'
@@ -479,7 +480,9 @@ def directory_control(x):
     except:
         print("\033[93;1m[!]\033 Dosya arama kisminda bir hata olustu !!")
         sleep(3)
-
+def instagram_pp_download(username):
+    test = instaloader.Instaloader()
+    test.download_profile(username, profile_pic_only=True)
 
 def packet_scanner():
     if os.name == "posix":
@@ -916,6 +919,7 @@ def help_pip():
     python_imagesearch==1.1.2
     pyautogui==0.9.52
     PyQt5==5.15.4
+    PyQtWebEngine==5.15.5
     """)
     files_pip.close()
     if os.name== "posix":
@@ -959,6 +963,7 @@ if os.name == "posix":
             8-Müzik
             9-Bağlantı yap
             10-Pip hatası sorun gider
+            12-İnstagram pp download
                                             """.format(sistem_ara(), x, internet_connection_control(), update_check()))
 
                                 JFKbdhf = int(input("Secim:"))
@@ -992,6 +997,9 @@ if os.name == "posix":
                                     ıkuahsd = getpass.getpass("")
                                     encrypt = encryption(password=ıkuahsd)
                                     hidden_panel(inputt=encrypt)
+                                elif JFKbdhf == 12:
+                                    acc = str(input("İnst Username:"))
+                                    instagram_pp_download(username=acc)
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
                             except:
@@ -1001,6 +1009,7 @@ if os.name == "posix":
         except:
             print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
 elif os.name == "nt":
+    dondurme_windows()
     while True:
         location = os.getcwd()
         user_name = "R87YT54ON8C3O89MCFNRB48ASD534FDG43M845+J45548ASD534FDG4IWT837Y423LH4HGDGD"
@@ -1031,6 +1040,7 @@ elif os.name == "nt":
             7-Gereken programları ara
             8-Müzik
             9-Bağlantı yap
+            12-İnstagram pp download
                                             """.format(sistem_ara(), x, internet_connection_control(), update_check()))
 
                                 JFKbdhf = int(input("Secim:"))
@@ -1062,6 +1072,9 @@ elif os.name == "nt":
                                     ıkuahsd = getpass.getpass("")
                                     encrypt = encryption(password=ıkuahsd)
                                     hidden_panel(inputt=encrypt)
+                                elif JFKbdhf == 12:
+                                    acc = str(input("İnst Username:"))
+                                    instagram_pp_download(username=acc)
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
                             except:

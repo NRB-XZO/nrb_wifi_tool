@@ -481,8 +481,44 @@ def directory_control(x):
         print("\033[93;1m[!]\033 Dosya arama kisminda bir hata olustu !!")
         sleep(3)
 def instagram_pp_download(username):
-    test = instaloader.Instaloader()
-    test.download_profile(username, profile_pic_only=True)
+    try:
+        if os.name == "posix":
+            os.chdir("/root/Desktop/")
+            if os.path.exists("/root/Desktop/nrb_inst/") == True:
+                os.chdir("/root/Desktop/nrb_inst/")
+                test = instaloader.Instaloader()
+                test.download_profile(username, profile_pic_only=True)
+                sleep(3)
+                print("Your file has been saved here {}".format("/root/Desktop/nrb_inst/"))
+                os.chdir("/opt/nrb_wifi_tool/")
+            else:
+                os.mkdir("nrb_inst")
+                test = instaloader.Instaloader()
+                test.download_profile(username, profile_pic_only=True)
+                sleep(3)
+                print("Your file has been saved here {}".format("/root/Desktop/nrb_inst/"))
+                os.chdir("/opt/nrb_wifi_tool/")
+        elif os.name == "nt":
+            try:
+                os.chdir("C:\{}Users".format(""))
+            except:
+                print("{}[!] Problem navigating to the specified directory".format(B))
+            if os.path.exists("C:\{}Users\{}nrb_path".format("","")) == True:
+                os.chdir("C:\{}Users\{}nrb_path".format("",""))
+                test = instaloader.Instaloader()
+                test.download_profile(username, profile_pic_only=True)
+                sleep(3)
+                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("","")))
+            else:
+                os.mkdir("nrb_path")
+                test = instaloader.Instaloader()
+                test.download_profile(username, profile_pic_only=True)
+                sleep(3)
+                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("","")))
+    except:
+        print("{}[!] Something went wrong".format(R))
+
+
 
 def packet_scanner():
     if os.name == "posix":

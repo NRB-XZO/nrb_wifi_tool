@@ -25,4 +25,5 @@ Güncelleme bilgisinin görüntülenmediğini düşünüyorsanız surum.txt dosy
 # HATALAR VE ÇÖZÜMLERİ
 [!] ModuleNotFoundError: No module named 'instaloader'
 Hatası alır iseniz aşağıdaki komutu uygulayın
+
 pip install instaloader

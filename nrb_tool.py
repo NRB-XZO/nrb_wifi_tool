@@ -662,9 +662,10 @@ def monitor_mod_open():
     sleep(2)
     print("\033[94;1m[+]\033 Monitor Mod Etkin")
     sleep(3)
-    global x
-    x = "Monitor"
-    return x
+    if "wlan0mon" in os.listdir('/sys/class/net/'):
+        print("{}[+] Monitor Mod Activated".format(B))
+    else:
+        print("{}[!]Something went wrong".format(B))
 
 
 def update_check():
@@ -831,17 +832,36 @@ def packet_download():
         sleep(2)
         print("\033[93;1m[!]\033 Cok yakinda windows icin kurulumlar gelecektir")
 
-
+def interface():
+    try:
+        inter_face = os.listdir('/sys/class/net/')
+        inter_face.sort()
+    except:
+        if os.path.exists('/sys/class/net/') == True:
+            if len(os.listdir('/sys/class/net/')):
+                print("[!] Interface folder detected to be empty")
+                sleep(2)
+        else:
+            print("[!] İnterface file not found")
+    for i in inter_face:
+        if i == "wlan0mon":
+            return "Monitor"
+    for i in interface():
+        if i == "wlan0":
+            return "Managed - wlan0"
+    for i in inter_face:
+        if i == "eth0":
+            return "Managed - eth0"
 def monitor_mod_close():
     system("clear")
     system("figlet NRB")
     system("xterm -e airmon-ng stop wlan0mon")
     sleep(3)
-    print("\033[94;1m[+]\033 Managed Mod Etkin!!")
-    global x
-    x = "Managed"
-    sleep(3)
-    return x
+    if "wlan0" in os.listdir('/sys/class/net/'):
+        print("{}[+] Managed mode activated".format(P))
+    else:
+        print("{}[!]Something went wrong".format(B))
+
 
 
 def developer_contact(message):
@@ -1264,7 +1284,7 @@ if os.name == "posix":
             9-Bağlantı yap
             10-Pip hatası sorun gider
             12-İnstagram pp download
-                                            """.format(sistem_ara(), x, internet_connection_control(), update_check()))
+                                            """.format(sistem_ara(), interface(), internet_connection_control(), update_check()))
 
                                 JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:

@@ -847,17 +847,23 @@ def interface():
             print("[!] İnterface file not found")
     for i in inter_face:
         if i == "wlan0mon":
-            return "Monitor"
+            global x
+            x = "Monitor"
+            return x
         else:
             pass
     for i in interface():
         if i == "wlan0":
-            return "Managed - wlan0"
+            global x
+            x = "Managed - Wlan0"
+            return x
         else:
             pass
     for i in inter_face:
         if i == "eth0":
-            return "Managed - eth0"
+            global x
+            x = "Managed -Eth0"
+            return x
         else:
             pass
 def monitor_mod_close():

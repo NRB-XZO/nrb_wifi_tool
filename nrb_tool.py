@@ -834,11 +834,13 @@ def packet_download():
 
 def interface():
     try:
-        inter_face = os.listdir('/sys/class/net/')
+        inter_face = list()
+        for i in list(os.listdir('/sys/class/net/')):
+            inter_face.append(i)
         inter_face.sort()
     except:
         if os.path.exists('/sys/class/net/') == True:
-            if len(os.listdir('/sys/class/net/')):
+            if len(os.listdir('/sys/class/net/')) == 0:
                 print("[!] Interface folder detected to be empty")
                 sleep(2)
         else:
@@ -846,12 +848,18 @@ def interface():
     for i in inter_face:
         if i == "wlan0mon":
             return "Monitor"
+        else:
+            pass
     for i in interface():
         if i == "wlan0":
             return "Managed - wlan0"
+        else:
+            pass
     for i in inter_face:
         if i == "eth0":
             return "Managed - eth0"
+        else:
+            pass
 def monitor_mod_close():
     system("clear")
     system("figlet NRB")

@@ -833,37 +833,16 @@ def packet_download():
         print("\033[93;1m[!]\033 Cok yakinda windows icin kurulumlar gelecektir")
 
 def interface():
-    try:
-        inter_face = list()
-        for i in list(os.listdir('/sys/class/net/')):
-            inter_face.append(i)
-        inter_face.sort()
-    except:
-        if os.path.exists('/sys/class/net/') == True:
-            if len(os.listdir('/sys/class/net/')) == 0:
-                print("[!] Interface folder detected to be empty")
-                sleep(2)
-        else:
-            print("[!] İnterface file not found")
-    for i in inter_face:
-        if i == "wlan0mon":
-            global x
-            x = "Monitor"
-            return x
-        else:
-            pass
-    for i in interface():
-        if i == "wlan0":
-            x = "Managed - Wlan0"
-            return x
-        else:
-            pass
-    for i in inter_face:
-        if i == "eth0":
-            x = "Managed -Eth0"
-            return x
-        else:
-            pass
+    inter_face = os.listdir('/sys/class/net/')
+    inter_face.sort()
+    if inter_face[-1] == "lo":
+        return "Managed - Eth0"
+    elif inter_face[-1] == "wlan0":
+        return "Managed - wlan0"
+    elif inter_face[-1] == "wlan0mon":
+        return "Monitor"
+    else:
+        return "Error"
 def monitor_mod_close():
     system("clear")
     system("figlet NRB")
@@ -873,8 +852,6 @@ def monitor_mod_close():
         print("{}[+] Managed mode activated".format(P))
     else:
         print("{}[!]Something went wrong".format(B))
-
-
 
 def developer_contact(message):
     host = socket.gethostname()

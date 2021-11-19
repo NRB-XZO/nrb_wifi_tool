@@ -854,14 +854,12 @@ def interface():
             pass
     for i in interface():
         if i == "wlan0":
-            global x
             x = "Managed - Wlan0"
             return x
         else:
             pass
     for i in inter_face:
         if i == "eth0":
-            global x
             x = "Managed -Eth0"
             return x
         else:

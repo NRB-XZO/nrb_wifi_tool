@@ -10,7 +10,7 @@ git clone https://github.com/NRB-XZO/nrb_wifi_tool.git
 # NASIL KULLANILIR ?
 pip install -r requirements.txt
 
-python3 NRB_wifi_crack.py
+python3 nrb_tool.py
 
 
 kullanıcı adı: admin

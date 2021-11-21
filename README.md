@@ -12,6 +12,10 @@ pip install -r requirements.txt
 
 python3 nrb_tool.py
 
+veya tüm bunlar yerine 
+
+'python3 setup.py' komutu ile işlemleri bitirebilirsiniz.
+
 
 kullanıcı adı: admin
 

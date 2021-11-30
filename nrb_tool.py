@@ -786,7 +786,7 @@ def instagram_pp_download(username):
                 sleep(3)
                 print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("","")))
     except:
-        print("{}[!] Something went wrong".format(R))
+        print("{}[!] Something went wrong".format(O))
 
 
 

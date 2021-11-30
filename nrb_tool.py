@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # NRB SECURITY
+# Current Version
 from time import sleep
 import os
 from os import system, chdir
@@ -710,7 +711,7 @@ def version(split):
             return str(my_db[1])
         elif split == 10:
             return str(my_db[2]+str(my_db[3]))
-        
+
     except:
         return "*"
 def directory_control(x):
@@ -1367,13 +1368,13 @@ if os.name == "posix":
                                     acc = str(input("İnst Username:"))
                                     instagram_pp_download(username=acc)
                                 else:
-                                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+                                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
                             except:
-                                print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+                                print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
                 except:
-                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
         except:
-            print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+            print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
 elif os.name == "nt":
     dondurme_windows()
     while True:
@@ -1442,12 +1443,12 @@ elif os.name == "nt":
                                     acc = str(input("İnst Username:"))
                                     instagram_pp_download(username=acc)
                                 else:
-                                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+                                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
                             except:
-                                print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+                                print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
                 except:
-                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
         except:
-            print("\033[93;1m[!]\033 {} Bir hata oluştu".format(R))
+            print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
 else:
     print("KULLANDİGİNİZ SİSTEMDE KULLANİLAMİYOR !")

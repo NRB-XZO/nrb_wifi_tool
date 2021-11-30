@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # NRB SECURITY
-# Current Version
 from time import sleep
 import os
 from os import system, chdir
@@ -1319,16 +1318,16 @@ if os.name == "posix":
 
                                 print("""  
                                                                   Sistem: {}
-            1-Wifi araçları                                   Wifi Adap.: {}
+            1-Wifi tools                                      Wifi Adap.: {}
             2-Proxy                                             İnternet: {}
-            3-Tarayıcı                                        Güncelleme: {}
-            4-Sistem güncellemeleri
+            3-Browser                                         Güncelleme: {}
+            4-System updates
             5-zphisher
-            6-Dosya arama
-            7-Gereken programları ara
-            8-Müzik
-            9-Bağlantı yap
-            10-Pip hatası sorun gider
+            6-File scan
+            7-Search for required programs
+            8-Music(For Devs)
+            9-Connect
+            10-Solve pip error
             12-İnstagram pp download
                                             """.format(sistem_ara(), interface(), internet_connection_control(), update_check()))
                                 print("----------------------------------------------------------------------------------------------------------------")
@@ -1398,15 +1397,15 @@ elif os.name == "nt":
                                 system("cls")
                                 print("""  
                                                                   Sistem: {}
-            1-Wifi araçları                                   Wifi Adap.: {}
+            1-Wifi tools                                      Wifi Adap.: {}
             2-Proxy                                             İnternet: {}
-            3-Tarayıcı                                        Güncelleme: {}
-            4-Sistem güncellemeleri
+            3-Browser                                         Güncelleme: {}
+            4-System updates
             5-zphisher
-            6-Dosya arama
-            7-Gereken programları ara
-            8-Müzik
-            9-Bağlantı yap
+            6-File Scan
+            7-Search for required programs
+            8-Music(For Devs)
+            9-Connect
             12-İnstagram pp download
                                             """.format(sistem_ara(), x, internet_connection_control(), update_check()))
 

@@ -698,7 +698,21 @@ def update_check():
     except:
         return "Güncelleme bilgisi alınamıyor"
 
-
+def version(split):
+    os.chdir("/opt/nrb_wifi_tool/")
+    try:
+        fihrist = open("surum.txt","r")
+        data = str(fihrist.read())
+        my_db = list(data)
+        if split == 1000:
+            return str(my_db[0])
+        elif split == 100:
+            return str(my_db[1])
+        elif split == 10:
+            return str(my_db[2]+str(my_db[3]))
+        
+    except:
+        return "*"
 def directory_control(x):
     try:
         if os.name == "nt":
@@ -1299,7 +1313,9 @@ if os.name == "posix":
                         while True:
                             try:
                                 system("clear")
-                                system("figlet NRB")
+                                system("figlet wifi cracker")
+                                print("------------------------------------------------------------------------------------------------------------")
+
                                 print("""  
                                                                   Sistem: {}
             1-Wifi araçları                                   Wifi Adap.: {}
@@ -1314,7 +1330,8 @@ if os.name == "posix":
             10-Pip hatası sorun gider
             12-İnstagram pp download
                                             """.format(sistem_ara(), interface(), internet_connection_control(), update_check()))
-
+                                print("----------------------------------------------------------------------------------------------------------------")
+                                print("Developed by NRB                                                        Version: {}.{}.{}".format(version(split=1000),version(split=100),version(split=10)))
                                 JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:
                                     wifi_tools()

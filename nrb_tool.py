@@ -1332,6 +1332,7 @@ if os.name == "posix":
                                             """.format(sistem_ara(), interface(), internet_connection_control(), update_check()))
                                 print("----------------------------------------------------------------------------------------------------------------")
                                 print("Developed by NRB                                                        Version: {}.{}.{}".format(version(split=1000),version(split=100),version(split=10)))
+                                print("----------------")
                                 JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:
                                     wifi_tools()

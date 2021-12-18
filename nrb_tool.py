@@ -387,7 +387,7 @@ def dondurme_windows():
         print(R + "People see what they see. I'll show you what you don't want to sEe ...")
         sleep(0.1)
         system("cls")
-        print(G + "People see what they see. I'll show you what you don't want to seE ...")
+        print(O + "People see what they see. I'll show you what you don't want to seE ...")
         sleep(0.1)
 HOSTAPD_CONF = '/etc/hostapd/hostapd.conf'
 HOSTAPD_DEFAULT_DRIVER = 'nl80211'
@@ -1100,41 +1100,34 @@ def browser():
         print("Hataaaaa")
 
 def admin_panel():
-    if os.name == "posix":
-        os.system("clear")
-        os.system("figlet NRB")
-    elif os.name == "nt":
-        os.system("cls")
-    print(""""
-    Developer - NRB
-    Encryption
-    """)
-    password23 = str(input("Encrypt:"))
-    if os.name == "posix":
-        for i in range(1, len(password23 * 15)):
-            sleep(0.015)
-            os.system("clear")
-            print("{} being encrypted \ ".format(password23))
-            sleep(0.015)
-            os.system("clear")
-            print("{} being encrypted - ".format(password23))
-            sleep(0.015)
-            os.system("clear")
-            print("{} being encrypted / ".format(password23))
-        print(encryption(password=password23))
-    elif os.name == "nt":
-        for i in range(1, len(password23 * 15)):
-            sleep(0.015)
-            os.system("cls")
-            print("{} being encrypted \ ".format(password23))
-            sleep(0.015)
-            os.system("cls")
-            print("{} being encrypted - ".format(password23))
-            sleep(0.015)
-            os.system("cls")
-            print("{} being encrypted / ".format(password23))
-        print(encryption(password=password23))
-    agkjsdf = input("Press ENTER to continue....")
+    n_int = 0
+    n_int2 = 0
+    for i in range(1,101):
+        system("clear")
+        print("--------------------------------------------------------------------------")
+        print("")
+        print("")
+        print("")
+        print("")
+        system("figlet NRB ROOT")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("--------------------------------------------------------------------------")
+        print("")
+        print("                NRB root panel - {} |{}|".format(n_int2,"▌" * n_int))
+        print("")
+        print("--------------------------------------------------------------------------")
+        n_int += 1
+        n_int2 += 1
+        sleep(0.2)
+        if n_int == 20:
+            n_int = 0
+        else:
+            pass
+    sleep(4)
+    
 def music_help():
     os.chdir("/root/Downloads")
     music = ["mp3indirdur-No1-Kendine-Iyi-Bak.mp3", "mp3indirdur-No1-Lalalala.mp3",

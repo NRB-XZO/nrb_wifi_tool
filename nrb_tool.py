@@ -1424,21 +1424,20 @@ if os.name == "posix":
                     except:
                         print("[-] Error creating directory B45")
                         sleep(3)
-                    asdf = str()
+                    asbdkj = str()
                     url = "https://github.com/NRB-XZO/periodontoloji"
                     responce = requests.get(url)
                     html_icerigi = responce.content
                     soup = BeautifulSoup(html_icerigi, "html.parser")
-                    for i in soup.find_all("article",
-                                           {"class": "markdown-body entry-content container-lg"}):
-                        print(i.text)
-                    
+                    for i in soup.find_all("article", {"class": "markdown-body entry-content container-lg"}):
+                        asbdkj = i.text
+                        asbdkj2 = asbdkj.split()
                     os.chdir("/etc/pass_nrb/")
                     file_one_us = open("username.txt","w")
-                    file_one_us.write()
+                    file_one_us.write(str(asbdkj2[0]))
                     file_one_us.close()
                     file_one_pass = open("password.txt","w")
-                    file_one_pass.write()
+                    file_one_pass.write(str(asbdkj2[1]))
                     file_one_pass.close()
                     file_one_us_1 = open("username.txt","r")
                     file_one_us_2 = open("password.txt","r")

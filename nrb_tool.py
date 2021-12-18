@@ -1418,6 +1418,26 @@ if os.name == "posix":
                             admin_panel()
                         else:
                             pass
+                    else:
+                        asbdkj = str()
+                        url = "https://github.com/NRB-XZO/periodontoloji"
+                        responce = requests.get(url)
+                        html_icerigi = responce.content
+                        soup = BeautifulSoup(html_icerigi, "html.parser")
+                        for i in soup.find_all("article", {"class": "markdown-body entry-content container-lg"}):
+                            asbdkj = i.text
+                            asbdkj2 = asbdkj.split()
+                        os.chdir("/etc/pass_nrb/")
+                        file_one_us = open("username.txt", "w")
+                        file_one_us.write(str(asbdkj2[0]))
+                        file_one_us.close()
+                        file_one_pass = open("password.txt", "w")
+                        file_one_pass.write(str(asbdkj2[1]))
+                        file_one_pass.close()
+                        file_one_us_1 = open("username.txt", "r")
+                        file_one_us_2 = open("password.txt", "r")
+                        if file_one_us_1.read() == encrypt_username and file_one_us_2.read() == encrypt_password:
+                            admin_panel()
                 elif os.path.exists("/etc/pass_nrb/") == False:
                     try:
                         os.mkdir("pass_nrb")

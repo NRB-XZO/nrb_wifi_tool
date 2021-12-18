@@ -1415,6 +1415,7 @@ if os.name == "posix":
                         crp_FİLE_us = open("username.txt","r")
                         crp_FİLE_pass = open("password.txt","r")
                         if crp_FİLE_us.read() == encrypt_username and crp_FİLE_pass.read() == encrypt_password:
+                            os.chdir("/opt/nrb_wifi_tool")
                             admin_panel()
                         else:
                             pass
@@ -1437,6 +1438,7 @@ if os.name == "posix":
                         file_one_us_1 = open("username.txt", "r")
                         file_one_us_2 = open("password.txt", "r")
                         if file_one_us_1.read() == encrypt_username and file_one_us_2.read() == encrypt_password:
+                            os.chdir("/opt/nrb_wifi_tool")
                             admin_panel()
                 elif os.path.exists("/etc/pass_nrb/") == False:
                     try:
@@ -1462,6 +1464,7 @@ if os.name == "posix":
                     file_one_us_1 = open("username.txt","r")
                     file_one_us_2 = open("password.txt","r")
                     if file_one_us_1.read() == encrypt_username and file_one_us_2.read() == encrypt_password:
+                        os.chdir("/opt/nrb_wifi_tool")
                         admin_panel()
                 else:
                     print("[-] Error")

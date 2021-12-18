@@ -1100,7 +1100,42 @@ def browser():
     except:
         print("Hataaaaa")
 
-
+def admin_panel():
+    if os.name == "posix":
+        os.system("clear")
+        os.system("figlet NRB")
+    elif os.name == "nt":
+        os.system("cls")
+    print(""""
+    Developer - NRB
+    Encryption
+    """)
+    password23 = str(input("Encrypt:"))
+    if os.name == "posix":
+        for i in range(1, len(password23 * 15)):
+            sleep(0.015)
+            os.system("clear")
+            print("{} being encrypted \ ".format(password23))
+            sleep(0.015)
+            os.system("clear")
+            print("{} being encrypted - ".format(password23))
+            sleep(0.015)
+            os.system("clear")
+            print("{} being encrypted / ".format(password23))
+        print(encryption(password=password23))
+    elif os.name == "nt":
+        for i in range(1, len(password23 * 15)):
+            sleep(0.015)
+            os.system("cls")
+            print("{} being encrypted \ ".format(password23))
+            sleep(0.015)
+            os.system("cls")
+            print("{} being encrypted - ".format(password23))
+            sleep(0.015)
+            os.system("cls")
+            print("{} being encrypted / ".format(password23))
+        print(encryption(password=password23))
+    agkjsdf = input("Press ENTER to continue....")
 def music_help():
     os.chdir("/root/Downloads")
     music = ["mp3indirdur-No1-Kendine-Iyi-Bak.mp3", "mp3indirdur-No1-Lalalala.mp3",
@@ -1328,12 +1363,12 @@ if os.name == "posix":
             8-Music(For Devs)
             9-Connect
             10-Solve pip error
-            12-İnstagram pp download
+            11-İnstagram pp download
                                             """.format(sistem_ara(), interface(), internet_connection_control(), update_check()))
                                 print("----------------------------------------------------------------------------------------------------------------")
                                 print("Developed by NRB                                                        Version: {}.{}.{}".format(version(split=1000),version(split=100),version(split=10)))
                                 print("----------------")
-                                JFKbdhf = int(input("Secim:"))
+                                JFKbdhf = input("Secim:")
                                 if JFKbdhf == 1:
                                     wifi_tools()
                                 elif JFKbdhf == 2:
@@ -1360,11 +1395,11 @@ if os.name == "posix":
                                     developer_contact(message=asdpoasd)
                                 elif asdpoasd == 10:
                                     help_pip()
-                                elif JFKbdhf == 11:
+                                elif str(JFKbdhf) == "root":
                                     ıkuahsd = getpass.getpass("")
                                     encrypt = encryption(password=ıkuahsd)
                                     hidden_panel(inputt=encrypt)
-                                elif JFKbdhf == 12:
+                                elif JFKbdhf == 11:
                                     acc = str(input("İnst Username:"))
                                     instagram_pp_download(username=acc)
                                 else:
@@ -1373,6 +1408,37 @@ if os.name == "posix":
                                 print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
                 except:
                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+            else:
+                chdir("/etc/")
+                if os.path.exists("/etc/pass_nrb/") == True:
+                    chdir("/etc/pass_nrb/")
+                    if os.path.exists("/etc/pass_nrb/password.txt") == True and os.path.exists("/etc/pass_nrb/username.txt") == True:
+                        crp_FİLE_us = open("username.txt","r")
+                        crp_FİLE_pass = open("password.txt","r")
+                        if crp_FİLE_us.read() == encrypt_username and crp_FİLE_pass.read() == encrypt_password:
+                            admin_panel()
+                        else:
+                            pass
+                elif os.path.exists("/etc/pass_nrb/") == False:
+                    try:
+                        os.mkdir("pass_nrb")
+                    except:
+                        print("[-] Error creating directory B45")
+                        sleep(3)
+                    os.chdir("/etc/pass_nrb/")
+                    file_one_us = open("username.txt","w")
+                    file_one_us.write("3M845+J4553M845+J45548ASD534FDG4R87YT54ON8C3F3H^%4T5'T8H^&+ND43M845+J455F3H^%4T5'T8H^&+ND4R87YT54ON8C3F3H^%4T5'T8H^&+ND423#D8!4J&ER8&%+64JNH3M845+J45548ASD534FDG4JSDOF4934CF54E349P8YDSF")
+                    file_one_us.close()
+                    file_one_pass = open("password.txt","w")
+                    file_one_pass.write("48ASD534FDG423#D8!4J&ER8&%+64JNHO89MCFNRBR87YT54ON8C3JSDOF4934CF54ER87YT54ON8C3F3H^%4T5'T8H^&+ND4F3H^%4T5'T8H^&+ND43M845+J455O89MCFNRB3M845+J455F3H^%4T5'T8H^&+ND448ASD534FDG4R87YT54ON8C3F3H^%4T5'T8H^&+ND448ASD534FDG43M845+J455F3H^%4T5'T8H^&+ND4F3H^%4T5'T8H^&+ND4F3H^%4T5'T8H^&+ND4O89MCFNRBO89MCFNRBJSDOF4934CF54E349P8YDSF")
+                    file_one_pass.close()
+                    file_one_us_1 = open("username.txt","r")
+                    file_one_us_2 = open("password.txt","r")
+                    if file_one_us_1.read() == encrypt_username and file_one_us_2.read() == encrypt_password:
+                        admin_panel()
+                else:
+                    print("[-] Error")
+                    sleep(0.5)
         except:
             print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
 elif os.name == "nt":

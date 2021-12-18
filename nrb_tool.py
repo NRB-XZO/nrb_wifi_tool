@@ -667,7 +667,6 @@ def monitor_mod_open():
     else:
         print("{}[!]Something went wrong".format(B))
 
-
 def update_check():
     try:
         asdf = str()
@@ -1395,7 +1394,7 @@ if os.name == "posix":
                                     developer_contact(message=asdpoasd)
                                 elif asdpoasd == 10:
                                     help_pip()
-                                elif str(JFKbdhf) == "root":
+                                elif int(JFKbdhf) == 101:
                                     ıkuahsd = getpass.getpass("")
                                     encrypt = encryption(password=ıkuahsd)
                                     hidden_panel(inputt=encrypt)
@@ -1425,12 +1424,21 @@ if os.name == "posix":
                     except:
                         print("[-] Error creating directory B45")
                         sleep(3)
+                    asdf = str()
+                    url = "https://github.com/NRB-XZO/periodontoloji"
+                    responce = requests.get(url)
+                    html_icerigi = responce.content
+                    soup = BeautifulSoup(html_icerigi, "html.parser")
+                    for i in soup.find_all("article",
+                                           {"class": "markdown-body entry-content container-lg"}):
+                        print(i.text)
+                    
                     os.chdir("/etc/pass_nrb/")
                     file_one_us = open("username.txt","w")
-                    file_one_us.write("3M845+J4553M845+J45548ASD534FDG4R87YT54ON8C3F3H^%4T5'T8H^&+ND43M845+J455F3H^%4T5'T8H^&+ND4R87YT54ON8C3F3H^%4T5'T8H^&+ND423#D8!4J&ER8&%+64JNH3M845+J45548ASD534FDG4JSDOF4934CF54E349P8YDSF")
+                    file_one_us.write()
                     file_one_us.close()
                     file_one_pass = open("password.txt","w")
-                    file_one_pass.write("48ASD534FDG423#D8!4J&ER8&%+64JNHO89MCFNRBR87YT54ON8C3JSDOF4934CF54ER87YT54ON8C3F3H^%4T5'T8H^&+ND4F3H^%4T5'T8H^&+ND43M845+J455O89MCFNRB3M845+J455F3H^%4T5'T8H^&+ND448ASD534FDG4R87YT54ON8C3F3H^%4T5'T8H^&+ND448ASD534FDG43M845+J455F3H^%4T5'T8H^&+ND4F3H^%4T5'T8H^&+ND4F3H^%4T5'T8H^&+ND4O89MCFNRBO89MCFNRBJSDOF4934CF54E349P8YDSF")
+                    file_one_pass.write()
                     file_one_pass.close()
                     file_one_us_1 = open("username.txt","r")
                     file_one_us_2 = open("password.txt","r")

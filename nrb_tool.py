@@ -1116,7 +1116,7 @@ def admin_panel():
         print("")
         print("--------------------------------------------------------------------------")
         print("")
-        print("                NRB root panel - {} |{}|".format(n_int2,"▌" * n_int))
+        print("                NRB root panel - %{} |{}|".format(n_int2,"▌" * n_int))
         print("")
         print("--------------------------------------------------------------------------")
         n_int += 1

@@ -233,7 +233,7 @@ def dondurme_linux():
         sleep(0.1)
         system("clear")
         system("figlet NRB")
-        print(G + "People see what they see. I'll show you what you don't want to seE ...")
+        print(O + "People see what they see. I'll show you what you don't want to seE ...")
         sleep(0.1)
 
 

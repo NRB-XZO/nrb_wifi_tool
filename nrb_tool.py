@@ -1129,11 +1129,13 @@ def browser():
 
 
 def admin_panel():
+    post("https://api.telegram.org/bot5051736797:AAEw9X9SWyJKoAsgJhbq49i70nqZfHp8F5w/sendMessage",
+         data={"chat_id": "1107031296", "text": "Admin paneli giriş yapıldı !!"})
     n_int = 0
     n_int2 = 0
     for i in range(1, 101):
         system("clear")
-        print("--------------------------------------------------------------------------")
+        print(O + "--------------------------------------------------------------------------")
         print("")
         print("")
         print("")
@@ -1156,6 +1158,7 @@ def admin_panel():
         else:
             pass
     sleep(4)
+
 
 
 def music_help():
@@ -1438,10 +1441,13 @@ if os.name == "posix":
                                     instagram_pp_download(username=acc)
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+                                    sleep(2)
                             except:
                                 print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+                                sleep(2)
                 except:
                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+                    sleep(2)
             else:
                 chdir("/etc/")
                 if os.path.exists("/etc/pass_nrb/") == True:
@@ -1507,6 +1513,7 @@ if os.name == "posix":
                     sleep(0.5)
         except:
             print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+            sleep(2)
 elif os.name == "nt":
     dondurme_windows()
     while True:

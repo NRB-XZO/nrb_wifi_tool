@@ -1187,7 +1187,7 @@ if os.name == "posix":
                                     "----------------------------------------------------------------------------------------------------------------")
                                 print("Developed by NRB")
                                 print("----------------")
-                                JFKbdhf = input("Secim:")
+                                JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:
                                     wifi_tools()
                                 elif JFKbdhf == 2:

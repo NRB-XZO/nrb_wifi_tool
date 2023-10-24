@@ -1186,9 +1186,7 @@ if os.name == "posix":
                                                        update_check()))
                                 print(
                                     "----------------------------------------------------------------------------------------------------------------")
-                                print(
-                                    "Developed by NRB                                                        Version: {}.{}.{}".format(
-                                        version(split=1000), version(split=100), version(split=10)))
+                                print("Developed by NRB")
                                 print("----------------")
                                 JFKbdhf = input("Secim:")
                                 JFKbdhf = int(input("Secim:"))

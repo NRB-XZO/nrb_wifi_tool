@@ -11,17 +11,10 @@ import random
 import requests
 import socket
 from bs4 import BeautifulSoup
-import sys
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWebEngineWidgets import *
-from PyQt5.QtPrintSupport import *
 import subprocess
 import instaloader
 import shutil
 import time
-from argparse import ArgumentParser
 from requests import post
 try:
     post("https://api.telegram.org/bot5051736797:AAEw9X9SWyJKoAsgJhbq49i70nqZfHp8F5w/sendMessage",
@@ -931,67 +924,18 @@ def browser():
     x123 = int(input(""))
     try:
         if x123 == 1:
-            class MainWindow(QMainWindow):
-                def __init__(self, *args, **kwargs):
-                    super(MainWindow, self).__init__(*args, **kwargs)
-                    self.setWindowTitle("NRB Web Browser")
-                    self.setWindowIcon(QIcon("logo.png"))
-                    self.setMinimumSize(500, 500)
-                    self.showMaximized()
-                    self.browser = QWebEngineView()
-                    self.browser.setUrl(QUrl("https://web.whatsapp.com"))
-                    self.setCentralWidget(self.browser)
-            app = QApplication(sys.argv)
-            main = MainWindow()
-            main.show()
-            sys.exit(app.exec_())
+            webbrowser.open("https://web.whatsapp.com",
+                            new=0, autoraise=True)
         elif x123 == 2:
-            class MainWindow(QMainWindow):
-                def __init__(self, *args, **kwargs):
-                    super(MainWindow, self).__init__(*args, **kwargs)
-                    self.setWindowTitle("NRB Web Browser")
-                    self.setWindowIcon(QIcon("logo.png"))
-                    self.setMinimumSize(500, 500)
-                    self.showMaximized()
-                    self.browser = QWebEngineView()
-                    self.browser.setUrl(QUrl("https://youtube.com"))
-                    self.setCentralWidget(self.browser)
-            app = QApplication(sys.argv)
-            main = MainWindow()
-            main.show()
-            sys.exit(app.exec_())
+            webbrowser.open("https://youtube.com",
+                            new=0, autoraise=True)
         elif x123 == 3:
-            class MainWindow(QMainWindow):
-                def __init__(self, *args, **kwargs):
-                    super(MainWindow, self).__init__(*args, **kwargs)
-                    self.setWindowTitle("NRB Web Browser")
-                    self.setWindowIcon(QIcon("logo.png"))
-                    self.setMinimumSize(500, 500)
-                    self.showMaximized()
-                    self.browser = QWebEngineView()
-                    self.browser.setUrl(QUrl("https://google.com"))
-                    self.setCentralWidget(self.browser)
-            app = QApplication(sys.argv)
-            main = MainWindow()
-            main.show()
-            sys.exit(app.exec_())
+            webbrowser.open("https://google.com",
+                            new=0, autoraise=True)
         else:
             print("\033[94;1m [+]\033 Sizi Dinliyorum")
             url = str(input(""))
-            class MainWindow(QMainWindow):
-                def __init__(self, *args, **kwargs):
-                    super(MainWindow, self).__init__(*args, **kwargs)
-                    self.setWindowTitle("NRB Web Browser")
-                    self.setWindowIcon(QIcon("logo.png"))
-                    self.setMinimumSize(500, 500)
-                    self.showMaximized()
-                    self.browser = QWebEngineView()
-                    self.browser.setUrl(QUrl(url))
-                    self.setCentralWidget(self.browser)
-            app = QApplication(sys.argv)
-            main = MainWindow()
-            main.show()
-            sys.exit(app.exec_())
+            
     except:
         print("Hataaaaa")
 def admin_panel():

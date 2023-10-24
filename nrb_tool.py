@@ -935,7 +935,7 @@ def browser():
         else:
             print("\033[94;1m [+]\033 Sizi Dinliyorum")
             url = str(input(""))
-            
+
     except:
         print("Hataaaaa")
 def admin_panel():
@@ -1229,10 +1229,10 @@ if os.name == "posix":
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
                                     sleep(2)
                             except:
-                                print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+                                print("\033[93;1m[!]\033 {} Bir hata oluştu B02".format(O))
                                 sleep(2)
                 except:
-                    print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+                    print("\033[93;1m[!]\033 {} Bir hata oluştu B01".format(O))
                     sleep(2)
             else:
                 chdir("/etc/")
@@ -1298,7 +1298,7 @@ if os.name == "posix":
                     print("[-] Error")
                     sleep(0.5)
         except:
-            print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
+            print("\033[93;1m[!]\033 {} Bir hata oluştu bo3".format(O))
             sleep(2)
 elif os.name == "nt":
     dondurme_windows()

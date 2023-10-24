@@ -623,7 +623,6 @@ def update_check():
     except:
         return "Güncelleme bilgisi alınamıyor"
 def version(split):
-    os.chdir("/opt/nrb_wifi_tool/")
     try:
         fihrist = open("surum.txt", "r")
         data = str(fihrist.read())
@@ -1188,7 +1187,6 @@ if os.name == "posix":
                                     "----------------------------------------------------------------------------------------------------------------")
                                 print("Developed by NRB")
                                 print("----------------")
-                                JFKbdhf = input("Secim:")
                                 JFKbdhf = int(input("Secim:"))
                                 if JFKbdhf == 1:
                                     wifi_tools()
@@ -1216,7 +1214,7 @@ if os.name == "posix":
                                     developer_contact(message=asdpoasd)
                                 elif asdpoasd == 10:
                                     help_pip()
-                                elif int(JFKbdhf) == 101:
+                                elif JFKbdhf == 101:
                                     ıkuahsd = getpass.getpass("")
                                     encrypt = encryption(password=ıkuahsd)
                                     hidden_panel(inputt=encrypt)

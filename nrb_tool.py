@@ -635,7 +635,7 @@ def version(split):
         elif split == 10:
             return str(my_db[2] + str(my_db[3]))
     except:
-        return "*"
+        return "10000"
 def directory_control(x):
     try:
         if os.name == "nt":

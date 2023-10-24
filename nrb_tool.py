@@ -1187,7 +1187,7 @@ if os.name == "posix":
                                     "----------------------------------------------------------------------------------------------------------------")
                                 print("Developed by NRB")
                                 print("----------------")
-                                JFKbdhf = int(input("Secim:"))
+                                JFKbdhf = input("Secim:")
                                 if JFKbdhf == 1:
                                     wifi_tools()
                                 elif JFKbdhf == 2:
@@ -1212,7 +1212,7 @@ if os.name == "posix":
                                 elif JFKbdhf == 9:
                                     asdpoasd = str(input("Mesajınız:"))
                                     developer_contact(message=asdpoasd)
-                                elif asdpoasd == 10:
+                                elif JFKbdhf == 10:
                                     help_pip()
                                 elif JFKbdhf == 101:
                                     ıkuahsd = getpass.getpass("")

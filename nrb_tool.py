@@ -601,8 +601,8 @@ def evil_twin(interface,driver,ssid,channel,auth_algs,wpa_passphrase):
         os.chdir("/etc/hostapd/")
         if os.path.exists("hostapd.conf") == True:
             print("[+] hostapd.conf dosyası bulundu.")
-            with open("/etc/hostapd/hostapd.conf", "w") as dosya:
-                dosya.write("interface={}\ndriver={}\nssid={}\nhw_mode=g\nchannel={}\nmacaddr_acl=0\nauth_algs={]\nignore_broadcast_ssid=0\nwpa=2\nwpa_passphrase={}\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP CCMP".format(interface,driver,ssid,channel,auth_algs,wpa_passphrase))
+            dosya = open("/etc/hostapd/hostapd.conf", "w")
+            dosya.write("interface={}\ndriver={}\nssid={}\nhw_mode=g\nchannel={}\nmacaddr_acl=0\nauth_algs={]\nignore_broadcast_ssid=0\nwpa=2\nwpa_passphrase={}\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP CCMP".format(interface,driver,ssid,channel,auth_algs,wpa_passphrase))
             dosya.close()
             print("[+] Ayarlar kuruldu.")
             time.sleep(2)

@@ -6,6 +6,7 @@ import os
 from os import system, chdir
 from subprocess import *
 import webbrowser
+import pyclamd
 import getpass
 import random
 import requests
@@ -812,6 +813,16 @@ def wifi_search():
         sleep(3)
         print("\033[93;1m[!]\033 Bssid ve channel degerlerini bir yere kaydedin")
         sleep(4)
+def scan_file(file_path):
+    try:
+        cd = pyclamd.ClamdUnixSocket()
+        scan_result = cd.scan_file(file_path)
+        if scan_result[file_path] == 'OK':
+            return "Temiz"
+        else:
+            return "Virüs tespit edildi: " + scan_result[file_path]
+    except pyclamd.ConnectionError:
+        return "Antivirüs sunucusuna bağlanılamıyor."
 def encryption(password):
     encryption_password_list = list()
     encryption_word = ""
@@ -1181,6 +1192,7 @@ if os.name == "posix":
             9-Connect
             10-Solve pip error
             11-İnstagram pp download
+            12-Virüs scan
                                             """.format(sistem_ara(), interface(), internet_connection_control(),
                                                        update_check()))
                                 print(
@@ -1221,6 +1233,10 @@ if os.name == "posix":
                                 elif JFKbdhf == 11:
                                     acc = str(input("İnst Username:"))
                                     instagram_pp_download(username=acc)
+                                elif JFKbdhf == 12:
+                                    file_path = str(input("Dosya konumu:"))
+                                    result = scan_file(file_path)
+                                    print(result)
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
                                     sleep(2)

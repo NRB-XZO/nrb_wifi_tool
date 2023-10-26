@@ -596,6 +596,43 @@ def monitor_mod_open():
         print("{}[+] Monitor Mod Activated".format(B))
     else:
         print("{}[!]Something went wrong".format(B))
+def evil_twin(interface,driver,ssid,channel,auth_algs,wpa_passphrase):
+    try:
+        os.chdir("/etc/hostapd/")
+        if os.path.exists("hostapd.conf") == True:
+            print("[+] hostapd.conf dosyası bulundu.")
+            with open("/etc/hostapd/hostapd.conf", "w") as dosya:
+                dosya.write("interface={}\ndriver={}\nssid={}\nhw_mode=g\nchannel={}\nmacaddr_acl=0\nauth_algs={]\nignore_broadcast_ssid=0\nwpa=2\nwpa_passphrase={}\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP CCMP".format(interface,driver,ssid,channel,auth_algs,wpa_passphrase))
+            dosya.close()
+            print("[+] Ayarlar kuruldu.")
+            time.sleep(2)
+            for i in range(30):
+                print("Sahte ağ servisi başlatılıyor.")
+                time.sleep(0.5)
+                print("Sahte ağ servisi başlatılıyor..")
+                time.sleep(0.5)
+                print("Sahte ağ servisi başlatılıyor...")
+                time.sleep(0.5)
+                print("Sahte ağ servisi başlatılıyor....")
+                time.sleep(0.5)
+                print("Sahte ağ servisi başlatılıyor.....")
+                time.sleep(0.5)
+                print("Sahte ağ servisi başlatılıyor....")
+                time.sleep(0.5)
+                print("Sahte ağ servisi başlatılıyor...")
+                time.sleep(0.5)
+                print("Sahte ağ servisi başlatılıyor..")
+                time.sleep(0.5)
+                print("Sahte ağ servisi başlatılıyor.")
+                time.sleep(0.5)
+                time.sleep(3)
+            os.system("xterm sudo hostapd /etc/hostapd/hostapd.conf")
+        else:
+            pass
+
+    except:
+        print("[-] hostapd klasörüne erişilemedi")
+        time.sleep(5)
 def update_check():
     try:
         asdf = str()
@@ -1013,8 +1050,13 @@ def wifi_tools():
     elif aBJDj == 5:
         airgeddon()
     elif aBJDj == 6:
-        if __name__ == '__main__':
-            main()
+        interface = str(input("wlan0 ? wlanomon"))
+        driver=str(input("nl80211"))
+        ssid = str(input("Ssid:"))
+        channel=int(input("Channel:"))
+        auth_algs = int(input("Wlan 1 or 2 ?:"))
+        wpa_passphrase = str(input("Ağ şifresi:"))
+        evil_twin(interface=interface,driver=driver,ssid=ssid,channel=channel,auth_algs=auth_algs,wpa_passphrase=wpa_passphrase)
     else:
         print("\033[93;1m[!]\033 Bir hata olustu")
 def hidden_panel(inputt):

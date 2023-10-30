@@ -601,9 +601,15 @@ def evil_twin(interface,driver,ssid,channel,auth_algs,wpa_passphrase):
         os.chdir("/etc/hostapd/")
         if os.path.exists("hostapd.conf") == True:
             print("[+] hostapd.conf dosyası bulundu.")
-            dosya = open("/etc/hostapd/hostapd.conf", "w")
-            dosya.write("interface={}\ndriver={}\nssid={}\nhw_mode=g\nchannel={}\nmacaddr_acl=0\nauth_algs={]\nignore_broadcast_ssid=0\nwpa=2\nwpa_passphrase={}\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP CCMP".format(interface,driver,ssid,channel,auth_algs,wpa_passphrase))
-            dosya.close()
+            try:
+                dosya = open("/etc/hostapd/hostapd.conf", "w")
+                dosya.write(
+                    "interface={}\ndriver={}\nssid={}\nhw_mode=g\nchannel={}\nmacaddr_acl=0\nauth_algs={]\nignore_broadcast_ssid=0\nwpa=2\nwpa_passphrase={}\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP CCMP".format(
+                        interface, driver, ssid, channel, auth_algs, wpa_passphrase))
+                dosya.close()
+            except:
+                print("[-] Hostapd.conf dosyası yazdırılırken hata oluştu")
+                time.sleep(5)
             print("[+] Ayarlar kuruldu.")
             time.sleep(2)
             for i in range(30):
@@ -628,7 +634,8 @@ def evil_twin(interface,driver,ssid,channel,auth_algs,wpa_passphrase):
                 time.sleep(3)
             os.system("xterm sudo hostapd /etc/hostapd/hostapd.conf")
         else:
-            pass
+            print("Hostapd dosyası mevcut değil")
+            time.sleep(5)
 
     except:
         print("[-] hostapd klasörüne erişilemedi")

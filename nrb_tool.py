@@ -637,7 +637,7 @@ def evil_twin(interface, driver, ssid, channel, auth_algs, wpa_passphrase):
                 print("Sahte ağ servisi başlatılıyor......")
                 time.sleep(0.1)
                 os.system("clear")
-            os.system("xterm -sh 250 -T fake network -e sudo hostapd /etc/hostapd/hostapd.conf")
+            os.system("xterm -sh 250 -e sudo hostapd /etc/hostapd/hostapd.conf")
         else:
             print("Hostapd dosyası mevcut değil")
             time.sleep(5)

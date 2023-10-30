@@ -596,7 +596,7 @@ def monitor_mod_open():
         print("{}[+] Monitor Mod Activated".format(B))
     else:
         print("{}[!]Something went wrong".format(B))
-def evil_twin(interface,driver,ssid,channel,auth_algs,wpa_passphrase):
+def evil_twin(interface, driver, ssid, channel, auth_algs, wpa_passphrase):
     try:
         os.chdir("/etc/hostapd/")
         if os.path.exists("hostapd.conf") == True:
@@ -604,7 +604,7 @@ def evil_twin(interface,driver,ssid,channel,auth_algs,wpa_passphrase):
             try:
                 dosya = open("/etc/hostapd/hostapd.conf", "w")
                 dosya.write(
-                    "interface={}\ndriver={}\nssid={}\nhw_mode=g\nchannel={}\nmacaddr_acl=0\nauth_algs={]\nignore_broadcast_ssid=0\nwpa=2\nwpa_passphrase={}\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP CCMP".format(
+                    "interface={}\ndriver={}\nssid={}\nhw_mode=g\nchannel={}\nmacaddr_acl=0\nauth_algs={}\nignore_broadcast_ssid=0\nwpa=2\nwpa_passphrase={}\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP CCMP".format(
                         interface, driver, ssid, channel, auth_algs, wpa_passphrase))
                 dosya.close()
             except:
@@ -640,6 +640,7 @@ def evil_twin(interface,driver,ssid,channel,auth_algs,wpa_passphrase):
     except:
         print("[-] hostapd klasörüne erişilemedi")
         time.sleep(5)
+
 def update_check():
     try:
         asdf = str()

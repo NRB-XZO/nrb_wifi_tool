@@ -5,6 +5,8 @@ from time import sleep
 import os
 from os import system, chdir
 from subprocess import *
+import requests
+import json
 import webbrowser
 import pyclamd
 import getpass
@@ -645,7 +647,39 @@ def evil_twin(interface, driver, ssid, channel, auth_algs, wpa_passphrase):
     except:
         print("[-] hostapd klasörüne erişilemedi")
         time.sleep(5)
+def github_check(): #Bu kısımda github üzerinden güncelleme almak için bir def fonksiyonu yazdım. Ama halen geliştirme aşamasında
+    project_directory = os.getcwd()
+    try:
+        git_log = subprocess.check_output(['git', 'log', '-1', '--format=%cd', '--date=iso'], cwd=project_directory)
+        local_code_date = git_log.decode('utf-8').strip()
+    except subprocess.CalledProcessError as e:
+        print("Hata:", e)
+        local_code_date = None
 
+    if local_code_date:
+        print(f"Yerel kodun son güncelleme tarihi: {local_code_date}")
+    else:
+        print("Yerel kodun son güncelleme tarihi alınamadı.")
+    github_token = 'YOUR_GITHUB_TOKEN'
+
+    # GitHub deposu bilgileri
+    owner = 'your_username'
+    repo = 'your_repository'
+
+    # GitHub API'sini kullanarak depo bilgilerini alın
+    url = f'https://api.github.com/repos/{owner}/{repo}/commits'
+    response = requests.get(url, headers={'Authorization': f'token {github_token}'})
+    data = json.loads(response.text)
+
+    # Son güncelleme tarihini alın
+    latest_commit_date = data[0]['commit']['author']['date']
+
+    # Burada yerel depodaki kodun tarihini alın ve latest_commit_date ile karşılaştırın.
+    # Eğer latest_commit_date daha yeni ise, güncelleme uygulamak için gerekli komutları ekleyin.
+
+    # Örnek: Git güncelleme komutu
+    if latest_commit_date > local_code_date:
+        os.system('git pull origin master')
 def update_check():
     try:
         asdf = str()

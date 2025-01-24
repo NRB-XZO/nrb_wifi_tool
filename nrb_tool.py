@@ -797,7 +797,7 @@ def instagram_pp_download(username):
 def packet_scanner():
     if os.name == "posix":
         os.chdir("/opt/")
-        packets = ["tor_ip_switcher", "toriptables2", "zphisher", "airgeddon"]
+        packets = ["tor_ip_switcher", "toriptables2", "zphisher", "airgeddon","seeker"]
         packets.sort
         for i in packets:
             if os.path.exists(i) == True:
@@ -844,6 +844,9 @@ def packet_download():
                                         if os.path.exists("airgeddon") == False:
                                             system(
                                                 "xterm -sh 250 -e git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git > /dev/null 2>&1 &")
+                                            if os.path.exists("seeker") == False:
+                                                system(
+                                                    "xterm -sh 250 -e git clone https://github.com/thewhiteh4t/seeker.git > /dev/null 2>&1 &")
     else:
         sleep(2)
         print("\033[93;1m[!]\033 Cok yakinda windows icin kurulumlar gelecektir")
@@ -858,6 +861,32 @@ def interface():
         return "Monitor"
     else:
         return "Error"
+
+def location_find():
+    try:
+        subprocess.Popen(["xterm", "-sh", "250", "-e", "ngrok http http://localhost:8080 > /dev/null 2>&1 &"])
+        time.sleep(3)
+        print("[+] Ngrok servisi başlatıldı")
+        time.sleep(2)
+        try:
+            os.chdir("/opt/seeker")
+        except:
+            print("[-] Seeker bulunamadı")
+            time.sleep(2)
+        print("[+] Seeker başlatılıyor.")
+        subprocess.Popen(["xterm", "-sh","250", "-e", "python3 seeker.py > /dev/null 2>&1 &"])
+
+
+    except:
+        time.sleep(2)
+        print("[-] Ngrok başlatılırken bir hata oluştu.")
+        time.sleep(2)
+        try:
+            socket.create_connection(("8.8.8.8", 53), timeout=5)
+            print("[-] Ngrok bulunamadı [!]")
+            time.sleep(2)
+        except OSError:
+            print("[-] İnternet bağlantısı yok.")
 def monitor_mod_close():
     system("clear")
     system("figlet NRB")

@@ -1297,6 +1297,7 @@ if os.name == "posix":
             10-Solve pip error
             11-İnstagram pp download
             12-Virüs scan
+            13-Location Find
                                             """.format(sistem_ara(), interface(), internet_connection_control(),
                                                        update_check()))
                                 print(
@@ -1341,6 +1342,8 @@ if os.name == "posix":
                                     file_path = str(input("Dosya konumu:"))
                                     result = scan_file(file_path)
                                     print(result)
+                                elif JFKbdhf == 13:
+                                    location_find()
                                 else:
                                     print("\033[93;1m[!]\033 {} Bir hata oluştu".format(O))
                                     sleep(2)

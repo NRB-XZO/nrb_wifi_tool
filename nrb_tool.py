@@ -776,22 +776,8 @@ def instagram_pp_download(username):
                 print("Your file has been saved here {}".format("/root/Desktop/nrb_inst/"))
                 os.chdir("/opt/nrb_wifi_tool/")
         elif os.name == "nt":
-            try:
-                os.chdir("C:\{}Users".format(""))
-            except:
-                print("{}[!] Problem navigating to the specified directory".format(B))
-            if os.path.exists("C:\{}Users\{}nrb_path".format("", "")) == True:
-                os.chdir("C:\{}Users\{}nrb_path".format("", ""))
-                test = instaloader.Instaloader()
-                test.download_profile(username, profile_pic_only=True)
-                sleep(3)
-                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("", "")))
-            else:
-                os.mkdir("nrb_path")
-                test = instaloader.Instaloader()
-                test.download_profile(username, profile_pic_only=True)
-                sleep(3)
-                print("Your file has been saved here {}".format("C:\{}Users\{}nrb_path".format("", "")))
+            print("Wİndowsta pp indirme işlemi bulunmuyor.")
+            time.sleep(10)
     except:
         print("{}[!] Something went wrong".format(O))
 def packet_scanner():

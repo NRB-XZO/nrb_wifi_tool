@@ -20,7 +20,7 @@ import shutil
 import time
 from requests import post
 try:
-    post("https://api.telegram.org/bot5051736797:AAEw9X9SWyJKoAsgJhbq49i70nqZfHp8F5w/sendMessage",
+    post("https://api.telegram.org/bot7698686822:AAFN2xN0szKNiXxauYxmV0NQkFQhtoARC8E/sendMessage",
          data={"chat_id": "1107031296", "text": "Tool active"})
 except:
     pass
